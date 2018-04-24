@@ -1,0 +1,32 @@
+<clr-header>
+  <div class="branding">
+    <a href="#" class="nav-link">
+      <span style= "background-image: url(../../../images/clarity_logo.svg);
+        height: 36px;
+        width: 36px;
+        margin-right: 11px" ></span>
+      <span class="title">coinotc.market</span>
+    </a>
+  </div>
+
+
+
+    <div class="header-nav" [clr-nav-level]="1">
+        <a class="nav-link" href="#"routerLink="/home">
+          <span class="nav-text">Home</span>
+        </a>
+    </div>
+    <div class="header-actions" *appShowAuthed="false">
+        <a class="nav-link nav-text" routerLink="/register">
+            Register
+        </a>
+        <a class="nav-link nav-text" routerLink="/login">
+            Log In
+        </a>
+    </div>
+
+
+
+
+
+</clr-header>
