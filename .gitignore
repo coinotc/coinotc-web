@@ -10,3 +10,4 @@ typings/
 .npmrc
 package-lock.json
 server/node_modules/
+.env
