@@ -9,3 +9,4 @@ typings/
 .DS_Store
 .npmrc
 package-lock.json
+server/node_modules/
