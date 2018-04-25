@@ -9,7 +9,7 @@
           <a [routerLink]="['/register']" *ngIf="authType == 'login'">Need an account?</a>
         </p>
         <app-list-errors [errors]="errors"></app-list-errors>
-        <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+        <form [formGroup]="authForm" (ngSubmit)="submitForm()" class="login">
           <fieldset [disabled]="isSubmitting">
             <fieldset class="form-group">
               <input
@@ -58,7 +58,7 @@
                 *ngIf="authType == 'register'" />
             </fieldset>
 
-            <button class="btn btn-lg btn-primary pull-xl-right" [disabled]="!authForm.valid" type="submit">
+            <button class="btn btn-primary" [disabled]="!authForm.valid" type="submit">
               {{ title }}
             </button>
           </fieldset>

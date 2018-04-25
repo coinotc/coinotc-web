@@ -3,8 +3,14 @@
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
+  <div *appShowAuthed="false" class="header-cta">
+      <div>
+        <h3>COINOTC.MARKET</h3>
+        <p>A place to trade your cryptocurrencies.</p>
+      </div>
+  </div>
   <button class="btn btn-outline-danger"
             (click)="logout()"
             *appShowAuthed="true">
             Click here to logout.
-</button>
+  </button>

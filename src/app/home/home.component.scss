@@ -1,3 +1,19 @@
 // Copyright (c) 2016 VMware, Inc. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
+.header-cta{
+  background-color: #004D8A;
+  text-align: center;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  align-items: center;
+  box-shadow: inset 0 8px 8px -8px rgba(0, 0, 0, 0.3), inset 0 -8px 8px -8px rgba(0, 0, 0, 0.3);
+}
+
+.header-cta > div > h3 {
+  color: #ffffff;
+}
+
+.header-cta > div > p {
+  color: #ffffff;
+}
