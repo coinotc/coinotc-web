@@ -1,70 +1,66 @@
 <div>
-  <div class="container page">
-    <div class="row">
 
-      <div class="col-md-6 offset-md-3 col-xs-12">
-        <h1 class="text-xs-center">{{ title }}</h1>
-        <p class="text-xs-center">
-          <a [routerLink]="['/login']" *ngIf="authType == 'register'">Have an account?</a>
-          <a [routerLink]="['/register']" *ngIf="authType == 'login'">Need an account?</a>
-        </p>
-        <app-list-errors [errors]="errors"></app-list-errors>
-        <form [formGroup]="authForm" (ngSubmit)="submitForm()">
-          <fieldset [disabled]="isSubmitting">
-            <fieldset class="form-group">
-              <input
-                formControlName="username"
-                placeholder="Username"
-                class="form-control form-control-lg"
-                type="text"
-                *ngIf="authType == 'register'" />
-            </fieldset>
-            <fieldset class="form-group">
-              <input
-                formControlName="email"
-                placeholder="Email"
-                class="form-control form-control-lg"
-                type="text" />
-            </fieldset>
-            <fieldset class="form-group">
-              <input
-                formControlName="password"
-                placeholder="Password"
-                class="form-control form-control-lg"
-                type="password" />
-            </fieldset>
-            <fieldset class="form-group">
-              <input
-                formControlName="confirmPassword"
-                placeholder="Confirm Password"
-                class="form-control form-control-lg"
-                type="password"
-                *ngIf="authType == 'register'" />
-            </fieldset>
-            <fieldset class="form-group">
-              <input
-                formControlName="tradepassword"
-                placeholder="6 Pin Code"
-                class="form-control form-control-lg"
-                type="text"
-                *ngIf="authType == 'register'" />
-            </fieldset>
-            <fieldset class="form-group">
-              <input
-                formControlName="confirmTradePassword"
-                placeholder="Confirm 6 Pin Code"
-                class="form-control form-control-lg"
-                type="text"
-                *ngIf="authType == 'register'" />
-            </fieldset>
+  <label class="title">
+      <h1>{{ title }}</h1>
+      <p>
+        <a [routerLink]="['/login']" *ngIf="authType == 'register'">Have an account?</a>
+        <a [routerLink]="['/register']" *ngIf="authType == 'login'">Need an account?</a>
+      </p>
+  </label>
 
-            <button class="btn btn-lg btn-primary pull-xl-right" [disabled]="!authForm.valid" type="submit">
-              {{ title }}
-            </button>
-          </fieldset>
-        </form>
-      </div>
+  <app-list-errors [errors]="errors"></app-list-errors>
+  <form [formGroup]="authForm" (ngSubmit)="submitForm()" class="login">
+    <fieldset [disabled]="isSubmitting">
+      <fieldset class="form-group">
+        <input
+          formControlName="username"
+          placeholder="Username"
+          class="form-control form-control-lg"
+          type="text"
+          *ngIf="authType == 'register'" />
+      </fieldset>
+      <fieldset class="form-group">
+        <input
+          formControlName="email"
+          placeholder="Email"
+          class="form-control form-control-lg"
+          type="text" />
+      </fieldset>
+      <fieldset class="form-group">
+        <input
+          formControlName="password"
+          placeholder="Password"
+          class="form-control form-control-lg"
+          type="password" />
+      </fieldset>
+      <fieldset class="form-group">
+        <input
+          formControlName="confirmPassword"
+          placeholder="Confirm Password"
+          class="form-control form-control-lg"
+          type="password"
+          *ngIf="authType == 'register'" />
+      </fieldset>
+      <fieldset class="form-group">
+        <input
+          formControlName="tradepassword"
+          placeholder="6 Pin Code"
+          class="form-control form-control-lg"
+          type="text"
+          *ngIf="authType == 'register'" />
+      </fieldset>
+      <fieldset class="form-group">
+        <input
+          formControlName="confirmTradePassword"
+          placeholder="Confirm 6 Pin Code"
+          class="form-control form-control-lg"
+          type="text"
+          *ngIf="authType == 'register'" />
+      </fieldset>
 
-    </div>
-  </div>
+      <button class="btn btn-primary" [disabled]="!authForm.valid" type="submit">
+        {{ title }}
+      </button>
+    </fieldset>
+  </form>
 </div>
