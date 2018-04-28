@@ -8,7 +8,8 @@ import {
   AuthGuard,
   JwtService,
   UserService,
-  AdvertisementsService
+  AdvertisementsService,
+  ProfilesService
 } from './services';
 
 @NgModule({
@@ -21,7 +22,8 @@ import {
     AuthGuard,
     JwtService,
     UserService,
-    AdvertisementsService
+    AdvertisementsService,
+    ProfilesService
   ],
   declarations: []
 })

@@ -6,10 +6,10 @@ const routes: Routes = [
   //   path: 'settings',
   //   loadChildren: './settings/settings.module#SettingsModule'
   // },
-  // {
-  //   path: 'profile',
-  //   loadChildren: './profile/profile.module#ProfileModule'
-  // },
+   {
+     path: 'profile',
+     loadChildren: './profile/profile.module#ProfileModule'
+   }
   // {
   //   path: 'editor',
   //   loadChildren: './editor/editor.module#EditorModule'
@@ -18,7 +18,7 @@ const routes: Routes = [
   //   path: 'article',
   //   loadChildren: './article/article.module#ArticleModule'
   // }
-]; 
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
