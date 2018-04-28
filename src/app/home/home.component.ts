@@ -6,22 +6,31 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
 
-import { User, UserService } from '../core';
+import { User,Advertisement, UserService, AdvertisementsService } from '../core';
 
 @Component({
     styleUrls: ['./home.component.scss'],
     templateUrl: './home.component.html',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
     private userService: UserService,
+    private advertisementsService: AdvertisementsService
   ) {}
+
+  adverts: Advertisement[];
 
   logout() {
     this.userService.purgeAuth();
     this.router.navigateByUrl('/');
   }
 
+  ngOnInit() {
+    this.advertisementsService.getAll()
+      .subscribe(adverts =>
+        this.adverts = adverts)
+
+  }
 }

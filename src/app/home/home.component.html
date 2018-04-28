@@ -5,10 +5,38 @@
   -->
   <div *appShowAuthed="false" class="header-cta">
       <div>
-        <h3>COINOTC.MARKET</h3>
+        <h2>COINOTC.MARKET</h2>
         <p>A place to trade your cryptocurrencies.</p>
       </div>
+      <div>
+        <label class="cta-prompt-login-register">
+              <a [routerLink]="['/login']" >Have an account?</a>
+              <a [routerLink]="['/register']" >Need an account?</a>
+        </label>
+      </div>
   </div>
+  <div class="content-container">
+    <div class="content-area">
+  <clr-datagrid>
+      <clr-dg-column [clrDgField]="owner">Username</clr-dg-column>
+      <clr-dg-column [clrDgField]="crypto">Coin</clr-dg-column>
+      <clr-dg-column [clrDgField]="country">Country</clr-dg-column>
+      <clr-dg-column [clrDgField]="fiat">Currency</clr-dg-column>
+      <clr-dg-column [clrDgField]="price">Rate</clr-dg-column>
+      <clr-dg-column [clrDgField]="payment">Payment Method</clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let advert of adverts">
+          <clr-dg-cell>{{advert.owner}}</clr-dg-cell>
+          <clr-dg-cell>{{advert.crypto}}</clr-dg-cell>
+          <clr-dg-cell>{{advert.country}}</clr-dg-cell>
+          <clr-dg-cell>{{advert.fiat}}</clr-dg-cell>
+          <clr-dg-cell>{{advert.price}}</clr-dg-cell>
+          <clr-dg-cell>{{advert.payment}}</clr-dg-cell>
+      </clr-dg-row>
+  </clr-datagrid>
+    </div>
+  </div>
+
   <button class="btn btn-outline-danger"
             (click)="logout()"
             *appShowAuthed="true">
