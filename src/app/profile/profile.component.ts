@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   currentUser: User;
   isUser: boolean;
 
+
   ngOnInit() {
     this.route.data.pipe(
       concatMap((data: { profile: Profile }) => {
@@ -32,6 +33,9 @@ export class ProfileComponent implements OnInit {
         ));
       })
     ).subscribe();
+    console.dir(this.profile)
+    // console.dir(this.profile.verifystatus)
+
   }
 
   // onToggleFollowing(following: boolean) {
