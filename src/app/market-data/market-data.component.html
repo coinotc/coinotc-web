@@ -12,5 +12,10 @@
     <clr-dg-column>Circulating Supply</clr-dg-column>
     <clr-dg-column>Change(24H)</clr-dg-column>
     <clr-dg-column>Price Graph(7D)</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let advert of cryptoInfo">
+        <clr-dg-cell>{{advert.name}}</clr-dg-cell>
+
+    </clr-dg-row>
 </clr-datagrid>
-<p>{{cryptoInfo.id}}</p>
+<!-- <p>{{cryptoInfo.id}}</p> -->
