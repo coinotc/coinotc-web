@@ -1,1 +1,16 @@
-<p>Market Data</p>
+<div class="btn-group btn-outline-primary btn-sm">
+    <button class="btn">USD</button>
+    <button class="btn">BTC</button>
+    <button class="btn">ETH</button>
+    <button class="btn">Delete</button>
+</div>
+<clr-datagrid>
+    <clr-dg-column>#</clr-dg-column>
+    <clr-dg-column>Name</clr-dg-column>
+    <clr-dg-column>Market Cap</clr-dg-column>
+    <clr-dg-column>Volume(24H)</clr-dg-column>
+    <clr-dg-column>Circulating Supply</clr-dg-column>
+    <clr-dg-column>Change(24H)</clr-dg-column>
+    <clr-dg-column>Price Graph(7D)</clr-dg-column>
+</clr-datagrid>
+<p>{{cryptoInfo.id}}</p>
