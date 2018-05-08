@@ -6,27 +6,30 @@ import { RouterModule } from '@angular/router';
 
 import { ListErrorsComponent } from './list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule
-  ],
-  declarations: [
-    ListErrorsComponent,
-    ShowAuthedDirective
-  ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ListErrorsComponent,
-    RouterModule,
-    ShowAuthedDirective
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule,
+        AvatarModule
+    ],
+    declarations: [
+        ListErrorsComponent,
+        ShowAuthedDirective
+    ],
+    exports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        ListErrorsComponent,
+        RouterModule,
+        ShowAuthedDirective,
+        AvatarModule
+    ]
 })
-export class SharedModule {}
+export class SharedModule { }
