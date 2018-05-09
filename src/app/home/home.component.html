@@ -15,30 +15,100 @@
         </label>
       </div>
   </div>
-  <div class="content-container">
-    <div class="content-area">
-  <clr-datagrid>
-      <clr-dg-column [clrDgField]="owner">Username</clr-dg-column>
-      <clr-dg-column [clrDgField]="crypto">Coin</clr-dg-column>
-      <clr-dg-column [clrDgField]="country">Country</clr-dg-column>
-      <clr-dg-column [clrDgField]="fiat">Currency</clr-dg-column>
-      <clr-dg-column [clrDgField]="price">Rate</clr-dg-column>
-      <clr-dg-column [clrDgField]="payment">Payment Method</clr-dg-column>
-
-      <clr-dg-row *clrDgItems="let advert of adverts">
-          <clr-dg-cell>{{advert.owner}}</clr-dg-cell>
-          <clr-dg-cell>{{advert.crypto}}</clr-dg-cell>
-          <clr-dg-cell>{{advert.country}}</clr-dg-cell>
-          <clr-dg-cell>{{advert.fiat}}</clr-dg-cell>
-          <clr-dg-cell>{{advert.price}}</clr-dg-cell>
-          <clr-dg-cell>{{advert.payment}}</clr-dg-cell>
-      </clr-dg-row>
-  </clr-datagrid>
+  <div class="row">
+    <div class="col-lg-4">
+       <div class="card">
+           <div class="card-header">
+               Recent Trades
+               <div style="float:right;">
+               <clr-dropdown>
+                     <!-- [(ngModel)]="selectedFiat" -->
+                 <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+                     {{selectedFiat}}
+                     <clr-icon shape="caret down"></clr-icon>
+                 </button>
+                 <clr-dropdown-menu *clrIfOpen>
+                     <button type="button" clrDropdownItem (click)="changefiat('CNY')">CNY</button>
+                     <button type="button" clrDropdownItem (click)="changefiat('SGD')">SGD</button>
+                     <button type="button" clrDropdownItem (click)="changefiat('USD')">USD</button>
+                     <button type="button" clrDropdownItem (click)="changefiat('KRW')">KRW</button>
+                    
+                 </clr-dropdown-menu>
+             </clr-dropdown>        
+     
+             <clr-dropdown>
+                     <!-- [(ngModel)]="selectedCrypto" -->
+                 <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+                     {{selectedCrypto}}
+                 <clr-icon shape="caret down"></clr-icon>
+                 </button>
+                 <clr-dropdown-menu *clrIfOpen>
+                     <button type="button" clrDropdownItem (click)="changecrypto('CARDANO')">CARDANO</button>
+                     <button type="button" clrDropdownItem (click)="changecrypto('MONERO')">MONERO</button>
+                     <button type="button" clrDropdownItem (click)="changecrypto('ETHEREUM')">ETHEREUM</button>
+                     <button type="button" clrDropdownItem (click)="changecrypto('RIPPLE')">RIPPLE</button>
+                     <button type="button" clrDropdownItem (click)="changecrypto('STELLAR LUMENS')">STELLAR LUMENS</button>
+                 </clr-dropdown-menu>
+             </clr-dropdown> 
+         </div>     
+           </div>
+        <div class="card-block">
+         <table class="table">
+           <thead>
+               <tr>
+                   <th>Time</th>
+                   <th>Total({{selectedFiat}})</th>
+                   <th></th>
+                   <th>Volume({{selectedCrypto}})</th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr *ngFor="let order of orders">
+                   <td>{{order.approveDate | date: "shortTime"}}</td>
+                   <td>{{order.amount}}</td>
+                   <td *ngIf="order.owner==order.buyer"><clr-icon shape="fast-forward"></clr-icon></td>
+                   <td *ngIf="order.owner==order.seller"><clr-icon shape="rewind"></clr-icon></td>
+                   <td>{{order.quantity}}</td>
+               </tr>
+           </tbody>
+       </table>
+     </div>
+       </div>
+       <div class="card">
+        <div *ngIf="chart">
+            <canvas id="canvas">{{ chart }}</canvas>
+          </div>
+       </div>
     </div>
-  </div>
-
-  <button class="btn btn-outline-danger"
+    <div class="col-lg-8">
+                <div class="content-container">
+                        <div class="content-area">
+                      <clr-datagrid>
+                          <clr-dg-column [clrDgField]="owner">Username</clr-dg-column>
+                          <clr-dg-column [clrDgField]="crypto">Coin</clr-dg-column>
+                          <clr-dg-column [clrDgField]="country">Country</clr-dg-column>
+                          <clr-dg-column [clrDgField]="fiat">Currency</clr-dg-column>
+                          <clr-dg-column [clrDgField]="price">Rate</clr-dg-column>
+                          <clr-dg-column [clrDgField]="payment">Payment Method</clr-dg-column>
+                    
+                          <clr-dg-row *clrDgItems="let advert of adverts">
+                              <clr-dg-cell>{{advert.owner}}</clr-dg-cell>
+                              <clr-dg-cell>{{advert.crypto}}</clr-dg-cell>
+                              <clr-dg-cell>{{advert.country}}</clr-dg-cell>
+                              <clr-dg-cell>{{advert.fiat}}</clr-dg-cell>
+                              <clr-dg-cell>{{advert.price}}</clr-dg-cell>
+                              <clr-dg-cell>{{advert.payment}}</clr-dg-cell>
+                          </clr-dg-row>
+                      </clr-datagrid>
+                        </div>
+                      </div>
+         <button class="btn btn-outline-danger"
             (click)="logout()"
             *appShowAuthed="true">
             Click here to logout.
-  </button>
+         </button>
+    </div>
+  </div>
+ 
+  
+  
