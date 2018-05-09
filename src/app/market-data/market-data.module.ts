@@ -7,11 +7,15 @@ import { MarketDataAuthResolver } from './market-data-auth-resolver.service';
 import { SharedModule } from '../shared';
 import { MarketDataRoutingModule } from './market-data-routing.module';
 
+//elegant trend grapha 
+import { TrendModule } from 'ngx-trend'
+
 @NgModule({
   imports: [
     SharedModule,
     ClarityModule,
-    MarketDataRoutingModule
+    MarketDataRoutingModule,
+    TrendModule,
   ],
   declarations: [
     MarketDataComponent

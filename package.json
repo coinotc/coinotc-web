@@ -28,6 +28,7 @@
     "core-js": "^2.4.1",
     "mutationobserver-shim": "^0.3.2",
     "ngx-avatar": "^2.9.0",
+    "ngx-trend": "^3.3.1",
     "rxjs": "^5.4.3",
     "ts-helpers": "^1.1.1",
     "web-animations-js": "^2.3.1",
