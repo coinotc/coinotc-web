@@ -13,6 +13,9 @@ export class MarketDataComponent {
   cryptoInfo : CryptoInfo
   cryptoConvertInfo : CryptoInfo
   
+  convert : string
+  buttonStyle : boolean = true
+
   constructor(
     // private cryptoInfoService : CryptoInfoService, 
     private http:HttpClient) {
@@ -22,7 +25,7 @@ export class MarketDataComponent {
       this.cryptoInfo = result.data
       console.log(this.cryptoInfo)
     })
-    this.getMarketConvertData(2,'BCH').subscribe(result =>{
+    this.getMarketConvertData(2,this.convert).subscribe(result =>{
       console.log(result)
       this.cryptoConvertInfo = result.data
       console.log(this.cryptoConvertInfo)
@@ -37,4 +40,9 @@ export class MarketDataComponent {
     let url = `https://api.coinmarketcap.com/v2/ticker/${id}/?convert=${convert}`
     return this.http.get<{data:any,metadata:any}>(url);
   }
+
+  changeConvert(convert){
+    this.convert = convert
+  }
+
 }
