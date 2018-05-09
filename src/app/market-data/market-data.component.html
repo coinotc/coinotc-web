@@ -1,76 +1,36 @@
 <div class="row">
     <div class="col-lg-12 col-md-24 col-sm-24 col-xs-24">
         <div class="card">
-            <div class="card-header">
-                <div class="btn-group" >
-                    <div class="radio btn" (click)="changeConvert('USD')">
-                        <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1" checked>
-                        <label for="btn-demo-radio-1">USD</label>
-                    </div>
-                    <div class="radio btn" (click)="changeConvert('BTC')">
-                        <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-2">
-                        <label for="btn-demo-radio-2">BTC</label>
-                    </div>
-                    <div class="radio btn" (click)="changeConvert('ETH')">
-                        <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-3">
-                        <label for="btn-demo-radio-3">ETH</label>
-                    </div>
-                    <div class="radio btn" (click)="changeConvert('XRP')">
-                        <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-4">
-                        <label for="btn-demo-radio-4">XRP</label>
-                    </div>
-                    <div class="radio btn" (click)="changeConvert('BCH')">
-                        <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-4">
-                        <label for="btn-demo-radio-4">BCH</label>
-                    </div>
-                    <div class="radio btn" (click)="changeConvert('LTC')">
-                        <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-4">
-                        <label for="btn-demo-radio-4">LTC</label>
-                    </div>  
-                </div>
-            </div>
             <div class="card-block">
-                <!-- <div class="card-title">
-                    Block
-                </div> -->
                 <div class="card-text">
                     <clr-datagrid>
-                        <clr-dg-column>#</clr-dg-column>
-                        <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column [clrDgSortBy]="idComparator">#</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="descSort">Name</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'price'" [clrDgSortBy]="quotesComparator">Price</clr-dg-column>
                         <clr-dg-column>Market Cap</clr-dg-column>
                         <clr-dg-column>Volume(24H)</clr-dg-column>
                         <clr-dg-column>Circulating Supply</clr-dg-column>
                         <clr-dg-column>Change(24H)</clr-dg-column>
                         <clr-dg-column>Price Graph(7D)</clr-dg-column>
-                        <!-- <clr-dg-row *clrDgItems="let advert of cryptoInfo">
-                            <clr-dg-cell>{{advert.name}}</clr-dg-cell>
-                    
-                        </clr-dg-row> -->
-                        <clr-dg-row>
-                            <clr-dg-cell>*</clr-dg-cell>
-                            <clr-dg-cell>*</clr-dg-cell>
-                            <clr-dg-cell>*</clr-dg-cell>
-                            <clr-dg-cell>*</clr-dg-cell>
-                            <clr-dg-cell>*</clr-dg-cell>
-                            <clr-dg-cell>*</clr-dg-cell>
+                        <clr-dg-row *clrDgItems="let crypto of cryptos">
+                            <clr-dg-cell>{{crypto.id}}</clr-dg-cell>
+                            <clr-dg-cell>{{crypto.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{crypto.quotes.USD.price}}</clr-dg-cell>
+                            <clr-dg-cell>{{crypto.quotes.USD.market_cap}}</clr-dg-cell>
+                            <clr-dg-cell>{{crypto.quotes.USD.volume_24h}}</clr-dg-cell>
+                            <clr-dg-cell>{{crypto.circulating_supply}}</clr-dg-cell>
+                            <clr-dg-cell>{{crypto.quotes.USD.percent_change_24h}}</clr-dg-cell>
                             <clr-dg-cell>
                                 <ngx-trend autoDraw="true" autoDrawDuration="3000" autoDrawEasing="ease-out"
-                                smooth="true" [data]="[0,2,5,9,5,10,3,5,0,0,1,8,2,9,0]" [gradient]="['#00c6ff', '#F0F', '#FF0']" 
-                                radius="10" strokeWidth="2" strokeLinecap="butt">   
+                                smooth="true" [data]="[0,2,5,9,5,10,3]" [gradient]="['#2196F3']" 
+                                radius="10" strokeWidth="2" strokeLinecap="butt" height="25" width="100">   
                                 </ngx-trend>
                             </clr-dg-cell>                 
                         </clr-dg-row>
                     </clr-datagrid>
                 </div>
             </div>
-            <div class="card-footer">
-                <button class="btn btn-sm btn-link">Footer Action 1</button>
-                <button class="btn btn-sm btn-link">Footer Action 2</button>
-            </div>
         </div>
     </div>
 </div>
 
-    
-
-<!-- <p>{{crypto.id}}</p> -->
