@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-const routes: Routes = [
+ const routes: Routes = [
    {
      path: 'market',
      loadChildren: './market-data/market-data.module#MarketDataModule'
@@ -9,7 +9,13 @@ const routes: Routes = [
    {
      path: 'profile',
      loadChildren: './profile/profile.module#ProfileModule'
+   },
+   {
+     path: 'advDetail',
+     loadChildren: './adv-detail/adv-detail.module#AdvDetailModule'
    }
+
+  
   // {
   //   path: 'editor',
   //   loadChildren: './editor/editor.module#EditorModule'

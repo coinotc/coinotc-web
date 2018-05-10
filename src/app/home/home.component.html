@@ -50,6 +50,9 @@
       <clr-dg-column [clrDgField]="payment">Payment Method</clr-dg-column>
 
       <clr-dg-row *clrDgItems="let advert of adverts">
+          <clr-dg-action-bar>
+              <a class="action-item" routerLink="/advDetail" (click)="onEdit(advert)"><clr-icon style="color: black;position:relative;bottom: 8px;left: 6px;" shape="pinboard" class="is-solid"></clr-icon></a>
+          </clr-dg-action-bar>
         <clr-dg-cell>{{advert.owner}}</clr-dg-cell>
         <clr-dg-cell>{{advert.crypto}}</clr-dg-cell>
         <clr-dg-cell>{{advert.country}}</clr-dg-cell>
@@ -57,6 +60,7 @@
         <clr-dg-cell>{{advert.price}}</clr-dg-cell>
         <clr-dg-cell>{{advert.payment}}</clr-dg-cell>
       </clr-dg-row>
+
     </clr-datagrid>
   </div>
 </div>

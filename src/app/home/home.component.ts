@@ -5,6 +5,8 @@ import { AnonymousSubscription } from "rxjs/Subscription";
 import { Observable } from 'rxjs/Rx';
 import { BannerControlService } from '../core/services/banner-control.service'
 import { banner } from '../core/models/banner.model'
+import { AdvDetailService } from '../core/services/adv-detail.service'
+
 @Component({
     styleUrls: ['./home.component.scss'],
     templateUrl: './home.component.html',
@@ -13,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   banners
   adverts: Advertisement[];
-
+  specificAdv:Advertisement
 
   private timerSubscription: AnonymousSubscription;
   private getAllSubscription: AnonymousSubscription;
@@ -22,12 +24,20 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private advertisementsService: AdvertisementsService,
-    private bannerControlService:BannerControlService
+    private bannerControlService:BannerControlService,
+    private advDetailService:AdvDetailService
   ) {
     this.bannerControlService.getBanner().subscribe(result=>{
       this.banners = result;
       console.log(result)
+    });
+    this.advDetailService.castAdv.subscribe(result=>{
+      this.specificAdv = result
     })
+  }
+
+  onEdit(advert){
+    this.advDetailService.detailAdv(advert)
   }
    
   logout() {
