@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import { ChartsModule } from 'ng2-charts';
 import { ClarityModule } from '@clr/angular';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
@@ -32,7 +32,8 @@ import { CoreModule } from './core/core.module';
         FormsModule,
         HttpModule,
         ClarityModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ChartsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

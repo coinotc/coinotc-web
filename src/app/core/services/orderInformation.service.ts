@@ -15,4 +15,8 @@ export class OrderInformationService {
     // order/currentOrderInformation?fiat=CNY&crypto=CARDANO
     return this.apiService.get(`/order/currentOrderInformation?fiat=${fiat}&crypto=${crypto}`);
   }
+  getOrderChart(fiat,crypto){
+    // order/currentOrderInformation?fiat=CNY&crypto=CARDANO
+    return this.apiService.get(`/order/allOrderInfo?fiat=${fiat}&crypto=${crypto}`);
+  }
 }

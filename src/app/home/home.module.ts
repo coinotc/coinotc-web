@@ -6,12 +6,14 @@ import { HomeComponent } from './home.component';
 import { HomeAuthResolver } from './home-auth-resolver.service';
 import { SharedModule } from '../shared';
 import { HomeRoutingModule } from './home-routing.module';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
     SharedModule,
     ClarityModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    ChartsModule,
   ],
   declarations: [
     HomeComponent

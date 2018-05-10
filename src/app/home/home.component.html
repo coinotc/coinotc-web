@@ -75,9 +75,17 @@
      </div>
        </div>
        <div class="card">
-        <div *ngIf="chart">
-            <canvas id="canvas">{{ chart }}</canvas>
-          </div>
+           <div *ngIf="flag">
+            <canvas baseChart width="350" height="250"
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            (chartHover)="chartHovered($event)">
+           </canvas>
+           </div>
        </div>
     </div>
     <div class="col-lg-8">

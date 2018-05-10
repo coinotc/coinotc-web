@@ -5,7 +5,6 @@ import { AnonymousSubscription } from "rxjs/Subscription";
 import { Observable } from 'rxjs/Rx';
 import { OrderInformationService } from '../core/services/orderInformation.service';
 import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
-import {Chart} from 'chart.js';
 
 @Component({
     styleUrls: ['./home.component.scss'],
@@ -18,8 +17,29 @@ export class HomeComponent implements OnInit {
   selectedFiat: String = "CNY";
   selectedCrypto: String = "CARDANO";
   orders;
-  //chart
-  chart = [];
+  flag:Number = 0;
+  //chart set
+  
+  public lineChartData:Array<any> = [
+    {data: [], label: ''}
+  ];
+  public lineChartLabels:Array<any> = [];
+  public lineChartOptions:any = {
+    responsive: true
+  };
+  public lineChartColors:Array<any> = [
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
+  public lineChartLegend:boolean = true;
+  public lineChartType:string = 'line';
+
   constructor(
     private router: Router,
     private userService: UserService,
@@ -27,29 +47,15 @@ export class HomeComponent implements OnInit {
     private orderInformationService :OrderInformationService,
   ) {
       this.orderInformationService.getFifteenOrderInfo(this.selectedFiat,this.selectedCrypto).subscribe(result => {
-        this.orders = result;
+         this.orders = result;
       });
+      
   }
-  
-//   ctx = document.getElementById('myChart').getContext('2d');
-//   chart = new Chart(ctx, {
-//     // The type of chart we want to create
-//     type: 'line',
+  //chart event
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
 
-//     // The data for our dataset
-//     data: {
-//         labels: ["January", "February", "March", "April", "May", "June", "July"],
-//         datasets: [{
-//             label: "My First dataset",
-//             backgroundColor: 'rgb(255, 99, 132)',
-//             borderColor: 'rgb(255, 99, 132)',
-//             data: [0, 10, 5, 2, 20, 30, 45],
-//         }]
-//     },
-
-//     // Configuration options go here
-//     options: {}
-// });
   logout() {
     this.userService.purgeAuth();
     this.router.navigateByUrl('/');
@@ -57,13 +63,24 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.refreshData();
     this.refreshTrades();
-    
+    //chart
+    this.refreshChart();
   }
   changefiat(fiat){
     this.selectedFiat = fiat;
     this.orderInformationService.getFifteenOrderInfo(fiat,this.selectedCrypto).subscribe(result => {
       this.orders = result;
     });
+    // this.flag = 0;
+    // this.orderInformationService.getOrderChart(fiat,this.selectedCrypto)
+    // .subscribe(result => {
+    //   for(let i=0;i<result.length;i++){
+    //     this.lineChartData[0].data.push(result[i].amount);
+    //     this.lineChartLabels.push(result[i].approveDate);
+    //   } 
+    //   this.lineChartData[0].label = fiat;
+    //   this.flag=1;
+    // });
   }
   changecrypto(crypto){
     this.selectedCrypto = crypto;
@@ -79,6 +96,10 @@ export class HomeComponent implements OnInit {
     this.timerSubscription = Observable.timer(5000)
       .subscribe(() => this.refreshTrades());
   }
+  subscribeToChart(){
+    this.timerSubscription = Observable.timer(5000)
+      .subscribe(() => this.refreshChart());
+  }
   private refreshData(){
     this.getAllSubscription = this.advertisementsService.getAll()
       .subscribe(adverts =>{
@@ -91,6 +112,19 @@ export class HomeComponent implements OnInit {
     .subscribe(result => {
       this.orders = result;
       this.subscribeToTrades();
+    })
+  }
+  private refreshChart(){
+    this.lineChartData[0].data = [];
+    this.getAllSubscription = this.orderInformationService.getOrderChart(this.selectedFiat,this.selectedCrypto)
+    .subscribe(result => {
+      for(let i=0;i<result.length;i++){
+        this.lineChartData[0].data.push(result[i].amount);
+        this.lineChartLabels.push(result[i].approveDate);
+      } 
+      this.lineChartData[0].label = this.selectedFiat;
+      this.flag = 1;
+      this.subscribeToChart();
     })
   }
 }
