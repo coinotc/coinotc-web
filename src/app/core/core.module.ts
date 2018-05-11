@@ -10,7 +10,6 @@ import {
   UserService,
   AdvertisementsService,
   ProfilesService,
-  CryptoInfoService
 } from './services';
 
 @NgModule({
@@ -25,7 +24,6 @@ import {
     UserService,
     AdvertisementsService,
     ProfilesService,
-    CryptoInfoService
   ],
   declarations: []
 })

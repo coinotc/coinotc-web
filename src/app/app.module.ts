@@ -15,11 +15,13 @@ import {
 } from './shared';
 import { AppRoutingModule } from "./app-routing.module";
 import { CoreModule } from './core/core.module';
+// import { CreateAdvComponent } from './create-adv/create-adv.component';
 
 
 @NgModule({
     declarations: [
-        AppComponent, FooterComponent, HeaderComponent
+        AppComponent, FooterComponent, HeaderComponent,
+        //  CreateAdvComponent
     ],
     imports: [
         BrowserAnimationsModule,

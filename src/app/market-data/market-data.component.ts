@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
-import { CryptoInfoService, CryptoInfo, Crypto } from '../core';
+import { CryptoInfo, Crypto } from '../core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs/Observable';
 import { ifError } from "assert";

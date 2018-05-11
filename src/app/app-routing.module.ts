@@ -9,6 +9,10 @@ const routes: Routes = [
    {
      path: 'profile',
      loadChildren: './profile/profile.module#ProfileModule'
+   },
+   {
+     path:'advertisement',
+    loadChildren:'./create-adv/create-adv.module#CreateAdvModule'
    }
   // {
   //   path: 'editor',
