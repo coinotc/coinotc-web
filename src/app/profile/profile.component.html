@@ -1,45 +1,17 @@
 <div class="profile-page">
-  <div class="content-container">
-    <div class="content-area">
-
-
-    <div class="card">
-      <div class="card-header">
-        {{ profile.username }}
-        <span class="badge badge-success" *ngIf="profile.verifystatus">Verified</span>
-        <span class="badge badge-danger" *ngIf="!profile.verifystatus">Unverified</span>
-      </div>
-      <div class="card-block">
-        <div class="card-media-block wrap">
-
-          <ngx-avatar name={{profile.username}}>
-            </ngx-avatar>
-
-          <h4>{{ profile.email }}</h4>
-
-
+    <div class="content-container">
+        <div class="content-area">
+            <div class="card">
+                <div class="card-header">
+                    {{ profile.username }} ({{ profile.email }})
+                    <span class="badge badge-success" *ngIf="profile.verifystatus">Verified</span>
+                    <span class="badge badge-danger" *ngIf="!profile.verifystatus">Unverified</span>
+                </div>
+                <div class="card-block">
+                    <button class="btn btn-sm btn-link" *ngIf="profile.verifystatus" [routerLink]="[ '/kyc', profile.username] ">Update Verification Documents</button>
+                    <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus" [routerLink]="[ '/kyc', profile.username] ">Submit Verification Documents</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="card">
-     <div class="card-block">
-         <h3 class="card-title">Title</h3>
-         <p class="card-text">
-             ...
-         </p>
-     </div>
-     <div class="card-footer">
-         <a href="..." class="btn btn-primary">Action</a>
-     </div>
- </div>
-
-
-
-
-      </div>
-    </div>
-
-
-
-
 </div>

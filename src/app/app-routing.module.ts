@@ -13,7 +13,11 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
    {
      path: 'advDetail',
      loadChildren: './adv-detail/adv-detail.module#AdvDetailModule'
-   }
+   },
+   {
+    path: 'kyc',
+    loadChildren: './kyc/kyc.module#KycModule'
+    },
 
   
   // {
@@ -27,12 +31,12 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    // preload all modules; optionally we could
-    // implement a custom preloading strategy for just some
-    // of the modules (PRs welcome 😉)
-    preloadingStrategy: PreloadAllModules
-  })],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes, {
+        // preload all modules; optionally we could
+        // implement a custom preloading strategy for just some
+        // of the modules (PRs welcome 😉)
+        preloadingStrategy: PreloadAllModules
+    })],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
