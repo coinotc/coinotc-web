@@ -31,4 +31,4 @@ import {
   ],
   declarations: []
 })
-export class CoreModule { }
+export class CoreModule {}
