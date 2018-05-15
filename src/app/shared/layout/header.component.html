@@ -1,13 +1,13 @@
 <clr-header class="header header-6">
-  <div class="branding">
-    <a href="#" class="nav-link">
+    <div class="branding">
+        <a href="#" class="nav-link">
       <span style= "background-image: url(../../../images/clarity_logo.svg);
         height: 36px;
         width: 36px;
         margin-right: 11px" ></span>
       <span class="title">coinotc.market</span>
     </a>
-  </div>
+    </div>
 
 
 
@@ -33,12 +33,17 @@
     </div>
 
     <div class="header-actions" *appShowAuthed="true">
-      <a class="nav-link nav-text"
-          [routerLink]="['/profile', currentUser.username]"
-          routerLinkActive="active">
-          {{ currentUser.username }}
-        </a>
+
+        <a class="nav-link nav-text " [routerLink]="[ '/profile', currentUser.username] " routerLinkActive="active ">
+
+                {{ currentUser.username }}
+            </a>
+
+
+
+
     </div>
+
 
 
 

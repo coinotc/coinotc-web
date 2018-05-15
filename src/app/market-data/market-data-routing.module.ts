@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MarketDataComponent } from './market-data.component';
 import { MarketDataAuthResolver } from './market-data-auth-resolver.service';
 
+
 const routes: Routes = [
   {
     path: '',

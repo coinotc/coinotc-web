@@ -10,6 +10,8 @@ import {
   UserService,
   AdvertisementsService,
   ProfilesService,
+  BannerControlService,
+  AdvDetailService
 } from './services';
 
 @NgModule({
@@ -24,7 +26,9 @@ import {
     UserService,
     AdvertisementsService,
     ProfilesService,
+    BannerControlService,
+    AdvDetailService
   ],
   declarations: []
 })
-export class CoreModule { }
+export class CoreModule {}
