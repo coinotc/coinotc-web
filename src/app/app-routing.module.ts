@@ -1,33 +1,29 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
- const routes: Routes = [
-   {
-     path: 'market',
-     loadChildren: './market-data/market-data.module#MarketDataModule'
-   },
-   {
-     path: 'profile',
-     loadChildren: './profile/profile.module#ProfileModule'
-   },
-   {
+const routes: Routes = [
+    {
+        path: 'market',
+        loadChildren: './market-data/market-data.module#MarketDataModule'
+    },
+    {
+        path: 'profile',
+        loadChildren: './profile/profile.module#ProfileModule'
+    },
+    {
+        path: 'kyc',
+        loadChildren: './kyc/kyc.module#KycModule'
+    },
+    {
      path: 'advDetail',
      loadChildren: './adv-detail/adv-detail.module#AdvDetailModule'
+
    },
    {
-    path: 'kyc',
-    loadChildren: './kyc/kyc.module#KycModule'
-    },
+     path:'advertisement',
+     loadChildren:'./create-adv/create-adv.module#CreateAdvModule'
+   }
 
-  
-  // {
-  //   path: 'editor',
-  //   loadChildren: './editor/editor.module#EditorModule'
-  // },
-  // {
-  //   path: 'article',
-  //   loadChildren: './article/article.module#ArticleModule'
-  // }
 ];
 
 @NgModule({
