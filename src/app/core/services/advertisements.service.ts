@@ -18,6 +18,10 @@ export class AdvertisementsService {
          // .pipe(map(data => data.adverts));
   }
 
+  createAdv(advertisement){
+    return this.apiService.post('/advertisement',advertisement)
+  }
+
 
 
 }

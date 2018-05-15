@@ -42,4 +42,11 @@ export class ApiService {
       `${environment.api_url}${path}`
     ).pipe(catchError(this.formatErrors));
   }
+
+  // getExternal(path: string): Observable<any> {
+  //   return this.http
+  //     .get(`${path}`)
+  //     .catch(this.formatErrors)
+  //     .map((res: Response) => res.json());
+  // }
 }
