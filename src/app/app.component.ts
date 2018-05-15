@@ -10,8 +10,7 @@ import { UserService } from './core';
 export class AppComponent implements OnInit {
     constructor(private userService: UserService) {
     }
-
     ngOnInit() {
-    this.userService.populate();
-  }
+        this.userService.populate();
+    }
 }

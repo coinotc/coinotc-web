@@ -14,10 +14,11 @@ const routes: Routes = [
         path: 'kyc',
         loadChildren: './kyc/kyc.module#KycModule'
     },
-    // {
-    //   path: 'article',
-    //   loadChildren: './article/article.module#ArticleModule'
-    // }
+    {
+     path: 'advDetail',
+     loadChildren: './adv-detail/adv-detail.module#AdvDetailModule'
+   }
+
 ];
 
 @NgModule({
