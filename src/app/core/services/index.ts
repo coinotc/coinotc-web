@@ -6,4 +6,5 @@ export * from './advertisements.service';
 export * from './profiles.service';
 export * from './banner-control.service';
 export * from './adv-detail.service';
+export * from './kyc.service';
 

@@ -11,7 +11,8 @@ import {
   AdvertisementsService,
   ProfilesService,
   BannerControlService,
-  AdvDetailService
+  AdvDetailService,
+  KycService
 } from './services';
 
 @NgModule({
@@ -27,7 +28,8 @@ import {
     AdvertisementsService,
     ProfilesService,
     BannerControlService,
-    AdvDetailService
+    AdvDetailService,
+    KycService
   ],
   declarations: []
 })
