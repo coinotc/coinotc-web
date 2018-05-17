@@ -47,7 +47,7 @@ export class KycComponent implements OnInit {
     submitted = false;
 
     onSubmit() {
-           ...
+           
     }
     addNewEmployeeAddress() {
         this.employeeAddressForm.reset();
