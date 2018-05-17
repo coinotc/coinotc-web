@@ -20,7 +20,9 @@ export class AdvertisementsService {
 
   //according to owner to get advertisement
   getByOwner(owner,visible): Observable<Advertisement[]>{
-    return this.apiService.get('/advertisement/myadvertisement/')
+    console.log(owner) 
+    let url = `/advertisement/myadvertisement?owner=${owner}&visible=${visible}`
+    return this.apiService.get(url)
   }
 
   createAdv(advertisement){

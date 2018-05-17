@@ -7,12 +7,14 @@ import { SharedModule } from '../shared';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { AvatarModule } from 'ngx-avatar';
 
+import { ClarityModule } from '@clr/angular';
 
 @NgModule({
   imports: [
     SharedModule,
     ProfileRoutingModule,
-    AvatarModule
+    AvatarModule,
+    ClarityModule
   ],
   declarations: [
     ProfileComponent

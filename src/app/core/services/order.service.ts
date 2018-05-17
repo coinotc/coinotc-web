@@ -13,8 +13,9 @@ export class OrderService {
   ) {}
 
   //according to owner to get orders
-  getByOwner(owner): Observable<OrderInformation[]>{
-    return this.apiService.get('/order/byOwner/')
+  getOrderWithHim(profileUser,currentUser):Observable<OrderInformation[]>{
+    let url = `/order/tradeWithHim?profileUser=${profileUser}&currentUser=${currentUser}`
+    return this.apiService.get(url)
   }
 
 }
