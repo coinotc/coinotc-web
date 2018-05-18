@@ -12,6 +12,77 @@
                     <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus" [routerLink]="[ '/kyc', profile.username] ">Submit Verification Documents</button>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Advertisement
+                        </div>
+                        <div class="card-block">
+                            <table class="table table-compact table-noborder">
+                                <thead>
+                                    <tr><th>Username</th>
+                                        <th>Coin</th>
+                                        <th>Country</th>
+                                        <th>Currency</th>
+                                        <th>Rate</th>
+                                        <th>Payment Method</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="adverts">
+                                    <tr *ngFor="let advert of adverts">
+                                        <td>{{advert.owner}}</td>
+                                        <td>{{advert.crypto}}</td>
+                                        <td>{{advert.country}}</td>
+                                        <td>{{advert.fiat}}</td>
+                                        <td>{{advert.price}}</td>
+                                        <td>{{advert.payment}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Order List
+                            <span style=" margin: 0px 0px 0px 7px;  padding: 3px 3px 3px 3px; background-color: pink;font-style: italic;font-size: small">buy</span>
+                            <span style=" margin: 0px 0px 0px 7px;  padding: 3px 3px 3px 3px;  background-color: gray;font-style: italic;font-size: small">sell</span>
+                        </div>
+                        <div class="card-block">
+                            <table class="table table-compact table-noborder">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Seller or Buyer</th>
+                                        <th>Coin</th>
+                                        <th>Country</th>
+                                        <th>Currency</th>
+                                        <th>Rate</th>
+                                        <th>Payment Method</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="buy" *ngFor="let order of orderLists" order-type="buy">
+                                        <span style="color: pink;font-style: italic" *ngIf="currentUser.username==order.buyer">B</span>
+                                        <span style="color: gray;font-style: italic" *ngIf="currentUser.username==order.buyer">S</span>
+                                        <!-- <td *ngIf="currentUser.username==order.buyer">BUYER</td>
+                                        <td *ngIf="currentUser.username==order.seller">SELLER</td> -->
+                                        <td>{{currentUser.username==order.buyer?order.seller:order.seller}}</td>
+                                        <td>{{order.crypto}}</td>
+                                        <td>{{order.country}}</td>
+                                        <td>{{order.fiat}}</td>
+                                        <td>{{order.price}}</td>
+                                        <td>{{order.payment}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

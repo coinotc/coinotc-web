@@ -12,6 +12,7 @@ import {
   ProfilesService,
   BannerControlService,
   AdvDetailService,
+  OrderService,
   KycService
 } from './services';
 
@@ -29,6 +30,7 @@ import {
     ProfilesService,
     BannerControlService,
     AdvDetailService,
+    OrderService,
     KycService
   ],
   declarations: []

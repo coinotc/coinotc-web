@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit {
     this.getAllSubscription = this.advertisementsService.getAll()
       .subscribe(adverts => {
         this.adverts = adverts;
+        console.log(this.adverts)
         this.subscribeToData();
       })
   }
