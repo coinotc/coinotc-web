@@ -58,10 +58,19 @@ export class UserService {
     // Set auth status to false
     this.isAuthenticatedSubject.next(false);
   }
-
-  attemptAuth(type, credentials): Observable<User> {
+  
+  login(credentials, ip): Observable<User> {
+    return this.apiService
+      .post('/users/login', { user: credentials, ip: ip })
+      .map(data => {
+        console.log('----> setAuth');
+        this.setAuth(data.user);
+        return data;
+      });
+  }
+  attemptAuth(type, credentials,ip): Observable<User> {
     const route = (type === 'login') ? '/login' : '';
-    return this.apiService.post('/users' + route, {user: credentials, tradepassword: credentials.tradepassword})
+    return this.apiService.post('/users' + route, {user: credentials,  ip: ip })
       .pipe(map(
       data => {
         this.setAuth(data.user);

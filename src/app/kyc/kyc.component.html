@@ -1,1 +1,150 @@
- {{ kyc.username }}
+<div style="margin:40px 100px 40px">
+    <p>Personal</p>
+    <hr style="border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
+
+    <div class="row" style="margin:0px 120px 40px">
+        <div class="col-lg-2">
+            <clr-icon style="position: relative;left: 120px;top:22px;color:rgb(240, 164, 164)" shape="info-circle"></clr-icon>
+        </div>
+        <div class="col-lg-10">
+            <p>Please make sure you use your real identity to do this verification.
+                <br> We will protect your personal information.You should have:
+                <br> 1.Passport &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2.Driver's license &nbsp; &nbsp; &nbsp; &nbsp; 3.National
+                ID Card</p>
+        </div>
+    </div>
+    <div class="row" style="margin:40px 120px 40px" >
+        <div class="col-lg-2">
+            First Name
+        </div>
+        <div class="col-lg-10">
+            <input type="text">
+        </div>
+    </div>
+    <div class="row" style="margin:40px 120px 40px">
+        <div class="col-lg-2">
+            Last Name
+        </div>
+        <div class="col-lg-10">
+            <input type="text">
+        </div>
+    </div>
+    <div class="row" style="margin:40px 120px 40px">
+        <div class="col-lg-2">
+            Gender
+        </div>
+        <div class="col-lg-10">
+            <div class="form-group">
+
+                <div class="radio-inline">
+                    <input type="radio" name="gridRadios1" id="checkrads_11">
+                    <label for="checkrads_11">
+                        <strong>Male</strong>
+                    </label>
+                </div>
+                <div class="radio-inline" style="margin-left: 50px">
+                    <input type="radio" name="gridRadios1" id="checkrads_12">
+                    <label for="checkrads_12">
+                        <strong>Female</strong>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin:40px 120px 40px">
+        <div class="col-lg-2">
+            Country And Territory
+        </div>
+        <div class="col-lg-6">
+            <div class="select">
+                <select id="selects_3">
+                    <option>China</option>
+                    <option>Singapore</option>
+                    <option>Malaysia</option>
+                    <option>Japan</option>
+                    <option>Korea</option>
+                    <option>Thailand</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin:40px 120px 40px">
+        <div class="col-lg-2">
+            Passport / ID
+        </div>
+        <div class="col-lg-10">
+            <input type="text">
+        </div>
+    </div>
+    <hr style="width: 80%; border: 0;
+            height: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
+    <div class="row" style="margin:40px 120px 40px">
+        <div class="col-lg-2">
+            Passport Cover
+        </div>
+        <div class="col-lg-10">
+            <form [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onUpload()" novalidate>
+                <input type="file" id="coverThumbnail" name="coverThumbnail" (change)="onChange($event)" #fileInput>
+                <p>Or you can choose to upload the front of your National ID Document,together with a Note.
+                    <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
+                </p>
+                <div style="border:dashed 1px rgb(230, 225, 225);height: 250px;width: 400px;margin-top: 20px">
+                    <img id="previewImg" style="width: 100%;height: 100%" src="https://cdn0.iconfinder.com/data/icons/outline-documents/128/kden-light-document-img-512.png"
+                        #imgPreview alt="upload image">
+                </div>
+                <button class="btn btn-success">Upload</button>
+            </form>
+        </div>
+    </div>
+    <hr style="width: 60%; border: 0;
+height: 0;
+border-top: 1px solid rgba(0, 0, 0, 0.1);
+border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
+
+    <div class="row" style="margin:40px 120px 40px">
+        <div class="col-lg-2">
+            Passport Personal Page
+        </div>
+        <div class="col-lg-10">
+            <form [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onUpload()" novalidate>
+                <input type="file" id="coverThumbnail" name="coverThumbnail" (change)="onChange($event)" #fileInput>
+                <p>Or you can choose to upload the front of your National ID Document,together with a Note.
+                    <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
+                </p>
+                <div style="border:dashed 1px rgb(230, 225, 225);height: 250px;width: 400px;margin-top: 20px">
+                    <img id="previewImg" style="width: 100%;height: 100%" src="https://cdn0.iconfinder.com/data/icons/outline-documents/128/kden-light-document-img-512.png"
+                        #imgPreview alt="upload image">
+                </div>
+                <button class="btn btn-success">Upload</button>
+            </form>
+        </div>
+    </div>
+    <hr style="width: 60%; border: 0;
+height: 0;
+border-top: 1px solid rgba(0, 0, 0, 0.1);
+border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
+
+    <div class="row" style="margin:40px 120px 40px">
+        <div class="col-lg-2">
+            Selfie With Photo ID And Note
+        </div>
+        <div class="col-lg-10">
+            <form [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onUpload()" novalidate>
+                <input type="file" id="coverThumbnail" name="coverThumbnail" (change)="onChange($event)" #fileInput>
+                <p>Or you can choose to upload the front of your National ID Document,together with a Note.
+                    <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
+                </p>
+                <div style="border:dashed 1px rgb(230, 225, 225);height: 250px;width: 400px;margin-top: 20px">
+                    <img id="previewImg" style="width: 100%;height: 100%" src="https://cdn0.iconfinder.com/data/icons/outline-documents/128/kden-light-document-img-512.png"
+                        #imgPreview alt="upload image">
+                </div>
+                <button class="btn btn-success">Upload</button>
+            </form>
+        </div>
+    </div>
+</div>

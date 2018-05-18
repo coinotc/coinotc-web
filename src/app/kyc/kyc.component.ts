@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ElementRef, Input , ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-
+import { FormGroup, FormControl, Validators,FormBuilder } from "@angular/forms";
 import { User, UserService, Kyc } from '../core';
 import { concatMap } from 'rxjs/operators/concatMap';
 import { tap } from 'rxjs/operators/tap';
@@ -11,9 +10,18 @@ import { tap } from 'rxjs/operators/tap';
     templateUrl: './kyc.component.html'
 })
 export class KycComponent implements OnInit {
+
+    uploadForm: FormGroup;
+    loading: boolean= false;
+    previewImage: any;
+    
+    @ViewChild('fileInput') fileInput: ElementRef;
+    @ViewChild('imgPreview') imgPreview: ElementRef;
     constructor(
         private route: ActivatedRoute,
-        private userService: UserService
+        private userService: UserService,
+        private el: ElementRef,
+        private fb: FormBuilder
     ) { }
 
     kyc: Kyc;
@@ -47,12 +55,25 @@ export class KycComponent implements OnInit {
     submitted = false;
 
     onSubmit() {
-           ...
+           
     }
     addNewEmployeeAddress() {
         this.employeeAddressForm.reset();
         this.submitted = false;
     }
+
+    onChange(event){
+        if(event.target.files.length > 0){
+          let file = event.target.files[0];
+          var reader = new FileReader();
+          let el = this.imgPreview;
+          reader.onloadend = function(e){
+            el.nativeElement.src = reader.result;
+          };
+          reader.readAsDataURL(file);
+          this.uploadForm.get('coverThumbnail').setValue(file);
+        }
+      }
 
 
 }

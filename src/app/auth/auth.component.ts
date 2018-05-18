@@ -14,7 +14,22 @@ export class AuthComponent implements OnInit {
   errors: Errors = {errors: {}};
   isSubmitting = false;
   authForm: FormGroup;
-
+  ip = {
+    "zip" : "",
+    "timezone" : "Asia/Shanghai",
+    "status" : "success",
+    "regionName" : "Shanghai",
+    "region" : "SH",
+    "query" : "183.195.10.9",
+    "org" : "Shanghai Mobile Communications Co.,Ltd.",
+    "lon" : 121.3997,
+    "lat" : 31.0456,
+    "isp" : "China Mobile Guangdong",
+    "countryCode" : "CN",
+    "country" : "China",
+    "city" : "Shanghai",
+    "as" : "AS24400 Shanghai Mobile Communications Co.,Ltd."
+}
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -50,7 +65,7 @@ export class AuthComponent implements OnInit {
 
     const credentials = this.authForm.value;
     this.userService
-    .attemptAuth(this.authType, credentials)
+    .login(credentials,this.ip)
     .subscribe(
       data => this.router.navigateByUrl('/'),
       err => {

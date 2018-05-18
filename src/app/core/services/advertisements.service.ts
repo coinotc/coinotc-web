@@ -18,10 +18,14 @@ export class AdvertisementsService {
          // .pipe(map(data => data.adverts));
   }
 
+  //according to owner to get advertisement
+  getByOwner(owner,visible): Observable<Advertisement[]>{
+    console.log(owner) 
+    let url = `/advertisement/myadvertisement?owner=${owner}&visible=${visible}`
+    return this.apiService.get(url)
+  }
+
   createAdv(advertisement){
     return this.apiService.post('/advertisement',advertisement)
   }
-
-
-
 }

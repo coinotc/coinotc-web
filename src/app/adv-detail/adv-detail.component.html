@@ -64,13 +64,13 @@
       <div class="card-footer">
         <div style="text-align: center" *ngIf="theAdv">
           <span>
-            <input type="number" [(ngModel)]="orderinformation.quantity" (ngModelChange)="amountchange()" placeholder="{{theAdv.crypto}}" size="45">
+            <input type="number" [(ngModel)]="orderinformation.quantity" (ngModelChange)="quantitychange()" placeholder="{{theAdv.crypto}}" size="45">
           </span>
           <span>
             <clr-icon shape="two-way-arrows"></clr-icon>
           </span>
           <span>
-            <input type="number" [(ngModel)]="orderinformation.amount" (ngModelChange)="quantitychange()" placeholder="{{theAdv.fiat}}" size="45">
+            <input type="number" [(ngModel)]="orderinformation.amount" (ngModelChange)="amountchange()" placeholder="{{theAdv.fiat}}" size="45">
           </span>
           <button class="btn btn-sm">deal</button>
         </div>
