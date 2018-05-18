@@ -8,4 +8,5 @@ export * from './banner-control.service';
 export * from './adv-detail.service';
 export * from './order.service';
 export * from './kyc.service';
+export * from './get-ip.service';
 
