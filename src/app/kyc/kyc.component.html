@@ -16,28 +16,29 @@
                 ID Card</p>
         </div>
     </div>
-    <div class="row" style="margin:40px 120px 40px" >
+    <form [formGroup]="kycForm" enctype="multipart/form-data" (ngSubmit)="onUpload()" novalidate>
+    <div class="row" class="form-group">
         <div class="col-lg-2">
             First Name
         </div>
-        <div class="col-lg-10">
-            <input type="text">
+        <div class="col-lg-4">
+            <input type="text" class="form-control" formControlName="firstName">
         </div>
     </div>
-    <div class="row" style="margin:40px 120px 40px">
+    <div class="row" class="form-group">
         <div class="col-lg-2">
             Last Name
         </div>
-        <div class="col-lg-10">
-            <input type="text">
+        <div class="col-lg-4">
+            <input type="text" class="form-control" formControlName="lastName">
         </div>
     </div>
-    <div class="row" style="margin:40px 120px 40px">
+    <div class="row" class="form-group">
         <div class="col-lg-2">
             Gender
         </div>
         <div class="col-lg-10">
-            <div class="form-group">
+            <div>
 
                 <div class="radio-inline">
                     <input type="radio" name="gridRadios1" id="checkrads_11">
@@ -45,7 +46,7 @@
                         <strong>Male</strong>
                     </label>
                 </div>
-                <div class="radio-inline" style="margin-left: 50px">
+                <div class="radio-inline" style="margin-left: 130px">
                     <input type="radio" name="gridRadios1" id="checkrads_12">
                     <label for="checkrads_12">
                         <strong>Female</strong>
@@ -54,36 +55,33 @@
             </div>
         </div>
     </div>
-    <div class="row" style="margin:40px 120px 40px">
+    <div class="row" class="form-group">
         <div class="col-lg-2">
             Country And Territory
         </div>
         <div class="col-lg-6">
             <div class="select">
-                <select id="selects_3">
-                    <option>China</option>
-                    <option>Singapore</option>
-                    <option>Malaysia</option>
-                    <option>Japan</option>
-                    <option>Korea</option>
-                    <option>Thailand</option>
+                <select  class="form-control" formControlName="country">
+                   <option *ngFor="let country of countries" value="country">{{country}}</option>
                 </select>
             </div>
         </div>
     </div>
-    <div class="row" style="margin:40px 120px 40px">
+    <div class="row" class="form-group">
         <div class="col-lg-2">
             Passport / ID
         </div>
-        <div class="col-lg-10">
-            <input type="text">
+        <div class="col-lg-6">
+            <input type="text" class="form-control" formControlName="passportID">
         </div>
     </div>
-    <hr style="width: 80%; border: 0;
+</form>
+</div>
+    <!-- <hr style="width: 80%; border: 0;
             height: 0;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
-    <div class="row" style="margin:40px 120px 40px">
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);"> -->
+    <!-- <div class="row" style="margin:40px 120px 40px">
         <div class="col-lg-2">
             Passport Cover
         </div>
@@ -143,8 +141,6 @@ border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
                     <img id="previewImg" style="width: 100%;height: 100%" src="https://cdn0.iconfinder.com/data/icons/outline-documents/128/kden-light-document-img-512.png"
                         #imgPreview alt="upload image">
                 </div>
-                <button class="btn btn-success">Upload</button>
-            </form>
-        </div>
-    </div>
-</div>
+                <button class="btn btn-success">Upload</button> -->
+         
+

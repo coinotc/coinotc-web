@@ -11,9 +11,17 @@ import { tap } from 'rxjs/operators/tap';
 })
 export class KycComponent implements OnInit {
 
-    uploadForm: FormGroup;
+    kycForm: FormGroup;
     loading: boolean= false;
     previewImage: any;
+    countries:string[]=[
+      'China',
+      'Singapore',
+      'Malaysia',
+      'Japan',
+      'Korea',
+      'Thailand'
+    ]
     
     @ViewChild('fileInput') fileInput: ElementRef;
     @ViewChild('imgPreview') imgPreview: ElementRef;
@@ -71,7 +79,7 @@ export class KycComponent implements OnInit {
             el.nativeElement.src = reader.result;
           };
           reader.readAsDataURL(file);
-          this.uploadForm.get('coverThumbnail').setValue(file);
+          this.kycForm.get('coverThumbnail').setValue(file);
         }
       }
 
