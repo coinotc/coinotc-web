@@ -11,6 +11,6 @@ export class GetIpService {
 
 
   public getIP():Observable<any>{
-    return this.apiService.getExternal("http://ip-api.com/json")
+    return this.apiService.getExternal("https://api.ipify.org?format=json")
   }
 }
