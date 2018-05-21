@@ -4,7 +4,7 @@ export interface Kyc {
     passport:string,
     firstName:string,
     lastName:string,
-    gender:string,
+    gender:boolean,
     country:string,
     kycImg:Array<any>
 }
