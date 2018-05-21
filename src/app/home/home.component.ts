@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit {
     .subscribe(result => {
       this.orders = result;
       this.subscribeToTrades();
-    })
+    })    
   }
   private refreshChart(){
     this.lineChartData[0].data = [];
@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
         this.lineChartData[0].data.push(result[i].amount);
         this.lineChartLabels.push(result[i].approveDate);
       } 
-      this.lineChartData[0].label = this.selectedFiat;
+      this.lineChartData[0].label = this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;
       this.flag = 1;
       this.subscribeToChart();
     })
