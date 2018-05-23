@@ -68,16 +68,29 @@ export class UserService {
         return data;
       });
   }
-  attemptAuth(type, credentials,ip): Observable<User> {
-    const route = (type === 'login') ? '/login' : '';
-    return this.apiService.post('/users' + route, {user: credentials,  ip: ip })
-      .pipe(map(
-      data => {
+  public checkUser(credentials): Observable<number> {
+    let URL = '/users/checkUser'
+    return this.apiService.post(URL, { user: credentials });
+  }
+  signUp(credentials,ip): Observable<User> {
+    return this.apiService
+      .post('/users', { user: credentials, deviceToken: '', tradepassword: credentials.tradepassword, ip: ip })
+      .map(data => {
+        console.log('----> setAuth');
         this.setAuth(data.user);
         return data;
-      }
-    ));
+      });
   }
+  // attemptAuth(type, credentials,ip): Observable<User> {
+  //   const route = (type === 'login') ? '/login' : '';
+  //   return this.apiService.post('/users' + route, {user: credentials,  ip: ip })
+  //     .pipe(map(
+  //     data => {
+  //       this.setAuth(data.user);
+  //       return data;
+  //     }
+  //   ));
+  // }
 
   getCurrentUser(): User {
     return this.currentUserSubject.value;

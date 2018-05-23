@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let item of list">
+    <div class="card">
+      <div class="card-header">
+        {{item.crypto}}/{{item.fiat}}
+      </div>
+      <div class="card-block">
+        <div class="card-media-block">
+          <ngx-avatar name="{{item.owner}}" class="card-media-image"></ngx-avatar>
+          <div class="card-media-description" style="width: 10rem;">
+            <span class="card-media-title">
+            </span>
+            <span class="card-media-text">
+              <div style="display:flex;display: -webkit-flex;align-items:center;">
+                owner:{{item.owner}}
+                <i *ngFor="let class of item.payment" class="{{class}}"></i>
+              </div>
+              <div>
+                {{item.min_price}}{{item.fiat}} - {{item.max_price}}{{item.fiat}}
+              </div>
+            </span>
+          </div>
+        </div>
+        <div class="card-text">
+          {{item.message}}
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-sm btn-link" *ngIf="item.type == 0" (click)="bors(item)" routerLink="/advDetail">sell</a>
+        <a class="btn btn-sm btn-link" *ngIf="item.type == 1" (click)="bors(item)" routerLink="/advDetail">buy</a>
+      </div>
+    </div>
+  </div>
+</div>

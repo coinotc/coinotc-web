@@ -27,7 +27,7 @@ export class ApiService {
     return this.http
       .get(`${path}`)
       .catch(this.formatErrors)
-      .map((res: Response) => res.json());
+      ;
   }
 
   put(path: string, body: Object = {}): Observable<any> {
