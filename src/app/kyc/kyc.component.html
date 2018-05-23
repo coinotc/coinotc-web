@@ -7,10 +7,14 @@
 
     <div class="row" style="margin:0px 120px 40px">
         <div class="col-lg-2">
-            <clr-icon style="position: relative;left: 120px;top:22px;color:rgb(240, 164, 164)" shape="info-circle"></clr-icon>
+
         </div>
         <div class="col-lg-10">
-            <p>Please make sure you use your real identity to do this verification.
+            <p>
+                <span>
+                    <clr-icon style="color:rgb(240, 164, 164)" shape="info-circle"></clr-icon>
+                </span>
+                Please make sure you use your real identity to do this verification.
                 <br> We will protect your personal information.You should have:
                 <br> 1.Passport &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2.Driver's license &nbsp; &nbsp; &nbsp; &nbsp; 3.National
                 ID Card</p>
@@ -23,7 +27,7 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
 
-    <form [formGroup]="kycForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()"  style="margin-top: 30px">
+    <form [formGroup]="kycForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" style="margin-top: 30px">
         <div class="row" class="form-group">
             <div class="col-lg-2">
                 First Name
@@ -82,81 +86,84 @@
                 <input type="text" class="form-control" formControlName="passportID">
             </div>
         </div>
-
-        <hr style="width: 80%; 
+    </form>
+    <hr style="width: 80%; 
             margin:auto;
             border: 0;
             height: 0;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
-<fieldset formGroupName="kycImg">
-        <div class="row" class="form-group" style="margin: 40px 0px">
-            <div class="col-lg-2">
-                Passport Cover
-            </div>
-            <div class="col-lg-10" >
-                <input type="file" class="form-control" formControlName="passportCover" (change)="viewCover($event)" #fileInput >
-                <p>Or you can choose to upload the front of your National ID Document,together with a Note.
-                    <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
-                </p>
-                <div style="border:dashed 1px rgb(230, 225, 225);height: 250px;width: 400px;margin-top: 20px">
-                    <img id="previewImg" style="width: 100%;height: 100%" #imgPreview [src]="url1" *ngIf="url1" >
+            <!-- imgs -->
+    <form [formGroup]="imgForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" style="margin-top: 30px">
+        <fieldset formGroupName="kycImg">
+            <div class="row" class="form-group" style="margin: 40px 0px">
+                <div class="col-lg-2">
+                    Passport Cover
+                </div>
+                <div class="col-lg-10">
+                    <input type="file" class="form-control" formControlName="passportCover" name="passportCover" (change)="viewCover($event)"
+                        #fileInput>
+                    <p>Or you can choose to upload the front of your National ID Document,together with a Note.
+                        <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
+                    </p>
+                    <div style="border:dashed 1px rgb(230, 225, 225);height: 250px;width: 400px;margin-top: 20px">
+                        <img id="previewImg" style="width: 100%;height: 100%" #imgPreview [src]="url1" *ngIf="url1">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <hr style="width: 60%;
+            <hr style="width: 60%;
                 margin:auto;
                 border: 0;
                 height: 0;
                 border-top: 1px solid rgba(0, 0, 0, 0.1);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
 
-        <div class="row" class="form-group" style="margin:40px 0px 40px">
-            <div class="col-lg-2">
-                Passport Personal Page
-            </div>
-            <div class="col-lg-10">
-                <input type="file" class="form-control" formControlName="passportPage" (change)="viewPage($event)" #fileInput>
-                <p>Or you can choose to upload the front of your National ID Document,together with a Note.
-                    <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
-                </p>
-                <div style="border:dashed 1px rgb(230, 225, 225);height: 250px;width: 400px;margin-top: 20px">
-                    <img id="previewImg" style="width: 100%;height: 100%" #imgPreview [src]="url2" *ngIf="url2">
+            <div class="row" class="form-group" style="margin:40px 0px 40px">
+                <div class="col-lg-2">
+                    Passport Personal Page
+                </div>
+                <div class="col-lg-10">
+                    <input type="file" class="form-control" formControlName="passportPage" name="passportPage" (change)="viewPage($event)" #fileInput>
+                    <p>Or you can choose to upload the front of your National ID Document,together with a Note.
+                        <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
+                    </p>
+                    <div style="border:dashed 1px rgb(230, 225, 225);height: 250px;width: 400px;margin-top: 20px">
+                        <img id="previewImg" style="width: 100%;height: 100%" #imgPreview [src]="url2" *ngIf="url2">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <hr style="width: 60%;
+            <hr style="width: 60%;
                 margin:auto;
                 border: 0;
                 height: 0;
                 border-top: 1px solid rgba(0, 0, 0, 0.1);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
 
-         <div class="row" class="form-group" style="margin-top: 40px">
-            <div class="col-lg-2">
-                Selfie With Photo ID And Note
-            </div>
-            <div class="col-lg-10">
-                <input type="file" class="form-control" formControlName="photoAndID" (change)="viewID($event)" #fileInput>
-                <p>Or you can choose to upload the front of your National ID Document,together with a Note.
-                    <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
-                </p>
-                <div style="border:dashed 1px rgb(230, 225, 225);height: 250px;width: 400px;margin-top: 20px">
-                    <img id="previewImg" style="width: 100%;height: 100%" #imgPreview [src]="url3" *ngIf="url3">
+            <div class="row" class="form-group" style="margin-top: 40px">
+                <div class="col-lg-2">
+                    Selfie With Photo ID And Note
                 </div>
-                <hr style="width: 60%;
+                <div class="col-lg-10">
+                    <input type="file" class="form-control" formControlName="photoAndID" name="photoAndID" (change)="viewID($event)" #fileInput>
+                    <p>Or you can choose to upload the front of your National ID Document,together with a Note.
+                        <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
+                    </p>
+                    <div style="border:dashed 1px rgb(230, 225, 225);height: 250px;width: 400px;margin-top: 20px">
+                        <img id="previewImg" style="width: 100%;height: 100%" #imgPreview [src]="url3" *ngIf="url3">
+                    </div>
+                    <hr style="width: 60%;
                 margin:40px 0px 40px;
                 border: 0;
                 height: 0;
                 border-top: 1px solid rgba(0, 0, 0, 0.1);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
-                <button class="btn btn-success" (click)="onSubmit()">Upload</button>
+                    <button class="btn btn-success" (click)="onSubmit()">Upload</button>
+                </div>
             </div>
-        </div>
-    </fieldset>
-<pre>{{kycForm.value|json}}</pre>
+        </fieldset>
+        <!-- <pre>{{kycForm.value|json}}</pre> -->
 
     </form>
 </div>

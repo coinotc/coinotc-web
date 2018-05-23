@@ -14,6 +14,7 @@ import { KycService } from '../core/services/kyc.service'
 export class KycComponent implements OnInit {
 
     kycForm: FormGroup;
+    imgForm: FormGroup;
     kyc: Kyc;
     currentUser: User;
     isUser: boolean;
@@ -68,14 +69,17 @@ export class KycComponent implements OnInit {
             gender: new FormControl('',Validators.required),
             country: new FormControl('',Validators.required),
             passportID: new FormControl('',Validators.required),
-            kycImg:new FormGroup({
-                passportCover:new FormControl(''),
-                passportPage:new FormControl(''),
-                photoAndID:new FormControl('')
-            })
+           
         })
-        console.log(this.kycForm)
+        this.imgForm = new FormGroup({
+          kycImg:new FormGroup({
+            passportCover:new FormControl(''),
+            passportPage:new FormControl(''),
+            photoAndID:new FormControl('')
+        })
+        })
     }
+    
   
    
     onSubmit() {
@@ -90,6 +94,10 @@ export class KycComponent implements OnInit {
             //   this.initializeForm();
             }
           );
+          this.updateKyc(this.imgForm.value)
+          this.kycService.uploadImg(this.imgForm.value).subscribe(result=>{
+            console.log(result)
+          })
     }
 
     updateKyc(values: Object) {

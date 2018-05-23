@@ -14,7 +14,7 @@ import {
   AdvDetailService,
   OrderService,
   KycService,
-  GetIpService
+  GetIpService,
 } from './services';
 
 @NgModule({
