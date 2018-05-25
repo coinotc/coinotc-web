@@ -44,7 +44,7 @@ export class KycComponent implements OnInit {
         private kycService:KycService,
         private router: Router,
         
-    ) {   }
+    ) { this.initializeForm();  }
 
    
 
@@ -68,25 +68,37 @@ export class KycComponent implements OnInit {
             lastName: new FormControl('',Validators.required),
             gender: new FormControl('',Validators.required),
             country: new FormControl('',Validators.required),
-            passportID: new FormControl('',Validators.required),
+            passport: new FormControl('',Validators.required),
            
         })
         this.imgForm = new FormGroup({
-          kycImg:new FormGroup({
+        
             passportCover:new FormControl(''),
             passportPage:new FormControl(''),
             photoAndID:new FormControl('')
         })
-        })
+    }
+
+    initializeForm(){
+      this.imgForm = this.fb.group({
+        passportCover: ['', Validators.required],
+        passportPage: ['', Validators.required],
+        photoAndID: ['', Validators.required]
+      })
     }
     
-  
+  prepareSave(){
+    let input = new FormData()
+    input.append('passportCover',this.imgForm.get('passportCover').value);
+    input.append('passportPage',this.imgForm.get('passportPage').value);
+    input.append('photoAndID',this.imgForm.get('photoAndID').value);
+    return input;
+  }
    
     onSubmit() {
            this.submitted = true;
-        //    const formModel = this.prepareSave();
-           this.updateKyc(this.kycForm.value);
-           this.kycService.uploadKyc(this.kyc).subscribe(
+           const formModel = this.prepareSave();
+           this.kycService.uploadKyc(this.kycForm.value).subscribe(
             updatedKyc => this.router.navigateByUrl('/profile/' + updatedKyc.username),
             err => {
               this.errors = err;
@@ -94,17 +106,11 @@ export class KycComponent implements OnInit {
             //   this.initializeForm();
             }
           );
-          this.updateKyc(this.imgForm.value)
-          this.kycService.uploadImg(this.imgForm.value).subscribe(result=>{
+          this.kycService.uploadImg(formModel).subscribe(result=>{
             console.log(result)
           })
+          this.initializeForm();
     }
-
-    updateKyc(values: Object) {
-        Object.assign(this.kyc, values);
-      }
-    
-   
 
     viewCover(event){
         console.log(event)
@@ -116,7 +122,7 @@ export class KycComponent implements OnInit {
             this.url1 = event.target.result;
         }
           reader.readAsDataURL(file);
-          this.kycForm.get('passportCover')
+          this.imgForm.get('passportCover')
         }
       }
 
@@ -129,7 +135,7 @@ export class KycComponent implements OnInit {
             this.url2 = event.target.result;
         }
           reader.readAsDataURL(file);
-          this.kycForm.get('passportPage')
+          this.imgForm.get('passportPage')
         }
       }
 
@@ -142,7 +148,7 @@ export class KycComponent implements OnInit {
             this.url3 = event.target.result;
         }
           reader.readAsDataURL(file);
-          this.kycForm.get('photoAndID')
+          this.imgForm.get('photoAndID')
         }
       }
 

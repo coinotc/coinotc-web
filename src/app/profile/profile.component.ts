@@ -43,7 +43,6 @@ export class ProfileComponent implements OnInit {
     this.advServise.getByOwner(this.currentUser.username,true).subscribe(
       result => {
         this.adverts = result
-        console.log(result)
         console.log(this.adverts)
       }
     )

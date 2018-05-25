@@ -83,7 +83,7 @@
                 Passport / ID
             </div>
             <div class="col-lg-6">
-                <input type="text" class="form-control" formControlName="passportID">
+                <input type="text" class="form-control" formControlName="passport">
             </div>
         </div>
     </form>
@@ -101,7 +101,7 @@
                     Passport Cover
                 </div>
                 <div class="col-lg-10">
-                    <input type="file" class="form-control" formControlName="passportCover" name="passportCover" (change)="viewCover($event)"
+                    <input type="file" class="form-control" formControlName="passportCover" name="passportCover" id="passportCover" (change)="viewCover($event)"
                         #fileInput>
                     <p>Or you can choose to upload the front of your National ID Document,together with a Note.
                         <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
@@ -124,7 +124,7 @@
                     Passport Personal Page
                 </div>
                 <div class="col-lg-10">
-                    <input type="file" class="form-control" formControlName="passportPage" name="passportPage" (change)="viewPage($event)" #fileInput>
+                    <input type="file" class="form-control" formControlName="passportPage" name="passportPage" id="passportPage" (change)="viewPage($event)" #fileInput>
                     <p>Or you can choose to upload the front of your National ID Document,together with a Note.
                         <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
                     </p>
@@ -146,7 +146,7 @@
                     Selfie With Photo ID And Note
                 </div>
                 <div class="col-lg-10">
-                    <input type="file" class="form-control" formControlName="photoAndID" name="photoAndID" (change)="viewID($event)" #fileInput>
+                    <input type="file" class="form-control" formControlName="photoAndID" name="photoAndID" id="photoAndID" (change)="viewID($event)" #fileInput>
                     <p>Or you can choose to upload the front of your National ID Document,together with a Note.
                         <br> Make sure your face is clearly visible and that all Identity card details are clearly readable.
                     </p>
