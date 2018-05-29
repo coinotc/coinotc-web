@@ -86,10 +86,6 @@ export class AdvDetailComponent implements OnInit {
       this.orderinformation.limit = this.theAdv.limit;
       this.orderinformation.message = this.theAdv.message;
       this.orderinformation.owner = this.theAdv.owner;
-      this.orderService.createOrder(this.orderinformation).subscribe(result=>{
-        console.log(result)
-        this.advDetailService.detailId(result._id)
-      })
       if (this.theAdv.type = 1) {
         this.orderinformation.buyer = this.userservice.getCurrentUser().username;
         this.orderinformation.seller = this.theAdv.owner;
@@ -97,6 +93,10 @@ export class AdvDetailComponent implements OnInit {
         this.orderinformation.seller = this.userservice.getCurrentUser().username;
         this.orderinformation.buyer = this.theAdv.owner;
       }
+      this.orderService.createOrder(this.orderinformation).subscribe(result=>{
+        console.log(result)
+        this.advDetailService.detailId(result._id)
+      })
      
       
       }
