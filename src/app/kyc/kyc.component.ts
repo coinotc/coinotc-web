@@ -33,7 +33,8 @@ export class KycComponent implements OnInit {
     url1:any
     url2:any
     url3:any
-    
+    xhr = new XMLHttpRequest()
+
     @ViewChild('fileInput') fileInput: ElementRef;
     @ViewChild('imgPreview') imgPreview: ElementRef;
     constructor(
@@ -44,7 +45,7 @@ export class KycComponent implements OnInit {
         private kycService:KycService,
         private router: Router,
         
-    ) { this.initializeForm();  }
+    ) {  }
 
    
 
@@ -72,44 +73,40 @@ export class KycComponent implements OnInit {
            
         })
         this.imgForm = new FormGroup({
-        
             passportCover:new FormControl(''),
             passportPage:new FormControl(''),
             photoAndID:new FormControl('')
         })
     }
 
-    initializeForm(){
-      this.imgForm = this.fb.group({
-        passportCover: ['', Validators.required],
-        passportPage: ['', Validators.required],
-        photoAndID: ['', Validators.required]
-      })
-    }
+    // initializeForm(){
+    //   this.imgForm = this.fb.group({
+    //     passportCover: ['', Validators.required],
+    //     passportPage: ['', Validators.required],
+    //     photoAndID: ['', Validators.required]
+    //   })
+    // }
     
   prepareSave(){
     let input = new FormData()
-    input.append('passportCover',this.imgForm.get('passportCover').value);
-    input.append('passportPage',this.imgForm.get('passportPage').value);
+    input.set('passportCover',this.imgForm.get('passportPage').value);
+    input.set('passportPage',this.imgForm.get('passportPage').value);
     input.append('photoAndID',this.imgForm.get('photoAndID').value);
+    console.log( this.imgForm)
+    console.log(this.imgForm.get('passportCover').value)
     return input;
   }
    
     onSubmit() {
            this.submitted = true;
            const formModel = this.prepareSave();
-           this.kycService.uploadKyc(this.kycForm.value).subscribe(
-            updatedKyc => this.router.navigateByUrl('/profile/' + updatedKyc.username),
-            err => {
-              this.errors = err;
-              this.submitted = false;
-            //   this.initializeForm();
-            }
-          );
+           this.kycService.uploadKyc(this.kycForm.value).subscribe(result=>{
+            console.log(result)
+          })
           this.kycService.uploadImg(formModel).subscribe(result=>{
             console.log(result)
           })
-          this.initializeForm();
+          // this.initializeForm();
     }
 
     viewCover(event){
@@ -151,18 +148,4 @@ export class KycComponent implements OnInit {
           this.imgForm.get('photoAndID')
         }
       }
-
-    // initializeForm(){
-    //     this.kycForm = this.fb.group({
-    //       remarks: ['', Validators.required],
-         
-    //     })
-    //   }
-    //   prepareSave(){
-    //     let input = new FormData();
-    //     input.append('remarks', this.kycForm.get('remarks').value);
-    //     input.append('passportCover', this.kycForm.get('passportCover').value);
-    //     return input;
-    //   }
-
 }

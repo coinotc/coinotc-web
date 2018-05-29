@@ -6,5 +6,5 @@ export interface Kyc {
     lastName:string,
     gender:boolean,
     country:string,
-    kycImg:Array<any>
+    imgForm:Array<any>
 }

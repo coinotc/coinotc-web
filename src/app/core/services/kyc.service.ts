@@ -19,8 +19,8 @@ export class KycService {
     return this.apiService.patch('/users/kyc',kyc)
   }
 
-  uploadImg(img){
-    //console.log()
-   return this.apiService.post('/upload-firestore',img)
+  uploadImg(file):Observable<Kyc>{
+    console.log(file)
+   return this.apiService.post('/upload-firestore',file)
  }
 }

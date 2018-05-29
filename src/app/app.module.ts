@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { ClarityModule } from '@clr/angular';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
@@ -21,7 +20,7 @@ import { CoreModule } from './core/core.module';
 
 @NgModule({
     declarations: [
-        AppComponent, FooterComponent, HeaderComponent,
+        AppComponent, FooterComponent, HeaderComponent, 
         //  CreateAdvComponent
     ],
     imports: [

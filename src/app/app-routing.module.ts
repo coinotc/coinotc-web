@@ -17,11 +17,14 @@ const routes: Routes = [
     {
      path: 'advDetail',
      loadChildren: './adv-detail/adv-detail.module#AdvDetailModule'
-
    },
    {
      path:'advertisement',
      loadChildren:'./create-adv/create-adv.module#CreateAdvModule'
+   },
+   {
+     path:'chat',
+     loadChildren:'./chat/chat.module#ChatModule'
    }
 
 ];

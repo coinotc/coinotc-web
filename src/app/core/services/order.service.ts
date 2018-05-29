@@ -18,4 +18,14 @@ export class OrderService {
     return this.apiService.get(url)
   }
 
+  createOrder(order){
+    let url = `/order`
+    return this.apiService.post(url,order)
+  }
+
+  getByID(_id){
+    let url = `/order/getone?_id=${_id}`
+    return this.apiService.get(url,_id)
+  }
+
 }

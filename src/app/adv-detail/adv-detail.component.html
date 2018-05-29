@@ -72,7 +72,7 @@
           <span>
             <input type="number" [(ngModel)]="orderinformation.amount" (ngModelChange)="amountchange()" placeholder="{{theAdv.fiat}}" size="45">
           </span>
-          <button class="btn btn-sm">deal</button>
+          <button class="btn btn-sm" [disabled]="disabled" routerLink="/chat" (click)="makeOrder()">deal</button>
         </div>
       </div>
     </div>
