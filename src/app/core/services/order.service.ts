@@ -28,4 +28,9 @@ export class OrderService {
     return this.apiService.get(url,_id)
   }
 
+  public addRoomKey(roomkey, orderId) {
+    let URL = `/order/roomkey?orderId=${orderId}`;
+    return this.apiService.patch(URL, { roomkey: roomkey });
+  }
+
 }

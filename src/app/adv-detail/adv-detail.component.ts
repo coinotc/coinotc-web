@@ -5,6 +5,7 @@ import { OrderInformation } from '../core/models/orderinfo.model'
 import { OrderService } from '../core/services/order.service'
 import { AdvertisementsService } from '../core/services/advertisements.service'
 import { UserService } from '../core/services/user.service'
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-adv-detail',
@@ -14,6 +15,9 @@ import { UserService } from '../core/services/user.service'
 export class AdvDetailComponent implements OnInit {
 
   theAdv: Advertisement
+  ref = firebase.database().ref('chatrooms/');
+  roomkey: any;
+  data = { type: '', name: '', message: '', roomname: '' };
   specificId:string
   quantity: number
   amount: number
@@ -87,25 +91,40 @@ export class AdvDetailComponent implements OnInit {
       this.orderinformation.message = this.theAdv.message;
       this.orderinformation.owner = this.theAdv.owner;
       if (this.theAdv.type = 1) {
-        this.orderinformation.buyer = this.userservice.getCurrentUser().username;
-        this.orderinformation.seller = this.theAdv.owner;
-      } else {
         this.orderinformation.seller = this.userservice.getCurrentUser().username;
         this.orderinformation.buyer = this.theAdv.owner;
+      } else {
+        this.orderinformation.buyer = this.userservice.getCurrentUser().username;
+        this.orderinformation.seller = this.theAdv.owner;
       }
       this.orderService.createOrder(this.orderinformation).subscribe(result=>{
         console.log(result)
         this.advDetailService.detailId(result._id)
+        let owner = this.theAdv.owner
+      this.data.name = this.userservice.getCurrentUser().username;
+      this.data.roomname = JSON.parse(JSON.stringify(result))._id;
+      let newData = this.ref.push();
+      newData.set({
+        roomname: this.data.roomname
+      }); //定义房间名 并创建房间
+
+      this.roomkey = getRoomKey(this.ref)
+      console.log(this.roomkey)
+      this.orderService.addRoomKey(this.roomkey,this.data.roomname).subscribe()
       })
-     
-      
-      }
+     }
   
     })
   }
 
- 
   ngOnInit() {
   }
 
 }
+export const getRoomKey = ref => {
+  let roomkey ;
+  ref.limitToLast(1).on("child_added",function(prevChildKey){
+    roomkey = prevChildKey.key
+  })//获取roomkey
+  return roomkey;
+};

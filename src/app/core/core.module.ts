@@ -33,7 +33,7 @@ import {
     AdvDetailService,
     OrderService,
     KycService,
-    GetIpService
+    GetIpService,
   ],
   declarations: []
 })

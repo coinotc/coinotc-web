@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as firebase from 'firebase'
+import { firebaseConfig } from '../environments/firebase-chat'
 import { UserService } from './core';
 
 @Component({
@@ -9,6 +10,7 @@ import { UserService } from './core';
 })
 export class AppComponent implements OnInit {
     constructor(private userService: UserService) {
+        firebase.initializeApp(firebaseConfig)
     }
     ngOnInit() {
         this.userService.populate();

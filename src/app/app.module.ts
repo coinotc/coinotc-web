@@ -14,8 +14,8 @@ import {
 } from './shared';
 import { AppRoutingModule } from "./app-routing.module";
 import { CoreModule } from './core/core.module';
-// import { CreateAdvComponent } from './create-adv/create-adv.component';
-
+import { AngularFireModule } from 'angularfire2';
+import { firebaseConfig } from '../environments/firebase-chat'
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import { CoreModule } from './core/core.module';
         FormsModule,
         HttpModule,
         ClarityModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AngularFireModule.initializeApp(firebaseConfig)
     ],
     providers: [],
     bootstrap: [AppComponent]
