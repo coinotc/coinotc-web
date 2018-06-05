@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-lg-12 col-md-24 col-sm-24 col-xs-24">
+    <div class="card">
+      <div class="card-block">
+        <div class="card-head">
+            <p>Create your advertisement!</p>
+        </div>
+        <div class="card-body">
+            <form>
+                <section id="centre" class="form-block"> 
+                    <div class="form-group">
+                        <label>your name as owner of this advertisement</label>
+                        <input [(ngModel)]="advertisement.owner" name="owner" type="text" placeholder="Enter value here" size="45">
+                    </div>
+                    <div class="form-group">
+                        <label>you want to buy or sell</label>
+                        <div class="radio-inline">
+                            <input [(ngModel)]="advertisement.type" name="type" type="radio" name="gridRadios1" id="buyRadio" value=1 checked>
+                            <label for="buyRadio">want to buy</label>
+                        </div>
+                        <div class="radio-inline">
+                            <input [(ngModel)]="advertisement.type" name="type" type="radio" name="gridRadios1" id="sellRadio" value=0>
+                            <label for="sellRadio">want to sell</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>select a crypto</label>
+                        <div class="select">
+                            <select [(ngModel)]="advertisement.crypto" name="crypto" >
+                                <option value="Ripple">Ripple</option>
+                                <option value="Monero">Monero</option>
+                                <option value="Stellar">Stellar</option>
+                                <option value="Candano">Candano</option>
+                                <option value="Ethereum">Ethereum</option>
+                                <option></option>
+                            </select>
+                        </div>
+                        <label>0.375847$</label>
+                    </div>
+                    <div class="form-group">
+                        <label>select a country</label>
+                        <div class="select">
+                            <select [(ngModel)]="advertisement.country" name="country" >
+                                <option value="America">America</option>
+                                <option value="Singapore">Singapore</option>
+                            </select>
+                        </div>
+                        <div class="select">
+                            <select [(ngModel)]="advertisement.fiat" name="fiat" >
+                                <option value="USD">USD</option>
+                                <option value="CNY">CNY</option>
+                                <option value="SGD">SGD</option>
+                                <option value="KRW">KRW</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <span class="alert-text" *ngIf="error"> 
+                        Maximum value must be greater than minimum value！
+                    </span> -->
+                    <div class="form-group">
+                      <label>price range</label>
+                      <input [(ngModel)]="advertisement.min_price" name="min_price" type="number" placeholder="min_price" size="10">
+                      <input [(ngModel)]="advertisement.max_price" name="max_price" type="number" placeholder="max_price" size="10">
+                    </div>
+                    <div class="alert alert-danger alert-sm" [hidden]="advertisement.max_price>=advertisement.min_price">
+                        <div class="alert-item static">
+                          <div class="alert-icon-wrapper">
+                            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                          </div>
+                          <span class="alert-text">
+                              Max_price must be greater than min_price value！
+                          </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>select the payment you want</label>
+                        <div class="select">
+                            <select [(ngModel)]="advertisement.payment" name="payment" >
+                                <option value="Alipay">Alipay</option>
+                                <option value="Bank Card">Bank Card</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div  class="form-group">
+                        <label>set the time limit</label>
+                        <input [(ngModel)]="advertisement.limit" name="limit" type="datetime-local">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea [(ngModel)]="advertisement.message" name="message" rows="1"></textarea>
+                    </div>
+                    <button  type="submit" class="btn btn-primary" (click)="createAdvertisement()">CREATE</button>
+                </section>
+            </form>
+        </div>
+      </div>     
+    </div>   
+  </div>
+</div>
+

@@ -3,8 +3,8 @@
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
-  <div *appShowAuthed="false" class="header-cta">
-      <div>
+<div *appShowAuthed="false" class="header-cta">
+  <!-- <div>
         <h2>COINOTC.MARKET</h2>
         <p>A place to trade your cryptocurrencies.</p>
       </div>
@@ -13,8 +13,32 @@
               <a [routerLink]="['/login']" >Have an account?</a>
               <a [routerLink]="['/register']" >Need an account?</a>
         </label>
+      </div> -->
+  <div>
+    <div class="row" *ngIf="banners">
+      <div class="col-xs-3" *ngIf="banners[0]">
+        <a href="">
+          <img alt="the place for news" src={{banners[0].imgURL}}>
+        </a>
       </div>
+      <div class="col-xs-3" *ngIf="banners[1]">
+        <a href="">
+          <img alt="the place for news" src={{banners[1].imgURL}}>
+        </a>
+      </div>
+      <div class="col-xs-3" *ngIf="banners[2]">
+        <a href="">
+          <img alt="the place for news" src={{banners[2].imgURL}}>
+        </a>
+      </div>
+      <div class="col-xs-3" *ngIf="banners[3]">
+        <a href="">
+          <img alt="the place for news" src={{banners[3].imgURL}}>
+        </a>
+      </div>
+    </div>
   </div>
+<<<<<<< HEAD
   <div class="row">
     <div class="col-lg-4">
        <div class="card">
@@ -120,3 +144,35 @@
  
   
   
+=======
+</div>
+<div class="content-container">
+  <div class="content-area">
+    <clr-datagrid>
+      <clr-dg-column [clrDgField]="owner">Username</clr-dg-column>
+      <clr-dg-column [clrDgField]="crypto">Coin</clr-dg-column>
+      <clr-dg-column [clrDgField]="country">Country</clr-dg-column>
+      <clr-dg-column [clrDgField]="fiat">Currency</clr-dg-column>
+      <clr-dg-column [clrDgField]="price">Rate</clr-dg-column>
+      <clr-dg-column [clrDgField]="payment">Payment Method</clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let advert of adverts">
+          <clr-dg-action-bar>
+              <a class="action-item" routerLink="/advDetail" (click)="onEdit(advert)"><clr-icon style="color: black;position:relative;bottom: 8px;left: 6px;" shape="pinboard" class="is-solid"></clr-icon></a>
+          </clr-dg-action-bar>
+        <clr-dg-cell>{{advert.owner}}</clr-dg-cell>
+        <clr-dg-cell>{{advert.crypto}}</clr-dg-cell>
+        <clr-dg-cell>{{advert.country}}</clr-dg-cell>
+        <clr-dg-cell>{{advert.fiat}}</clr-dg-cell>
+        <clr-dg-cell>{{advert.price}}</clr-dg-cell>
+        <clr-dg-cell>{{advert.payment}}</clr-dg-cell>
+      </clr-dg-row>
+
+    </clr-datagrid>
+  </div>
+</div>
+
+<button class="btn btn-outline-danger" (click)="logout()" *appShowAuthed="true">
+  Click here to logout.
+</button>
+>>>>>>> aaf7a078fe697caf557ed06199ade620332386ae

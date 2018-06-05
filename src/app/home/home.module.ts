@@ -7,6 +7,7 @@ import { HomeAuthResolver } from './home-auth-resolver.service';
 import { SharedModule } from '../shared';
 import { HomeRoutingModule } from './home-routing.module';
 import { ChartsModule } from 'ng2-charts';
+import { AdvertisementComponent } from './advertisement/advertisement.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ChartsModule } from 'ng2-charts';
     ChartsModule,
   ],
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AdvertisementComponent
   ],
   providers: [
     HomeAuthResolver

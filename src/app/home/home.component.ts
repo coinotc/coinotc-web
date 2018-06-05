@@ -1,25 +1,34 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
-import { User,Advertisement, UserService, AdvertisementsService } from '../core';
+import { User, Advertisement, UserService, AdvertisementsService } from '../core';
 import { AnonymousSubscription } from "rxjs/Subscription";
 import { Observable } from 'rxjs/Rx';
 import { OrderInformationService } from '../core/services/orderInformation.service';
 import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { BannerControlService } from '../core/services/banner-control.service'
+import { banner } from '../core/models/banner.model'
+import { AdvDetailService } from '../core/services/adv-detail.service'
 
 @Component({
     styleUrls: ['./home.component.scss'],
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
+
+  banners
+  adverts: Advertisement[];
+  specificAdv:Advertisement
+
   private timerSubscription: AnonymousSubscription;
   private getAllSubscription: AnonymousSubscription;
-  adverts: Advertisement[];
+
   selectedFiat: String = "CNY";
   selectedCrypto: String = "CARDANO";
   orders;
-  flag:Number = 0;
+  flag = 0;
   //chart set
-  
+ 
+
   public lineChartData:Array<any> = [
     {data: [], label: ''}
   ];
@@ -45,10 +54,19 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private advertisementsService: AdvertisementsService,
     private orderInformationService :OrderInformationService,
+    private bannerControlService:BannerControlService,
+    private advDetailService:AdvDetailService
   ) {
       this.orderInformationService.getFifteenOrderInfo(this.selectedFiat,this.selectedCrypto).subscribe(result => {
          this.orders = result;
       });
+      this.bannerControlService.getBanner().subscribe(result=>{
+        this.banners = result;
+        console.log(result)
+      });
+      this.advDetailService.castAdv.subscribe(result=>{
+        this.specificAdv = result
+      })
       
   }
   //chart event
@@ -56,6 +74,14 @@ export class HomeComponent implements OnInit {
     console.log(e);
   }
 
+   
+   
+  
+
+  onEdit(advert){
+    this.advDetailService.detailAdv(advert)
+  }
+   
   logout() {
     this.userService.purgeAuth();
     this.router.navigateByUrl('/');
@@ -100,10 +126,12 @@ export class HomeComponent implements OnInit {
     this.timerSubscription = Observable.timer(5000)
       .subscribe(() => this.refreshChart());
   }
-  private refreshData(){
+
+  private refreshData() {
     this.getAllSubscription = this.advertisementsService.getAll()
-      .subscribe(adverts =>{
+      .subscribe(adverts => {
         this.adverts = adverts;
+        console.log(this.adverts)
         this.subscribeToData();
       })
   }
@@ -122,7 +150,7 @@ export class HomeComponent implements OnInit {
         this.lineChartData[0].data.push(result[i].amount);
         this.lineChartLabels.push(result[i].approveDate);
       } 
-      this.lineChartData[0].label = this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;
+      this.lineChartData[0].label = this.selectedFiat;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
       this.flag = 1;
       this.subscribeToChart();
     })

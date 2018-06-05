@@ -11,6 +11,11 @@ import {
   AdvertisementsService,
   ProfilesService,
   OrderInformationService,
+  BannerControlService,
+  AdvDetailService,
+  OrderService,
+  KycService,
+  GetIpService
 } from './services';
 
 @NgModule({
@@ -26,7 +31,12 @@ import {
     AdvertisementsService,
     ProfilesService,
     OrderInformationService,
+    BannerControlService,
+    AdvDetailService,
+    OrderService,
+    KycService,
+    GetIpService
   ],
   declarations: []
 })
-export class CoreModule { }
+export class CoreModule {}
