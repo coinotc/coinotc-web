@@ -36,26 +36,33 @@ export class MarketDataComponent implements OnInit {
 
     ngOnInit() {
         this.getAllFiveData(52).subscribe(result => {
-            this.crypto = result.data
-            this.cryptos.push(this.crypto)
+            this.crypto = result.data;
+            this.cryptos.push(this.crypto);
         })
         this.getAllFiveData(328).subscribe(result =>{
-            this.crypto = result.data
-            this.cryptos.push(this.crypto)
+            this.crypto = result.data;
+            this.cryptos.push(this.crypto);
         })
         this.getAllFiveData(512).subscribe(result =>{
-            this.crypto = result.data
-            this.cryptos.push(this.crypto)
+            this.crypto = result.data;
+            this.cryptos.push(this.crypto);
         })
         this.getAllFiveData(1027).subscribe(result =>{
-            this.crypto = result.data
-            this.cryptos.push(this.crypto)
+            this.crypto = result.data;
+            this.cryptos.push(this.crypto);
         })
         this.getAllFiveData(2010).subscribe(result =>{
-            this.crypto = result.data
-            this.cryptos.push(this.crypto)
+            this.crypto = result.data;
+            this.cryptos.push(this.crypto);
         })
-
+        this.getAllFiveData(2469).subscribe(result =>{
+            this.crypto = result.data;
+            this.cryptos.push(this.crypto);
+        })
+        this.getAllFiveData(1).subscribe(result =>{
+            this.crypto = result.data;
+            this.cryptos.push(this.crypto);
+        })
     }
 
     getAllFiveData(id): Observable<any> {
