@@ -8,21 +8,21 @@ import { map } from 'rxjs/operators/map';
 
 @Injectable()
 export class OrderService {
-    constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
-    public getOrders(username, finished) {
-        let getURL = `/order/filter?username=${username}&finished=${finished}`;
-        return this.apiService.get(getURL);
-    }
-
-  createOrder(order){
-    let url = `/order`
-    return this.apiService.post(url,order)
+  public getOrders(username, finished) {
+    let getURL = `/order/filter?username=${username}&finished=${finished}`;
+    return this.apiService.get(getURL);
   }
 
-  getByID(_id){
+  createOrder(order) {
+    let url = `/order`
+    return this.apiService.post(url, order)
+  }
+
+  getByID(_id) {
     let url = `/order/getone?_id=${_id}`
-    return this.apiService.get(url,_id)
+    return this.apiService.get(url, _id)
   }
 
   public addRoomKey(roomkey, orderId) {
@@ -30,9 +30,9 @@ export class OrderService {
     return this.apiService.patch(URL, { roomkey: roomkey });
   }
 
-    //according to owner to get orders
-    getOrderWithHim(profileUser, currentUser): Observable<OrderInformation[]> {
-        let url = `/order/tradeWithHim?profileUser=${profileUser}&currentUser=${currentUser}`;
-        return this.apiService.get(url);
-    }
+  //according to owner to get orders
+  getOrderWithHim(profileUser, currentUser): Observable<OrderInformation[]> {
+    let url = `/order/tradeWithHim?profileUser=${profileUser}&currentUser=${currentUser}`;
+    return this.apiService.get(url);
+  }
 }
