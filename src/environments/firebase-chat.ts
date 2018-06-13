@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyCb5DBrzrtUlQaya1AD29QHq_8iD87VIzw",
-    authDomain: "mychat-4ba6e.firebaseapp.com",
-    databaseURL: "https://mychat-4ba6e.firebaseio.com",
-    projectId: "mychat-4ba6e",
-    storageBucket: "mychat-4ba6e.appspot.com",
-    messagingSenderId: "149305759386"
+  apiKey: "AIzaSyAAY_utliwj1ato7Z7mHY1Vz3Wxa49rSa8",
+  authDomain: "coinotc-mobile-dev.firebaseapp.com",
+  databaseURL: "https://coinotc-mobile-dev.firebaseio.com",
+  projectId: "coinotc-mobile-dev",
+  storageBucket: "coinotc-mobile-dev.appspot.com",
+  messagingSenderId: "298863519258"
   };
