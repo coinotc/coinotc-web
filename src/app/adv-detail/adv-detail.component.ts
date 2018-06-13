@@ -80,9 +80,8 @@ export class AdvDetailComponent implements OnInit {
     }
   }
 
-  makeOrder(){
-    this.orderService.createOrder(this.orderinformation).subscribe(result=>{
-      if(result){
+  makeOrder(){  
+      if(this.userservice.currentUser){
       this.orderinformation.crypto = this.theAdv.crypto;
       this.orderinformation.country = this.theAdv.country;
       this.orderinformation.fiat = this.theAdv.fiat;
@@ -97,8 +96,7 @@ export class AdvDetailComponent implements OnInit {
         this.orderinformation.buyer = this.userservice.getCurrentUser().username;
         this.orderinformation.seller = this.theAdv.owner;
       }
-      this.orderService.createOrder(this.orderinformation).subscribe(result=>{
-        console.log(result)
+      this.orderService.createOrder(this.orderinformation).subscribe(result=>{  
         this.advDetailService.detailId(result._id)
         let owner = this.theAdv.owner
       this.data.name = this.userservice.getCurrentUser().username;
@@ -110,11 +108,10 @@ export class AdvDetailComponent implements OnInit {
 
       this.roomkey = getRoomKey(this.ref)
       console.log(this.roomkey)
+      console.log(result)
       this.orderService.addRoomKey(this.roomkey,this.data.roomname).subscribe()
       })
      }
-  
-    })
   }
 
   ngOnInit() {

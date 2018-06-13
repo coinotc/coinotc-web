@@ -15,12 +15,12 @@ export class OrderService {
     return this.apiService.get(getURL);
   }
 
-  createOrder(order) {
+  public createOrder(order) {
     let url = `/order`
     return this.apiService.post(url, order)
   }
 
-  getByID(_id) {
+  public getByID(_id) {
     let url = `/order/getone?_id=${_id}`
     return this.apiService.get(url, _id)
   }
