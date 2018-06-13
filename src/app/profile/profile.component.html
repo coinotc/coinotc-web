@@ -8,8 +8,8 @@
                     <span class="badge badge-danger" *ngIf="!profile.verifystatus">Unverified</span>
                 </div>
                 <div class="card-block">
-                    <button class="btn btn-sm btn-link" *ngIf="profile.verifystatus" [routerLink]="[ '/kyc', profile.username] ">Update Verification Documents</button>
-                    <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus" [routerLink]="[ '/kyc', profile.username] ">Submit Verification Documents</button>
+                    <button class="btn btn-sm btn-link" *ngIf="profile.verifystatus" >Update Verification Documents</button>
+                    <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus">Submit Verification Documents</button>
                 </div>
             </div>
 

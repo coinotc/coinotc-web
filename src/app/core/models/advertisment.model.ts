@@ -11,6 +11,7 @@ export interface Advertisement {
   limit: number,
   message: string,
   type: number
+  //sell=0   buy=1   
 }
 export class advertisement implements Advertisement{
   constructor(

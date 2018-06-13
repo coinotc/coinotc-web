@@ -28,4 +28,7 @@ export class AdvertisementsService {
   createAdv(advertisement){
     return this.apiService.post('/advertisement',advertisement)
   }
+
+
+
 }

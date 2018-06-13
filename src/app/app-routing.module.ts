@@ -19,13 +19,18 @@ const routes: Routes = [
         loadChildren: './kyc/kyc.module#KycModule'
     },
     {
-        path: 'advDetail',
-        loadChildren: './adv-detail/adv-detail.module#AdvDetailModule'
-    },
-    {
-        path: 'advertisement',
-        loadChildren: './create-adv/create-adv.module#CreateAdvModule'
-    }
+     path: 'advDetail',
+     loadChildren: './adv-detail/adv-detail.module#AdvDetailModule'
+   },
+   {
+     path:'advertisement',
+     loadChildren:'./create-adv/create-adv.module#CreateAdvModule'
+   },
+   {
+     path:'chat',
+     loadChildren:'./chat/chat.module#ChatModule'
+   }
+
 ];
 
 @NgModule({
