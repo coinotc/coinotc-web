@@ -11,54 +11,42 @@
       </section>
     </nav>
     <div class="content-area">
-      <table class="table" *ngIf="status == 'active'">
-        <thead>
-          <tr>
-            <th>OrderID</th>
-            <th>Role</th>
-            <th>Trader</th>
-            <th>Owner</th>
-            <th>Crypto</th>
-            <th>Amount</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let order of activeOrders">
-          <tr>
-            <td>{{order._id}}</td>
-            <td>{{order.buyer==user.username?'Buyer':'Seller'}}</td>
-            <td>{{order.buyer==user.username?order.seller:order.buyer}}</td>
-            <td>{{order.owner}}</td>
-            <td>{{order.crypto}}</td>
-            <td>{{order.fiat}} {{order.amount| number : '1.2-2'}}</td>
-            <td>{{order.finished==1?'Pending Fiat':'Pending Crypto'}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="table" *ngIf="status == 'finished'">
-        <thead>
-          <tr>
-            <th>OrderID</th>
-            <th>Role</th>
-            <th>Trader</th>
-            <th>Owner</th>
-            <th>Crypto</th>
-            <th>Amount</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let order of finishedOrders">
-          <tr>
-            <td>{{order._id}}</td>
-            <td>{{order.buyer==user.username?'Buyer':'Seller'}}</td>
-            <td>{{order.buyer==user.username?order.seller:order.buyer}}</td>
-            <td>{{order.owner}}</td>
-            <td>{{order.crypto}}</td>
-            <td>{{order.fiat}} {{order.amount| number : '1.2-2'}}</td>
-            <td>{{order.finished==3?'Pending Rating':'Complete'}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <clr-datagrid *ngIf="status == 'active'">
+        <clr-dg-column>OrderID</clr-dg-column>
+        <clr-dg-column>Role</clr-dg-column>
+        <clr-dg-column>Trader</clr-dg-column>
+        <clr-dg-column>Owner</clr-dg-column>
+        <clr-dg-column>Crypto</clr-dg-column>
+        <clr-dg-column>Amount</clr-dg-column>
+        <clr-dg-column>Status</clr-dg-column>
+        <clr-dg-row *ngFor="let order of activeOrders">
+          <clr-dg-cell>{{order._id}}</clr-dg-cell>
+          <clr-dg-cell>{{order.buyer==user.username?'Buyer':'Seller'}}</clr-dg-cell>
+          <clr-dg-cell>{{order.buyer==user.username?order.seller:order.buyer}}</clr-dg-cell>
+          <clr-dg-cell>{{order.owner}}</clr-dg-cell>
+          <clr-dg-cell>{{order.crypto}}</clr-dg-cell>
+          <clr-dg-cell>{{order.fiat}} {{order.amount| number : '1.2-2'}}</clr-dg-cell>
+          <clr-dg-cell>{{order.finished==1?'Pending Fiat':'Pending Crypto'}}</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+      <clr-datagrid *ngIf="status == 'finished'">
+        <clr-dg-column>OrderID</clr-dg-column>
+        <clr-dg-column>Role</clr-dg-column>
+        <clr-dg-column>Trader</clr-dg-column>
+        <clr-dg-column>Owner</clr-dg-column>
+        <clr-dg-column>Crypto</clr-dg-column>
+        <clr-dg-column>Amount</clr-dg-column>
+        <clr-dg-column>Status</clr-dg-column>
+        <clr-dg-row *ngFor="let order of finishedOrders">
+          <clr-dg-cell>{{order._id}}</clr-dg-cell>
+          <clr-dg-cell>{{order.buyer==user.username?'Buyer':'Seller'}}</clr-dg-cell>
+          <clr-dg-cell>{{order.buyer==user.username?order.seller:order.buyer}}</clr-dg-cell>
+          <clr-dg-cell>{{order.owner}}</clr-dg-cell>
+          <clr-dg-cell>{{order.crypto}}</clr-dg-cell>
+          <clr-dg-cell>{{order.fiat}} {{order.amount| number : '1.2-2'}}</clr-dg-cell>
+          <clr-dg-cell>{{order.finished==3?'Pending Rating':'Complete'}}</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
     </div>
   </div>
 </div>
