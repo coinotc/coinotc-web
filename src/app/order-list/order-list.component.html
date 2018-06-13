@@ -1,3 +1,64 @@
-<p>
-  order-list works!
-</p>
+<div class="main-container">
+  <div class="content-container">
+    <nav class="sidenav">
+      <section class="sidenav-content">
+        <a (click)="onStatus('active')" class="nav-link {{status=='active'?'active':''}}">
+          Active
+        </a>
+        <a (click)="onStatus('finished')" class="nav-link {{status=='finished'?'active':''}}">
+          Finished
+        </a>
+      </section>
+    </nav>
+    <div class="content-area">
+      <table class="table" *ngIf="status == 'active'">
+        <thead>
+          <tr>
+            <th>OrderID</th>
+            <th>Role</th>
+            <th>Trader</th>
+            <th>Owner</th>
+            <th>Crypto</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let order of activeOrders">
+          <tr>
+            <td>{{order._id}}</td>
+            <td>{{order.buyer==user.username?'Buyer':'Seller'}}</td>
+            <td>{{order.buyer==user.username?order.seller:order.buyer}}</td>
+            <td>{{order.owner}}</td>
+            <td>{{order.crypto}}</td>
+            <td>{{order.fiat}} {{order.amount| number : '1.2-2'}}</td>
+            <td>{{order.finished==1?'Pending Fiat':'Pending Crypto'}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table" *ngIf="status == 'finished'">
+        <thead>
+          <tr>
+            <th>OrderID</th>
+            <th>Role</th>
+            <th>Trader</th>
+            <th>Owner</th>
+            <th>Crypto</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let order of finishedOrders">
+          <tr>
+            <td>{{order._id}}</td>
+            <td>{{order.buyer==user.username?'Buyer':'Seller'}}</td>
+            <td>{{order.buyer==user.username?order.seller:order.buyer}}</td>
+            <td>{{order.owner}}</td>
+            <td>{{order.crypto}}</td>
+            <td>{{order.fiat}} {{order.amount| number : '1.2-2'}}</td>
+            <td>{{order.finished==3?'Pending Rating':'Complete'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
