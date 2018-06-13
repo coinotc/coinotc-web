@@ -1,22 +1,25 @@
 <clr-header class="header header-6">
     <div class="branding">
         <a href="#" class="nav-link">
-      <span style= "background-image: url(../../../images/clarity_logo.svg);
+            <span style="background-image: url(../../../images/clarity_logo.svg);
         height: 36px;
         width: 36px;
-        margin-right: 11px" ></span>
-      <span class="title">coinotc.market</span>
-    </a>
+        margin-right: 11px"></span>
+            <span class="title">coinotc.market</span>
+        </a>
     </div>
 
 
 
     <div class="header-nav" [clr-nav-level]="1">
         <a class="nav-link" routerLink="/">
-          <span class="nav-text">Home</span>
+            <span class="nav-text">Home</span>
+        </a>
+        <a class="nav-link" routerLink="/orders">
+            <span class="nav-text">Order List</span>
         </a>
         <a class="nav-link" routerLink="/market">
-          <span class="nav-text">Market Data</span>
+            <span class="nav-text">Market Data</span>
         </a>
          <a class="nav-link nav-text" routerLink="/advertisement">
           Create Advertisement
@@ -36,8 +39,8 @@
 
         <a class="nav-link nav-text " [routerLink]="[ '/profile', currentUser.username] " routerLinkActive="active ">
 
-                {{ currentUser.username }}
-            </a>
+            {{ currentUser.username }}
+        </a>
 
 
 
