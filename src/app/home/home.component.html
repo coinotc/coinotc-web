@@ -39,7 +39,7 @@
     </div>
   </div>
 </div>
-<div class="content-container">
+<!-- <div class="content-container">
   <div class="content-area">
     <clr-datagrid>
       <clr-dg-column [clrDgField]="owner">Username</clr-dg-column>
@@ -63,7 +63,9 @@
 
     </clr-datagrid>
   </div>
-</div>
+</div> -->
+
+<app-advertisement [data]='adverts' ></app-advertisement>
 
 <button class="btn btn-outline-danger" (click)="logout()" *appShowAuthed="true">
   Click here to logout.

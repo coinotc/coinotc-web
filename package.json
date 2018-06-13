@@ -27,6 +27,7 @@
     "@webcomponents/custom-elements": "1.0.0",
     "core-js": "^2.4.1",
     "mutationobserver-shim": "^0.3.2",
+    "ng2-toasty": "^4.0.3",
     "ngx-avatar": "^2.9.0",
     "ngx-trend": "^3.3.1",
     "rxjs": "^5.4.3",

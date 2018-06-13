@@ -72,9 +72,10 @@
           <span>
             <input type="number" [(ngModel)]="orderinformation.amount" (ngModelChange)="amountchange()" placeholder="{{theAdv.fiat}}" size="45">
           </span>
-          <button class="btn btn-sm">deal</button>
+          <button class="btn btn-sm" (click)="makeorder()" >deal</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+<ng2-toasty></ng2-toasty>

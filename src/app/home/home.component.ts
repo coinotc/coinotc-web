@@ -8,38 +8,37 @@ import { banner } from '../core/models/banner.model'
 import { AdvDetailService } from '../core/services/adv-detail.service'
 
 @Component({
-    styleUrls: ['./home.component.scss'],
-    templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
 
   banners
   adverts: Advertisement[];
-  specificAdv:Advertisement
+  specificAdv: Advertisement
 
   private timerSubscription: AnonymousSubscription;
-  private getAllSubscription: AnonymousSubscription;
 
   constructor(
     private router: Router,
     private userService: UserService,
     private advertisementsService: AdvertisementsService,
-    private bannerControlService:BannerControlService,
-    private advDetailService:AdvDetailService
+    private bannerControlService: BannerControlService,
+    private advDetailService: AdvDetailService
   ) {
-    this.bannerControlService.getBanner().subscribe(result=>{
+    this.bannerControlService.getBanner().subscribe(result => {
       this.banners = result;
       console.log(result)
     });
-    this.advDetailService.castAdv.subscribe(result=>{
+    this.advDetailService.castAdv.subscribe(result => {
       this.specificAdv = result
     })
   }
 
-  onEdit(advert){
+  onEdit(advert) {
     this.advDetailService.detailAdv(advert)
   }
-   
+
   logout() {
     this.userService.purgeAuth();
     this.router.navigateByUrl('/');
@@ -52,11 +51,13 @@ export class HomeComponent implements OnInit {
       .subscribe(() => this.refreshData());
   }
   private refreshData() {
-    this.getAllSubscription = this.advertisementsService.getAll()
-      .subscribe(adverts => {
-        this.adverts = adverts;
-        console.log(this.adverts)
-        this.subscribeToData();
-      })
+    this.advertisementsService.getAll().subscribe(adverts => {
+      this.adverts = adverts;
+      console.log(this.adverts)
+      this.subscribeToData();
+    })
+  }
+  ngOnDestroy() {
+    this.timerSubscription.unsubscribe();
   }
 }

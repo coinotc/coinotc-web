@@ -11,6 +11,10 @@ export class OrderService {
   constructor (
     private apiService: ApiService
   ) {}
+  postorder(body){
+    let url = '/order'
+    return this.apiService.post(url,body);
+  }
 
   //according to owner to get orders
   getOrderWithHim(profileUser,currentUser):Observable<OrderInformation[]>{
