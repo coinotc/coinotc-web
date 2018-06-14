@@ -1,0 +1,128 @@
+<div class="row">
+    <div class="col-lg-12 ">
+        <div class="card">
+          <div class="card-header" style="text-align: center">
+           Order Information
+          </div>
+          <div class="card-block">
+            <div class="row">
+              <div class="col-lg-6">
+                <table class="table table-vertical" *ngIf="Order">
+                  <tbody>
+                    <tr>
+                      <td>buyer</td>
+                      <td>{{Order.buyer}}</td>
+                    </tr>
+                    <tr>
+                      <td>seller</td>
+                      <td>{{Order.seller}}</td>
+                    </tr>
+                    <tr>
+                      <td>country</td>
+                      <td>{{Order.country}}</td>
+                    </tr>
+                    <tr>
+                      <td>payment</td>
+                      <td>{{Order.payment}}</td>
+                    </tr>
+                    <tr>
+                      <td>message</td>
+                      <td>{{Order.message}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+              <div class="col-lg-6">
+                <table class="table table-vertical" *ngIf="Order">
+                  <tbody>
+                    <tr>
+                      <td>crypto</td>
+                      <td>{{Order.crypto}}</td>
+                    </tr>
+                    <tr>
+                      <td>fiat</td>
+                      <td>{{Order.fiat}}</td>
+                    </tr>
+                    <tr>
+                      <td>price</td>
+                      <td>{{Order.price}}</td>
+                    </tr>
+                    <tr>
+                      <td>quantity</td>
+                      <td>{{Order.quantity}}</td>
+                    </tr>
+                    <tr>
+                      <td>amount</td>
+                      <td>{{Order.amount}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+          </div>
+        </div>
+      </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title" style="text-align: center">chat</h3>
+                <div class="card-text">
+                  <div class="container-fluid">
+                    <div>
+                     
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="card card-accent-success">
+                            <div class="card-body" style="min-height:150px;overflow-y:auto;max-height:300px;">
+                              <div class="col-lg-12">
+                                <table class="table table-bordered table-striped" *ngFor="let chat of chats ">
+                                  <tbody>
+                                    <tr>
+                                      <td colspan="2 ">Content: 
+                                        {{chat.message}}
+                                      </td>
+                                      <tr>
+                                        <td>Username: 
+                                          {{chat.username}}
+                                        </td>
+                                        <td style="text-align:right">Date: 
+                                          {{chat.sendDate | date:'short'}}
+                                        </td>
+                                      </tr>
+                                      <!-- <div class="chat-container" >
+                                      <a href="#">{{chat.user}}</a>
+                                      <p>{{chat.message}}</p>
+                                    </div> -->
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="row">
+                          <div class="col-lg-12 ">
+                            <textarea id="textarea-input " rows="4 " class="form-control " [(ngModel)]="data.message"></textarea>
+                          </div>
+                        </div>
+                        <span style="float:right">
+                          <button type="button " class="btn btn-success " (click)=" sendMessage() " [disabled]="!data.message">
+                            Post Comment
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="card-footer">
+               
+            </div>
+        </div>
+    </div>
+
+</div>

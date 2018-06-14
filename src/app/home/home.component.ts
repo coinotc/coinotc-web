@@ -17,7 +17,10 @@ export class HomeComponent implements OnInit {
   adverts: Advertisement[];
   specificAdv: Advertisement
 
+  country = 'singapore'; type = 1; fiat = 'USD'; crypto = 'BITCOIN';
+
   private timerSubscription: AnonymousSubscription;
+  private getAllSubscription: AnonymousSubscription;
 
   constructor(
     private router: Router,
@@ -51,11 +54,26 @@ export class HomeComponent implements OnInit {
       .subscribe(() => this.refreshData());
   }
   private refreshData() {
-    this.advertisementsService.getAll().subscribe(adverts => {
+    this.advertisementsService.getAll(this.type, this.country, this.fiat, this.crypto).subscribe(adverts => {
       this.adverts = adverts;
-      console.log(this.adverts)
       this.subscribeToData();
     })
+  }
+  changecountry(counrty) {
+    this.country = counrty;
+    this.timerSubscription.unsubscribe();
+    this.refreshData();
+  }
+  changefiat(fiat){
+    this.fiat = fiat;
+    this.timerSubscription.unsubscribe();
+    this.refreshData();
+  }
+  changecrypto(type, crypto) {
+    this.type = type;
+    this.crypto = crypto;
+    this.timerSubscription.unsubscribe();
+    this.refreshData();
   }
   ngOnDestroy() {
     this.timerSubscription.unsubscribe();

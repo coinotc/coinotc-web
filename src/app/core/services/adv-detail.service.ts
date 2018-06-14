@@ -17,5 +17,11 @@ export class AdvDetailService {
     this.specificAdv.next(theAdv)
   }
 
+  private specificId = new BehaviorSubject<string>(null)
+  castId = this.specificId.asObservable()
+  
+  detailId(theId){
+    this.specificId.next(theId)
+  }
 
 }

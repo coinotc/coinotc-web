@@ -1,29 +1,33 @@
 <div class="content-container">
-    <div class="content-area">
+    <div class="content-area"  style="text-align: center">
         <label class="title">
       <h1>{{ title }}</h1>
+      <hr style=" width: 18%;   border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
       <p>
         <a [routerLink]="['/login']" *ngIf="authType == 'register'">Have an account?</a>
         <a [routerLink]="['/register']" *ngIf="authType == 'login'">Need an account?</a>
       </p>
   </label>
+  
 
         <app-list-errors [errors]="errors"></app-list-errors>
         <form [formGroup]="authForm" (ngSubmit)="submitForm()" class="login">
-            <input formControlName="username" placeholder="Username" class="form-control" type="text" *ngIf="authType == 'register'" />
+            <input style="margin-bottom: 20px" formControlName="username" placeholder="Username" class="form-control" type="text" *ngIf="authType == 'register'" /> <br>
 
-            <input formControlName="email" placeholder="Email" class="form-control" type="text" />
+            <input style="margin-bottom: 20px" formControlName="email" placeholder="Email" class="form-control" type="text" /><br>
 
-            <input formControlName="password" placeholder="Password" class="form-control" type="password" />
+            <input style="margin-bottom: 20px" formControlName="password" placeholder="Password" class="form-control" type="password" /><br>
 
-            <input formControlName="confirmPassword" placeholder="Confirm Password" class="form-control" type="password" *ngIf="authType == 'register'" />
+            <input style="margin-bottom: 20px" formControlName="confirmPassword" placeholder="Confirm Password" class="form-control" type="password" *ngIf="authType == 'register'" /> <br>
 
-            <input formControlName="tradepassword" placeholder="6 Pin Code" class="form-control" ı type="text" *ngIf="authType == 'register'" />
+            <input style="margin-bottom: 20px" formControlName="tradepassword" placeholder="6 Pin Code" class="form-control" ı type="text" *ngIf="authType == 'register'" /> <br>
 
-            <input formControlName="confirmTradePassword" placeholder="Confirm 6 Pin Code" class="form-control" type="text" *ngIf="authType == 'register'" />
+            <input style="margin-bottom: 20px" formControlName="confirmTradePassword" placeholder="Confirm 6 Pin Code" class="form-control" type="text" *ngIf="authType == 'register'" /> <br>
 
 
-            <button class="btn btn-primary" [disabled]="!authForm.valid" type="submit">
+            <button style="font-size: 15px;height: 40px;width: 150px" class="btn btn-primary" [disabled]="!authForm.valid" type="submit">
         {{ title }}
       </button>
 

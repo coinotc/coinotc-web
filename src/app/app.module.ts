@@ -1,27 +1,22 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { ClarityModule } from '@clr/angular';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
-import {
-    FooterComponent,
-    HeaderComponent,
-    SharedModule
-} from './shared';
-import { AppRoutingModule } from "./app-routing.module";
+import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-// import { CreateAdvComponent } from './create-adv/create-adv.component';
-
+import { AngularFireModule } from 'angularfire2';
+import { firebaseConfig } from '../environments/firebase-chat'
 
 
 @NgModule({
     declarations: [
-        AppComponent, FooterComponent, HeaderComponent,
+        AppComponent, FooterComponent, HeaderComponent, 
         //  CreateAdvComponent
     ],
     imports: [
@@ -34,10 +29,10 @@ import { CoreModule } from './core/core.module';
         FormsModule,
         HttpModule,
         ClarityModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AngularFireModule.initializeApp(firebaseConfig)
     ],
     providers: [],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

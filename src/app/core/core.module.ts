@@ -14,7 +14,7 @@ import {
   AdvDetailService,
   OrderService,
   KycService,
-  GetIpService
+  GetIpService,
 } from './services';
 
 @NgModule({
@@ -33,7 +33,7 @@ import {
     AdvDetailService,
     OrderService,
     KycService,
-    GetIpService
+    GetIpService,
   ],
   declarations: []
 })
