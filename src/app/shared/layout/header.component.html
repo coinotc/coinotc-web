@@ -15,10 +15,7 @@
         <a class="nav-link" routerLink="/">
             <span class="nav-text">Home</span>
         </a>
-        <a class="nav-link nav-text" routerLink="/advertisement">
-            Create Advertisement
-          </a>
-        <a class="nav-link" routerLink="/orders">
+        <a class="nav-link" routerLink="/orders" *appShowAuthed="true">
             <span class="nav-text">Order List</span>
         </a>
         <a class="nav-link" routerLink="/market">
@@ -36,15 +33,13 @@
     </div>
 
     <div class="header-actions" *appShowAuthed="true">
-
+        <a class="nav-link nav-text" routerLink="/advertisement" *appShowAuthed="true">
+            Create Advertisement
+        </a>
         <a class="nav-link nav-text " [routerLink]="[ '/profile', currentUser.username] " routerLinkActive="active ">
 
             {{ currentUser.username }}
         </a>
-
-
-
-
     </div>
 
 
