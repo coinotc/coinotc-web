@@ -8,12 +8,20 @@ import { AdvDetailService } from '../../core/services/adv-detail.service';
 })
 export class AdvertisementComponent implements OnInit {
   @Input('data') list;
+  @Input() counrty;
+  flag = false;
   constructor(
     private advDetailService: AdvDetailService,
   ) { }
+  ngOnChanges() {
+    if (this.counrty == 'global') {
+      this.flag = true;
+    }else{
+      this.flag = false;
+    }
+  }
 
   ngOnInit() {
-    console.log(this.list);
   }
   bors(advertisement) {
     this.advDetailService.detailAdv(advertisement);

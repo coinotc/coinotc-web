@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdvDetailService } from '../core/services/adv-detail.service';
 import { Advertisement } from '../core/models/advertisment.model';
 import { OrderInformation } from '../core/models/orderinfo.model';
+import { ToastyService, ToastyConfig, ToastOptions } from 'ng2-toasty';
 import { OrderService } from '../core/services/order.service';
 import { AdvertisementsService } from '../core/services/advertisements.service';
 import { UserService } from '../core/services/user.service';
@@ -38,13 +39,14 @@ export class AdvDetailComponent implements OnInit {
         null,
         null,
         1,
+        null,
         null
     );
 
     constructor(
         private advDetailService: AdvDetailService,
         private orderService: OrderService,
-        private userservice: UserService,
+        private userservice: UserService, private toastyService: ToastyService,
         private advertisementsService: AdvertisementsService
     ) {
         this.advDetailService.castAdv.subscribe(result => {
@@ -82,7 +84,7 @@ export class AdvDetailComponent implements OnInit {
     }
 
     makeOrder() {
-        if (this.userservice.currentUser) {
+        if (this.userservice.getCurrentUser().username) {
             this.orderinformation.crypto = this.theAdv.crypto;
             this.orderinformation.country = this.theAdv.country;
             this.orderinformation.fiat = this.theAdv.fiat;
@@ -115,14 +117,23 @@ export class AdvDetailComponent implements OnInit {
                         .addRoomKey(this.roomkey, this.data.roomname)
                         .subscribe();
                 });
+        } else {
+            var tosatyoption: ToastOptions = {
+                title: "Warning",
+                msg: "You need login to make a order!",
+                showClose: true,
+                timeout: 5000,
+                theme: 'bootstrap'
+            }
+            this.toastyService.warning(tosatyoption);
         }
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 }
 export const getRoomKey = ref => {
     let roomkey;
-    ref.limitToLast(1).on('child_added', function(prevChildKey) {
+    ref.limitToLast(1).on('child_added', function (prevChildKey) {
         roomkey = prevChildKey.key;
     }); //获取roomkey
     return roomkey;
