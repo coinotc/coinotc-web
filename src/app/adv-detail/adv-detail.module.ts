@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
-import {ToastyModule} from 'ng2-toasty';
+import { ToastyModule } from 'ng2-toasty';
 
 import { AdvDetailComponent } from './adv-detail.component';
 // import { MarketDataAuthResolver } from './market-data-auth-resolver.service';
@@ -22,4 +22,4 @@ import { AdvDetailRoutingModule } from './adv-detail.routilng.module';
     // MarketDataAuthResolver
   ]
 })
-export class AdvDetailModule {}
+export class AdvDetailModule { }
