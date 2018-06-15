@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderService, UserService } from '../core';
+import { OrderService, UserService, AdvDetailService } from '../core';
 
 @Component({
     selector: 'app-order-list',
@@ -17,7 +17,8 @@ export class OrderListComponent implements OnInit {
     constructor(
         private router: Router,
         private orderService: OrderService,
-        private userService: UserService
+        private userService: UserService,
+        private advDetailService: AdvDetailService
     ) {
         this.doRefresh();
     }
@@ -25,6 +26,10 @@ export class OrderListComponent implements OnInit {
     onStatus(orderStatus) {
         this.status = orderStatus;
         this.doRefresh();
+    }
+
+    onDetail(order) {
+        this.advDetailService.detailId(order._id);
     }
 
     doRefresh() {

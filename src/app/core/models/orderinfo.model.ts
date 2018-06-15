@@ -15,7 +15,8 @@ export class OrderInformation {
       public buyerRating: number,
       public sellerRating: number,
       public finished: number,
-      public roomkey: string
+      public roomkey: string,
+      public adid: string,
     ) {}
   }
   

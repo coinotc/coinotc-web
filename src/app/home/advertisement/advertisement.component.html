@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let item of list">
     <div class="card">
       <div class="card-header">
@@ -31,4 +31,27 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<clr-datagrid>
+  <clr-dg-column>Owner</clr-dg-column>
+  <clr-dg-column>Range</clr-dg-column>
+  <clr-dg-column>Price</clr-dg-column>
+  <clr-dg-column>Payment</clr-dg-column>
+  <clr-dg-column>Control</clr-dg-column>
+
+  <clr-dg-row *ngFor="let item of list">
+      <clr-dg-cell style="font-size: 0.7rem">
+        {{item.owner}}
+        <i [class]="item.country" *ngIf="flag"></i>
+      </clr-dg-cell>
+      <clr-dg-cell>{{item.min_price}}{{item.fiat}} - {{item.max_price}}{{item.fiat}}</clr-dg-cell>
+      <clr-dg-cell>{{item.price}}{{item.fiat}} / {{item.crypto}}</clr-dg-cell>
+      <clr-dg-cell><i *ngFor="let class of item.payment" class="{{class}}"></i></clr-dg-cell>
+      <clr-dg-cell>
+        <button class="btn btn-sm btn-primary" *ngIf="item.type == 0" (click)="bors(item)" routerLink="/advDetail">sell {{item.crypto}}</button>
+        <button class="btn btn-sm btn-primary" *ngIf="item.type == 1" (click)="bors(item)" routerLink="/advDetail">buy {{item.crypto}}</button>
+      </clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
