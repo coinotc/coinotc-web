@@ -17,13 +17,13 @@
                     </section>
                     <section class="nav-group collapsible">
                         <input id="tabexample2" type="checkbox">
-                        <label for="tabexample2">Settings</label>
+                        <label for="tabexample2">My Advertisements</label>
                         <ul class="nav-list">
                             <li>
-                                <a class="nav-link {{status=='basicSettings'?'active':''}}" (click)="onStatus('basicSettings')">Basic Settings</a>
+                                <a class="nav-link {{status=='advertsAble'?'active':''}}" (click)="onStatus('advertsAble')">Able</a>
                             </li>
                             <li>
-                                <a class="nav-link {{status=='securitySettings'?'active':''}}" (click)="onStatus('securitySettings')">Security Settings</a>
+                                <a class="nav-link {{status=='advertsDisable'?'active':''}}" (click)="onStatus('advertsDisable')">Disable</a>
                             </li>
                         </ul>
                     </section>
@@ -36,6 +36,18 @@
                             </li>
                             <li>
                                 <a class="nav-link {{status=='follower'?'active':''}}" (click)="onStatus('follower')">Follower</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="nav-group collapsible">
+                        <input id="tabexample4" type="checkbox">
+                        <label for="tabexample4">Settings</label>
+                        <ul class="nav-list">
+                            <li>
+                                <a class="nav-link {{status=='basicSettings'?'active':''}}" (click)="onStatus('basicSettings')">Basic Settings</a>
+                            </li>
+                            <li>
+                                <a class="nav-link {{status=='securitySettings'?'active':''}}" (click)="onStatus('securitySettings')">Security Settings</a>
                             </li>
                         </ul>
                     </section>

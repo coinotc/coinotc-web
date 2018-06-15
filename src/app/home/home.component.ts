@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   adverts: Advertisement[];
   specificAdv: Advertisement
 
-  country = 'singapore'; type = 1; fiat = 'USD'; crypto = 'BITCOIN';
+  country = 'singapore'; type = 1; fiat = 'SGD'; crypto = 'BITCOIN';
 
   private timerSubscription: AnonymousSubscription;
   private getAllSubscription: AnonymousSubscription;
