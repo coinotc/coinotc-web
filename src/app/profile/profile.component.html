@@ -1,84 +1,89 @@
 <div class="profile-page">
-    <div class="content-container">
-        <div class="content-area">
-            <div class="card">
-                <div class="card-header">
-                    {{ profile.username }} ({{ profile.email }})
-                    <span class="badge badge-success" *ngIf="profile.verifystatus">Verified</span>
-                    <span class="badge badge-danger" *ngIf="!profile.verifystatus">Unverified</span>
-                </div>
-                <div class="card-block">
-                    <button class="btn btn-sm btn-link" *ngIf="profile.verifystatus" >Update Verification Documents</button>
-                    <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus">Submit Verification Documents</button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="card-header">
-                            Advertisement
-                        </div>
-                        <div class="card-block">
-                            <table class="table table-compact table-noborder">
-                                <thead>
-                                    <tr><th>Username</th>
-                                        <th>Coin</th>
-                                        <th>Country</th>
-                                        <th>Currency</th>
-                                        <th>Rate</th>
-                                        <th>Payment Method</th>
-                                    </tr>
-                                </thead>
-                                <tbody *ngIf="adverts">
-                                    <tr *ngFor="let advert of adverts">
-                                        <td>{{advert.owner}}</td>
-                                        <td>{{advert.crypto}}</td>
-                                        <td>{{advert.country}}</td>
-                                        <td>{{advert.fiat}}</td>
-                                        <td>{{advert.price}}</td>
-                                        <td>{{advert.payment}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+    <div class="main-container">
+        <div class="content-container">
+            <nav class="sidenav">
+                <section class="sidenav-content">
+                    <section class="nav-group collapsible">
+                        <input id="tabexample1" type="checkbox">
+                        <label for="tabexample1">User Information</label>
+                        <ul class="nav-list">
+                            <li>
+                                <a class="nav-link {{status=='basciInformation'?'active':''}}" (click)="onStatus('basciInformation')">Basic Information</a>
+                            </li>
+                            <li>
+                                <a class="nav-link {{status=='KYC'?'active':''}}" (click)="onStatus('KYC')">KYC</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="nav-group collapsible">
+                        <input id="tabexample2" type="checkbox">
+                        <label for="tabexample2">Settings</label>
+                        <ul class="nav-list">
+                            <li>
+                                <a class="nav-link {{status=='basicSettings'?'active':''}}" (click)="onStatus('basicSettings')">Basic Settings</a>
+                            </li>
+                            <li>
+                                <a class="nav-link {{status=='securitySettings'?'active':''}}" (click)="onStatus('securitySettings')">Security Settings</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="nav-group collapsible">
+                        <input id="tabexample3" type="checkbox">
+                        <label for="tabexample3">Follow</label>
+                        <ul class="nav-list">
+                            <li>
+                                <a class="nav-link {{status=='following'?'active':''}}" (click)="onStatus('following')">Following</a>
+                            </li>
+                            <li>
+                                <a class="nav-link {{status=='follower'?'active':''}}" (click)="onStatus('follower')">Follower</a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </nav>
+            <div class="content-area">
+                <div class="card">
+                    <div class="card-header">
+                        {{ profile.username }} ({{ profile.email }})
+                        <span class="badge badge-success" *ngIf="profile.verifystatus">Verified</span>
+                        <span class="badge badge-danger" *ngIf="!profile.verifystatus">Unverified</span>
+                    </div>
+                    <div class="card-block">
+                        <button class="btn btn-sm btn-link" *ngIf="profile.verifystatus">Update Verification Documents</button>
+                        <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus">Submit Verification Documents</button>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="card-header">
-                            Order List
-                            <span style=" margin: 0px 0px 0px 7px;  padding: 3px 3px 3px 3px; background-color: pink;font-style: italic;font-size: small">buy</span>
-                            <span style=" margin: 0px 0px 0px 7px;  padding: 3px 3px 3px 3px;  background-color: gray;font-style: italic;font-size: small">sell</span>
-                        </div>
-                        <div class="card-block">
-                            <table class="table table-compact table-noborder">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Seller or Buyer</th>
-                                        <th>Coin</th>
-                                        <th>Country</th>
-                                        <th>Currency</th>
-                                        <th>Rate</th>
-                                        <th>Payment Method</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr id="buy" *ngFor="let order of orderLists" order-type="buy">
-                                        <span style="color: pink;font-style: italic" *ngIf="currentUser.username==order.buyer">B</span>
-                                        <span style="color: gray;font-style: italic" *ngIf="currentUser.username==order.buyer">S</span>
-                                        <!-- <td *ngIf="currentUser.username==order.buyer">BUYER</td>
-                                        <td *ngIf="currentUser.username==order.seller">SELLER</td> -->
-                                        <td>{{currentUser.username==order.buyer?order.seller:order.seller}}</td>
-                                        <td>{{order.crypto}}</td>
-                                        <td>{{order.country}}</td>
-                                        <td>{{order.fiat}}</td>
-                                        <td>{{order.price}}</td>
-                                        <td>{{order.payment}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                Advertisement
+                            </div>
+                            <div class="card-block">
+                                <table class="table table-compact table-noborder">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Coin</th>
+                                            <th>Country</th>
+                                            <th>Currency</th>
+                                            <th>Rate</th>
+                                            <th>Payment Method</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="adverts">
+                                        <tr *ngFor="let advert of adverts">
+                                            <td>{{advert.owner}}</td>
+                                            <td>{{advert.crypto}}</td>
+                                            <td>{{advert.country}}</td>
+                                            <td>{{advert.fiat}}</td>
+                                            <td>{{advert.price}}</td>
+                                            <td>{{advert.payment}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
