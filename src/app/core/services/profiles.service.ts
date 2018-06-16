@@ -7,21 +7,23 @@ import { map } from 'rxjs/operators/map';
 
 @Injectable()
 export class ProfilesService {
-  constructor (
-    private apiService: ApiService
-  ) {}
+    constructor(private apiService: ApiService) {}
 
-  get(username: string): Observable<Profile> {
-    return this.apiService.get('/profiles/' + username)
-      .pipe(map((data: {profile: Profile}) => data.profile));
-  }
+    get(username: string): Observable<Profile> {
+        return this.apiService
+            .get('/profiles/' + username)
+            .pipe(map((data: { profile: Profile }) => data.profile));
+    }
 
-  follow(username: string): Observable<Profile> {
-    return this.apiService.post('/profiles/' + username + '/follow');
-  }
+    follow(username: string): Observable<Profile> {
+        return this.apiService.post('/profiles/' + username + '/follow');
+    }
 
-  unfollow(username: string): Observable<Profile> {
-    return this.apiService.delete('/profiles/' + username + '/follow');
-  }
-
+    unfollow(username: string): Observable<Profile> {
+        return this.apiService.delete('/profiles/' + username + '/follow');
+    }
+    sendRating(username, ratings) {
+        let URL = `/users/public/ratings?username=${username}`;
+        return this.apiService.patch(URL, ratings);
+    }
 }
