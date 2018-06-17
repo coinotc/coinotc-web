@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvDetailService } from '../core/services/adv-detail.service';
 import { Advertisement } from '../core/models/advertisment.model';
+import { Router } from '@angular/router';
 import { OrderInformation } from '../core/models/orderinfo.model';
 import { ToastyService, ToastyConfig, ToastOptions } from 'ng2-toasty';
 import { OrderService } from '../core/services/order.service';
@@ -14,7 +15,7 @@ import * as firebase from 'firebase';
     styleUrls: ['./adv-detail.component.scss']
 })
 export class AdvDetailComponent implements OnInit {
-    theAdv: Advertisement;
+    theAdv;
     ref = firebase.database().ref('chatrooms/');
     roomkey: any;
     data = { type: '', name: '', message: '', roomname: '' };
@@ -47,6 +48,7 @@ export class AdvDetailComponent implements OnInit {
         private advDetailService: AdvDetailService,
         private orderService: OrderService,
         private userservice: UserService, private toastyService: ToastyService,
+        private router: Router,
         private advertisementsService: AdvertisementsService
     ) {
         this.advDetailService.castAdv.subscribe(result => {
@@ -92,6 +94,7 @@ export class AdvDetailComponent implements OnInit {
             this.orderinformation.limit = this.theAdv.limit;
             this.orderinformation.message = this.theAdv.message;
             this.orderinformation.owner = this.theAdv.owner;
+            this.orderinformation.adid = this.theAdv._id;
             if ((this.theAdv.type = 1)) {
                 this.orderinformation.seller = this.userservice.getCurrentUser().username;
                 this.orderinformation.buyer = this.theAdv.owner;
@@ -115,7 +118,10 @@ export class AdvDetailComponent implements OnInit {
                     console.log(result);
                     this.orderService
                         .addRoomKey(this.roomkey, this.data.roomname)
-                        .subscribe();
+                        .subscribe(() => {
+                            this.router.navigate(['/chat']);
+                        }
+                        );
                 });
         } else {
             var tosatyoption: ToastOptions = {
