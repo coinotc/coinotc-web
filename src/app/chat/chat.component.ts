@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderInformation } from '../core/models/orderinfo.model';
-import { OrderService, UserService, AdvDetailService } from '../core';
+import {
+    OrderService,
+    UserService,
+    AdvDetailService,
+    ProfilesService
+} from '../core';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { RatingChangeEvent } from 'angular-star-rating';
 
 @Component({
     selector: 'app-chat',
@@ -10,17 +16,21 @@ import * as firebase from 'firebase';
 })
 export class ChatComponent implements OnInit {
     user;
+    trader;
     order;
     theId;
     data = { type: '', name: '', message: '', roomname: '' };
     message = { content: '', date: null, role: '' };
     chats = [];
     roomkey: any;
+    rateResult: RatingChangeEvent;
 
     constructor(
+        private router: Router,
         private advDetailService: AdvDetailService,
         private orderService: OrderService,
-        private userService: UserService
+        private userService: UserService,
+        private profilesService: ProfilesService
     ) {
         this.user = this.userService.getCurrentUser();
         this.advDetailService.castId.subscribe(result => {
@@ -46,6 +56,11 @@ export class ChatComponent implements OnInit {
                             var end = new Date().getTime();
                             console.log(end - start);
                         });
+                    if (this.user.username == this.order.seller) {
+                        this.trader = this.order.buyer;
+                    } else {
+                        this.trader = this.order.seller;
+                    }
                 });
             }
         });
@@ -69,7 +84,42 @@ export class ChatComponent implements OnInit {
         });
     }
 
-    onRating() {}
+    rateChanged = ($event: RatingChangeEvent) => {
+        console.log('onRatingUpdated $event: ', $event);
+        this.rateResult = $event;
+        console.log(this.rateResult.rating);
+    };
+
+    onRating() {
+        console.log('>>>>>');
+        this.orderService.getByID(this.order._id).subscribe(result => {
+            this.order = result;
+            if (this.user.username == this.order.buyer) {
+                this.order.buyerRating = this.rateResult.rating;
+                if (this.order.sellerRating !== null) {
+                    this.order.finished = 0;
+                }
+            } else if (this.user.username == this.order.seller) {
+                this.order.sellerRating = this.rateResult.rating;
+                if (this.order.buyerRating !== null) {
+                    this.order.finished = 0;
+                }
+            }
+            this.orderService.updateOrder(this.order).subscribe(result => {
+                console.log(result);
+            });
+        });
+        this.profilesService.getProfile(this.trader).subscribe(result => {
+            console.log(result);
+            let ratings = result[0].ratings;
+            ratings.push(this.rateResult.rating);
+            this.profilesService.sendRating(this.trader, ratings).subscribe();
+        });
+    }
+
+    quit() {
+        this.router.navigateByUrl('/orders');
+    }
 
     sendMessage() {
         //this.data.message = this.leaveMess;
