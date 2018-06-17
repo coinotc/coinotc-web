@@ -22,6 +22,10 @@ export class ProfilesService {
     unfollow(username: string): Observable<Profile> {
         return this.apiService.delete('/profiles/' + username + '/follow');
     }
+    public getProfile(username): Observable<Profile> {
+        let URL = `/users/public?username=${username}`;
+        return this.apiService.get(URL);
+    }
     sendRating(username, ratings) {
         let URL = `/users/public/ratings?username=${username}`;
         return this.apiService.patch(URL, ratings);

@@ -5,6 +5,7 @@ import {
     AdvDetailService,
     ProfilesService
 } from '../core';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { RatingChangeEvent } from 'angular-star-rating';
 
@@ -25,6 +26,7 @@ export class ChatComponent implements OnInit {
     rateResult: RatingChangeEvent;
 
     constructor(
+        private router: Router,
         private advDetailService: AdvDetailService,
         private orderService: OrderService,
         private userService: UserService,
@@ -93,12 +95,12 @@ export class ChatComponent implements OnInit {
         this.orderService.getByID(this.order._id).subscribe(result => {
             this.order = result;
             if (this.user.username == this.order.buyer) {
-                this.order.buyerRating = this.rateResult;
+                this.order.buyerRating = this.rateResult.rating;
                 if (this.order.sellerRating !== null) {
                     this.order.finished = 0;
                 }
             } else if (this.user.username == this.order.seller) {
-                this.order.sellerRating = this.rateResult;
+                this.order.sellerRating = this.rateResult.rating;
                 if (this.order.buyerRating !== null) {
                     this.order.finished = 0;
                 }
@@ -107,11 +109,16 @@ export class ChatComponent implements OnInit {
                 console.log(result);
             });
         });
-        this.profilesService.get(this.trader).subscribe(result => {
+        this.profilesService.getProfile(this.trader).subscribe(result => {
+            console.log(result);
             let ratings = result[0].ratings;
-            ratings.push(this.rateResult);
+            ratings.push(this.rateResult.rating);
             this.profilesService.sendRating(this.trader, ratings).subscribe();
         });
+    }
+
+    quit() {
+        this.router.navigateByUrl('/orders');
     }
 
     sendMessage() {
