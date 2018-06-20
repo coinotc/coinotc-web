@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
     isUser: boolean;
     adverts: Advertisement[];
     orderLists: OrderInformation[];
-    status: 'basciInformation';
+    status =  'basciInformation';
     user;
 
     constructor(
