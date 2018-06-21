@@ -3,6 +3,7 @@ import { Advertisement,advertisement } from '../core'
 import { ApiService,AdvertisementsService } from '../core'
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from "@angular/common/http";
+import { UserService } from '../core/services/user.service'
 
 @Component({
   selector: 'app-create-adv',
@@ -19,8 +20,8 @@ export class CreateAdvComponent implements OnInit {
   price:number
   rangepercent = 0;
   
-  constructor(private advService : AdvertisementsService,private http:HttpClient) { 
-    
+  constructor(private advService : AdvertisementsService,private http:HttpClient,private userService:UserService) { 
+    this.advertisement.owner = this.userService.getCurrentUser().username
   }
 
   ngOnInit() {
@@ -76,9 +77,9 @@ priceChange(){
     this.advertisement.type = Number(this.advertisement.type)
    console.log(this.advertisement)
    
-  //   this.advService.createAdv(this.advertisement).subscribe(
-  //     result =>{
-  //       console.log(result)
-  //     })
+    this.advService.createAdv(this.advertisement).subscribe(
+      result =>{
+        console.log(result)
+      })
   }
 }
