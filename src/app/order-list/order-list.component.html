@@ -20,8 +20,13 @@
         <clr-dg-column>Amount</clr-dg-column>
         <clr-dg-column>Status</clr-dg-column>
         <clr-dg-row *ngFor="let order of activeOrders">
-          <clr-dg-cell>{{order._id}}</clr-dg-cell>
-          <clr-dg-cell>{{order.buyer==user.username?'Buyer':'Seller'}}</clr-dg-cell>
+          <clr-dg-cell>
+            <a class="action-item" (click)="onDetail(order)" routerLink="/chat">
+              <clr-icon style="color: black;bottom: 8px;left: 6px;" shape="pinboard" class="is-solid"></clr-icon>
+            </a>
+            {{order._id}}
+          </clr-dg-cell>
+          <clr-dg-cell style="vertical-align: middle;">{{order.buyer==user.username?'Buyer':'Seller'}}</clr-dg-cell>
           <clr-dg-cell>{{order.buyer==user.username?order.seller:order.buyer}}</clr-dg-cell>
           <clr-dg-cell>{{order.owner}}</clr-dg-cell>
           <clr-dg-cell>{{order.crypto}}</clr-dg-cell>
@@ -38,7 +43,12 @@
         <clr-dg-column>Amount</clr-dg-column>
         <clr-dg-column>Status</clr-dg-column>
         <clr-dg-row *ngFor="let order of finishedOrders">
-          <clr-dg-cell>{{order._id}}</clr-dg-cell>
+          <clr-dg-cell>
+            <a class="action-item" (click)="onDetail(order)" routerLink="/chat">
+              <clr-icon style="color: black;bottom: 8px;left: 6px;" shape="pinboard" class="is-solid"></clr-icon>
+            </a>
+            {{order._id}}
+          </clr-dg-cell>
           <clr-dg-cell>{{order.buyer==user.username?'Buyer':'Seller'}}</clr-dg-cell>
           <clr-dg-cell>{{order.buyer==user.username?order.seller:order.buyer}}</clr-dg-cell>
           <clr-dg-cell>{{order.owner}}</clr-dg-cell>

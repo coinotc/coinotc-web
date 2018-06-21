@@ -11,12 +11,14 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AngularFireModule } from 'angularfire2';
-import { firebaseConfig } from '../environments/firebase-chat'
-
+import { firebaseConfig } from '../environments/firebase-chat';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
     declarations: [
-        AppComponent, FooterComponent, HeaderComponent, 
+        AppComponent,
+        FooterComponent,
+        HeaderComponent
         //  CreateAdvComponent
     ],
     imports: [
@@ -30,7 +32,8 @@ import { firebaseConfig } from '../environments/firebase-chat'
         HttpModule,
         ClarityModule,
         AppRoutingModule,
-        AngularFireModule.initializeApp(firebaseConfig)
+        AngularFireModule.initializeApp(firebaseConfig),
+        StarRatingModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]

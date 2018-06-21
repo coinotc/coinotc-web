@@ -5,19 +5,18 @@ import { ChatComponent } from './chat.component';
 // import { ChatResolver } from './chat-resolver.service';
 import { SharedModule } from '../shared';
 import { ChatRoutingModule } from './chat-routing.module';
-
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
     imports: [
         SharedModule,
         ChatRoutingModule,
-        ClarityModule
+        ClarityModule,
+        StarRatingModule.forRoot()
     ],
-    declarations: [
-        ChatComponent
-    ],
+    declarations: [ChatComponent],
     providers: [
         // ChatResolver
     ]
 })
-export class ChatModule { }
+export class ChatModule {}

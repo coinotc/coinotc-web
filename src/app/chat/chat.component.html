@@ -1,128 +1,112 @@
-<div class="row">
-    <div class="col-lg-12 ">
-        <div class="card">
-          <div class="card-header" style="text-align: center">
-           Order Information
-          </div>
-          <div class="card-block">
-            <div class="row">
-              <div class="col-lg-6">
-                <table class="table table-vertical" *ngIf="Order">
-                  <tbody>
-                    <tr>
-                      <td>buyer</td>
-                      <td>{{Order.buyer}}</td>
-                    </tr>
-                    <tr>
-                      <td>seller</td>
-                      <td>{{Order.seller}}</td>
-                    </tr>
-                    <tr>
-                      <td>country</td>
-                      <td>{{Order.country}}</td>
-                    </tr>
-                    <tr>
-                      <td>payment</td>
-                      <td>{{Order.payment}}</td>
-                    </tr>
-                    <tr>
-                      <td>message</td>
-                      <td>{{Order.message}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-    
-              <div class="col-lg-6">
-                <table class="table table-vertical" *ngIf="Order">
-                  <tbody>
-                    <tr>
-                      <td>crypto</td>
-                      <td>{{Order.crypto}}</td>
-                    </tr>
-                    <tr>
-                      <td>fiat</td>
-                      <td>{{Order.fiat}}</td>
-                    </tr>
-                    <tr>
-                      <td>price</td>
-                      <td>{{Order.price}}</td>
-                    </tr>
-                    <tr>
-                      <td>quantity</td>
-                      <td>{{Order.quantity}}</td>
-                    </tr>
-                    <tr>
-                      <td>amount</td>
-                      <td>{{Order.amount}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-          </div>
-        </div>
-      </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="card-block">
-                <h3 class="card-title" style="text-align: center">chat</h3>
-                <div class="card-text">
-                  <div class="container-fluid">
-                    <div>
-                     
-                      <div class="row">
-                        <div class="col-lg-12">
-                          <div class="card card-accent-success">
-                            <div class="card-body" style="min-height:150px;overflow-y:auto;max-height:300px;">
-                              <div class="col-lg-12">
-                                <table class="table table-bordered table-striped" *ngFor="let chat of chats ">
-                                  <tbody>
-                                    <tr>
-                                      <td colspan="2 ">Content: 
-                                        {{chat.message}}
-                                      </td>
-                                      <tr>
-                                        <td>Username: 
-                                          {{chat.username}}
-                                        </td>
-                                        <td style="text-align:right">Date: 
-                                          {{chat.sendDate | date:'short'}}
-                                        </td>
-                                      </tr>
-                                      <!-- <div class="chat-container" >
-                                      <a href="#">{{chat.user}}</a>
-                                      <p>{{chat.message}}</p>
-                                    </div> -->
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="row">
-                          <div class="col-lg-12 ">
-                            <textarea id="textarea-input " rows="4 " class="form-control " [(ngModel)]="data.message"></textarea>
-                          </div>
-                        </div>
-                        <span style="float:right">
-                          <button type="button " class="btn btn-success " (click)=" sendMessage() " [disabled]="!data.message">
-                            Post Comment
-                          </button>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div class="card-footer">
-               
-            </div>
-        </div>
-    </div>
+<div class="card-header" style="text-align: center" *ngIf="order">
+  Order Information #{{order._id}}
+</div>
 
+<div class="row">
+  <div class="col-lg-6">
+    <table class="table table-vertical" *ngIf="order">
+      <tbody>
+        <tr>
+          <td>Buyer</td>
+          <td>{{order.buyer}}</td>
+        </tr>
+        <tr>
+          <td>Seller</td>
+          <td>{{order.seller}}</td>
+        </tr>
+        <tr>
+          <td>Country</td>
+          <td>{{order.country}}</td>
+        </tr>
+        <tr>
+          <td>Payment</td>
+          <td>{{order.payment}}</td>
+        </tr>
+        <tr>
+          <td>Message</td>
+          <td>{{order.message}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-lg-6">
+    <table class="table table-vertical" *ngIf="order">
+      <tbody>
+        <tr>
+          <td>Crypto</td>
+          <td>{{order.crypto}}</td>
+        </tr>
+        <tr>
+          <td>Fiat</td>
+          <td>{{order.fiat}}</td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td>{{order.price}}</td>
+        </tr>
+        <tr>
+          <td>Quantity</td>
+          <td>{{order.quantity}}</td>
+        </tr>
+        <tr>
+          <td>Amount</td>
+          <td>{{order.amount}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card-body" style="min-height:150px;overflow-y:auto;max-height:300px;">
+        <table class="table table-bordered table-striped" *ngFor="let chat of chats ">
+          <tbody>
+            <tr>
+              <td colspan="2" style="text-align:left">Content: {{chat.message}}
+              </td>
+              <tr>
+                <td style="text-align:left">Username: {{chat.user}}
+                </td>
+                <td style="text-align:right">Date: {{chat.sendDate | date:'short'}}
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <span class="card-footer"></span>
+
+  <div class="row">
+    <div class="col-lg-11">
+      <textarea id="textarea-input" rows="2" [(ngModel)]="data.message"></textarea>
+    </div>
+    <div class="col-lg-1">
+      <button class="btn btn-success" (click)="sendMessage()" [disabled]="!data.message">
+        <clr-icon shape="check"></clr-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="order">
+  <div *ngIf="order.finished == 1 || order.finished ==2">
+    <button class="btn btn-primary btn-block btn-lg" *ngIf="user.username == order.seller" [disabled]="order.finished !== 2"
+      (click)="onFinished()">Approve</button>
+    <button class="btn btn-primary btn-block btn-lg" *ngIf="user.username == order.buyer" [disabled]="order.finished !== 1" (click)="onInformed()">Inform</button>
+  </div>
+  <div *ngIf="order.finished == 3 && (this.user.username == this.order.buyer && this.order.buyerRating == null || this.user.username == this.order.seller && this.order.sellerRating == null)">
+    <!-- <rating [(ngModel)]="rate" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+    nullable="false">
+  </rating> -->
+    <star-rating [starType]="'icon'" [rating]="1" (ratingChange)="rateChanged($event)"></star-rating>
+    <button class="btn btn-primary btn-block btn-lg" (click)="onRating()">Confirm Rating</button>
+  </div>
+  <div *ngIf="(order.finished == 3 && (this.user.username == this.order.buyer && this.order.buyerRating !== null || this.user.username == this.order.seller && this.order.sellerRating !== null)) || order.finished == 0">
+    <button class="btn btn-primary btn-block btn-lg" (click)="quit()">Back To Order List</button>
+  </div>
 </div>

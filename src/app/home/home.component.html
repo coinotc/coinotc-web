@@ -15,7 +15,7 @@
         </label>
       </div> -->
   <div>
-    <div class="row" *ngIf="banners">
+    <div class="row" style="height: 200px;margin:10px 30px 0px" *ngIf="banners">
       <div class="col-xs-3" *ngIf="banners[0]">
         <a href="">
           <img alt="the place for news" src={{banners[0].imgURL}}>
@@ -39,7 +39,7 @@
     </div>
   </div>
 </div>
-<div class="content-container">
+<!-- <div class="content-container">
   <div class="content-area">
     <clr-datagrid>
       <clr-dg-column [clrDgField]="owner">Username</clr-dg-column>
@@ -63,8 +63,106 @@
 
     </clr-datagrid>
   </div>
+</div> -->
+
+<div class="row">
+  <div class="row col-xs-12 col-xl-5 col-lg-6">
+    <h3 class="col-xs-12 mb-1">Buy</h3>
+    <div class="btn-group">
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(1,'BITCOIN')" id="buy-btc" checked>
+        <label for="buy-btc">BTC</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(1,'ETHEREUM')" id="buy-eth">
+        <label for="buy-eth">ETH</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(1,'RIPPLE')" id="buy-xrp">
+        <label for="buy-xrp">XRP</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(1,'MONERO')" id="buy-xmr">
+        <label for="buy-xmr">XMR</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(1,'STELLAR')" id="buy-xlm">
+        <label for="buy-xlm">XLM</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(1,'CARDANO')" id="buy-ada">
+        <label for="buy-ada">ADA</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(1,'ZILLIQA')" id="buy-zil">
+        <label for="buy-zil">ZIL</label>
+      </div>
+    </div>
+  </div>
+  <div class="row col-xs-12 col-xl-5 col-lg-6">
+    <h3 class="col-xs-12 mb-1">Sell</h3>
+    <div class="btn-group">
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(0,'BITCOIN')" id="sell-btc">
+        <label for="sell-btc">BTC</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(0,'ETHEREUM')" id="sell-eth">
+        <label for="sell-eth">ETH</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(0,'RIPPLE')" id="sell-xrp">
+        <label for="sell-xrp">XRP</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(0,'MONERO')" id="sell-xmr">
+        <label for="sell-xmr">XMR</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(0,'STELLAR')" id="sell-xlm">
+        <label for="sell-xlm">XLM</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(0,'CARDANO')" id="sell-ada">
+        <label for="sell-ada">ADA</label>
+      </div>
+      <div class="radio btn">
+        <input type="radio" name="buyorsell" (click)="changecrypto(0,'ZILLIQA')" id="sell-zil">
+        <label for="sell-zil">ZIL</label>
+      </div>
+    </div>
+  </div>
+  <div class="row col-xs-12 col-xl-2 col-lg-12">
+    <h3 class="col-xs-12 mb-1">something else</h3>
+    <clr-dropdown>
+      <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+        {{country | uppercase}}
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+        <button type="button" (click)="changecountry('global')" clrDropdownItem>Global</button>
+        <button type="button" (click)="changecountry('singapore')" clrDropdownItem>Singapore</button>
+        <button type="button" (click)="changecountry('malaysia')" clrDropdownItem>Malaysia</button>
+        <button type="button" (click)="changecountry('thailand')" clrDropdownItem>Thailand</button>
+        <button type="button" (click)="changecountry('china')" clrDropdownItem>China</button>
+        <button type="button" (click)="changecountry('korea')" clrDropdownItem>Korea</button>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+    <clr-dropdown>
+      <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+        {{fiat | uppercase}}
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+        <button type="button" (click)="changefiat('SGD')" clrDropdownItem>SGD</button>
+        <button type="button" (click)="changefiat('CNY')" clrDropdownItem>CNY</button>
+        <button type="button" (click)="changefiat('THB')" clrDropdownItem>THB</button>
+        <button type="button" (click)="changefiat('MYR')" clrDropdownItem>MYR</button>
+        <button type="button" (click)="changefiat('USD')" clrDropdownItem>USD</button>
+        <button type="button" (click)="changefiat('KRW')" clrDropdownItem>KRW</button>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
 </div>
 
-<button class="btn btn-outline-danger" (click)="logout()" *appShowAuthed="true">
-  Click here to logout.
-</button>
+<app-advertisement [data]='adverts' [counrty]='country' ></app-advertisement>

@@ -8,27 +8,30 @@ import { map } from 'rxjs/operators/map';
 
 @Injectable()
 export class AdvertisementsService {
-  constructor (
+  constructor(
     private apiService: ApiService
-  ) {}
+  ) { }
 
 
-  getAll(): Observable<Advertisement[]> {
-    return this.apiService.get('/advertisement/getAll')
-         // .pipe(map(data => data.adverts));
+  getAll(type, country, fiat, crypto): Observable<Advertisement[]> {
+    return this.apiService.get(`/advertisement/getAll/${type}/${country}/${fiat}/${crypto}`)
+    // .pipe(map(data => data.adverts));
   }
 
   //according to owner to get advertisement
-  getByOwner(owner,visible): Observable<Advertisement[]>{
-    console.log(owner) 
+  getByOwner(owner, visible): Observable<Advertisement[]> {
+    console.log(owner)
     let url = `/advertisement/myadvertisement?owner=${owner}&visible=${visible}`
     return this.apiService.get(url)
   }
 
-  createAdv(advertisement){
-    return this.apiService.post('/advertisement',advertisement)
+  createAdv(advertisement) {
+    return this.apiService.post('/advertisement', advertisement)
   }
-
+  public changeVisible(id, visible) {
+    let URL =`/advertisement?_id=${id}`;
+    return this.apiService.patch(URL, { visible: visible });
+  }
 
 
 }

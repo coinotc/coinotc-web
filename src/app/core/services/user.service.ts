@@ -95,7 +95,9 @@ export class UserService {
   getCurrentUser(): User {
     return this.currentUserSubject.value;
   }
-
+  getUser() :Observable<User>{
+    return this.apiService.get('/userInfo');
+  }
   // Update the user on the server (email, pass, etc)
   update(user): Observable<User> {
     return this.apiService
