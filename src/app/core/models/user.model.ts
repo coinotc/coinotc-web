@@ -15,5 +15,6 @@ export interface User {
   deviceToken: string,
   followers: Array<string>,
   ratings: Array<number>,
-  active : boolean
+  active : boolean,
+  createdAt:Date
 }

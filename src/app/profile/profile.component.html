@@ -1,5 +1,5 @@
 <div class="main-container">
-    <div class="content-container">
+    <div class="content-container" *ngIf="user">
         <nav class="sidenav">
             <section class="sidenav-content">
                 <section class="nav-group collapsible">
@@ -19,10 +19,10 @@
                     <label for="tabexample2">My Advertisements</label>
                     <ul class="nav-list">
                         <li>
-                            <a class="nav-link {{status=='advertsAble'?'active':''}}" (click)="onStatus('advertsAble')">Able</a>
+                            <a class="nav-link {{status=='advertsAble'?'active':''}}" (click)="getAdvertisement('advertsAble',true)">Able</a>
                         </li>
                         <li>
-                            <a class="nav-link {{status=='advertsDisable'?'active':''}}" (click)="onStatus('advertsDisable')">Disable</a>
+                            <a class="nav-link {{status=='advertsDisable'?'active':''}}" (click)="getAdvertisement('advertsDisable',false)">Disable</a>
                         </li>
                     </ul>
                 </section>
@@ -55,13 +55,16 @@
         <div class="content-area">
             <div class="card" *ngIf="status == 'basciInformation'">
                 <div class="card-header">
-                    {{ profile.username }} ({{ profile.email }})
+                    {{ profile.username }}
                     <span class="badge badge-success" *ngIf="profile.verifystatus">Verified</span>
                     <span class="badge badge-danger" *ngIf="!profile.verifystatus">Unverified</span>
                 </div>
                 <div class="card-block">
-                    <button class="btn btn-sm btn-link" *ngIf="profile.verifystatus">Update Verification Documents</button>
-                    <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus">Submit Verification Documents</button>
+                    <!-- <button class="btn btn-sm btn-link" *ngIf="profile.verifystatus">Update Verification Documents</button>
+                    <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus">Submit Verification Documents</button> -->
+                    email: {{ user.email }}
+                    <br> createdAt : {{ user.createdAt | date:'medium'}}
+                    <br> orderCount : {{user.orderCount}}
                 </div>
             </div>
             <div class="card" *ngIf="status == 'advertsAble'">
@@ -78,6 +81,7 @@
                                 <th>Currency</th>
                                 <th>Rate</th>
                                 <th>Payment Method</th>
+                                <th>Active</th>
                             </tr>
                         </thead>
                         <tbody *ngIf="adverts">
@@ -88,6 +92,39 @@
                                 <td>{{advert.fiat}}</td>
                                 <td>{{advert.price}}</td>
                                 <td>{{advert.payment}}</td>
+                                <td><button  (click)="setVisible(advert)">disable</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card" *ngIf="status == 'advertsDisable'">
+                <div class="card-header">
+                    Advertisement
+                </div>
+                <div class="card-block">
+                    <table class="table table-compact table-noborder">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Coin</th>
+                                <th>Country</th>
+                                <th>Currency</th>
+                                <th>Rate</th>
+                                <th>Payment Method</th>
+                                <th>Active</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="adverts">
+                            <tr *ngFor="let advert of adverts">
+                                <td>{{advert.owner}}</td>
+                                <td>{{advert.crypto}}</td>
+                                <td>{{advert.country}}</td>
+                                <td>{{advert.fiat}}</td>
+                                <td>{{advert.price}}</td>
+                                <td>{{advert.payment}}</td>
+                                <td><button  (click)="setVisible(advert)">able</button>
+                                    <button>edit</button></td>
                             </tr>
                         </tbody>
                     </table>

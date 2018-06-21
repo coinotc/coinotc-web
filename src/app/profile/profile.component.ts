@@ -23,9 +23,9 @@ export class ProfileComponent implements OnInit {
     isUser: boolean;
     adverts: Advertisement[];
     orderLists: OrderInformation[];
-    status =  'basciInformation';
-    user;
-
+    status = 'basciInformation';
+    user: User;
+    profileUser: User;
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -33,7 +33,10 @@ export class ProfileComponent implements OnInit {
         private advServise: AdvertisementsService,
         private orderService: OrderService
     ) {
-        this.user = this.userService.getCurrentUser();
+        this.userService.getUser().subscribe(result => {
+            this.user = result;
+            console.log(this.user)
+        })
     }
 
     onStatus(profileStatus) {
@@ -42,6 +45,10 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.userService.getUser().subscribe(result => {
+            this.user = result;
+            console.log(this.user)
+        })
         this.route.data
             .pipe(
                 concatMap((data: { profile: Profile }) => {
@@ -62,22 +69,31 @@ export class ProfileComponent implements OnInit {
         // console.dir(this.profile.verifystatus)
 
         console.log(this.currentUser.username);
+
+    }
+
+    getAdvertisement(profileStatus, type) {
         this.advServise
-            .getByOwner(this.currentUser.username, true)
+            .getByOwner(this.currentUser.username, type)
+            .subscribe(result => {
+                this.adverts = result;
+                this.status = profileStatus;
+                this.router.navigateByUrl(`/profile/${this.user.username}`);
+                console.log(this.adverts);
+            });
+    }
+    setVisible(information) {
+        this.advServise
+          .changeVisible(information._id, information.visible)
+          .subscribe(() => {
+            this.advServise
+            .getByOwner(this.currentUser.username, information.visible)
             .subscribe(result => {
                 this.adverts = result;
                 console.log(this.adverts);
             });
-
-        this.orderService
-            .getOrderWithHim(this.profile.username, this.currentUser.username)
-            .subscribe(result => {
-                console.log(this.profile.username + this.currentUser.username);
-                this.orderLists = result;
-                console.log(result);
-            });
-    }
-
+          });
+      }
     // onToggleFollowing(following: boolean) {
     //   this.profile.following = following;
     // }
