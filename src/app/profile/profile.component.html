@@ -92,7 +92,9 @@
                                 <td>{{advert.fiat}}</td>
                                 <td>{{advert.price}}</td>
                                 <td>{{advert.payment}}</td>
-                                <td><button  (click)="setVisible(advert)">disable</button></td>
+                                <td>
+                                    <button (click)="setVisible(advert)">disable</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -123,8 +125,10 @@
                                 <td>{{advert.fiat}}</td>
                                 <td>{{advert.price}}</td>
                                 <td>{{advert.payment}}</td>
-                                <td><button  (click)="setVisible(advert)">able</button>
-                                    <button>edit</button></td>
+                                <td>
+                                    <button (click)="setVisible(advert)">able</button>
+                                    <button>edit</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -156,43 +160,161 @@
                                 <td>{{user.followers}}</td>
                                 <td>{{user.ratings}}</td>
                                 <td>{{user.volume}}</td>
-                                <td><button  (click)="setVisible(advert)">disable</button></td>
+                                <td>
+                                    <button (click)="setVisible(advert)">disable</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="card" *ngIf="status == 'follower'">
-                    <div class="card-header">
-                            Followers
-                        </div>
-                        <div class="card-block">
-                            <table class="table table-compact table-noborder">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Username</th>
-                                        <th>Trades</th>
-                                        <th>Following</th>
-                                        <th>Followers</th>
-                                        <th>Rating</th>
-                                        <th>Volume</th>
-                                    </tr>
-                                </thead>
-                                <tbody *ngIf="adverts">
-                                    <tr *ngFor="let advert of adverts">
-                                        <td></td>
-                                        <td>{{user.username}}</td>
-                                        <td>{{user.tradePrd}}</td>
-                                        <td>{{user.following}}</td>
-                                        <td>{{user.followers}}</td>
-                                        <td>{{user.ratings}}</td>
-                                        <td>{{user.volume}}</td>
-                                        <td><button  (click)="setVisible(advert)">disable</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="card-header">
+                    Followers
+                </div>
+                <div class="card-block">
+                    <table class="table table-compact table-noborder">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Username</th>
+                                <th>Trades</th>
+                                <th>Following</th>
+                                <th>Followers</th>
+                                <th>Rating</th>
+                                <th>Volume</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="adverts">
+                            <tr *ngFor="let advert of adverts">
+                                <td></td>
+                                <td>{{user.username}}</td>
+                                <td>{{user.tradePrd}}</td>
+                                <td>{{user.following}}</td>
+                                <td>{{user.followers}}</td>
+                                <td>{{user.ratings}}</td>
+                                <td>{{user.volume}}</td>
+                                <td>
+                                    <button (click)="setVisible(advert)">disable</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card" *ngIf="status == 'basicSettings'">
+                <div class="card-header">
+                    Basic Settings
+                </div>
+                <div class="card-block">
+                    <div class="blank">
+                        <ul class="list">
+                            <li>
+                                <clr-icon shape="user"></clr-icon>
+                                Authentication
+                                <button class="btn btn-outline" (click)="coinPassword()">
+                                    <span>Debound</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="envelope"></clr-icon>
+                                E-mail
+                                <button class="btn btn-outline" (click)="email()">
+                                    <span>Debound</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="mobile" class="is-solid"></clr-icon>
+                                Phone Number
+                                <button class="btn btn-outline" (click)="phone()">
+                                    <span>Debound</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="clock" class="is-solid"></clr-icon>
+                                Registration time
+                               <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="clock"></clr-icon>
+                                First trading time
+                                <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="text"></clr-icon>
+                                Language
+                                <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="users"></clr-icon>
+                                Number of trust
+                                <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="copy"></clr-icon>
+                                Accumulated transactions
+                                <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="dollar"></clr-icon>
+                                Accumulated trading volume
+                                <span>--</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card" *ngIf="status == 'securitySettings'">
+                <div class="card-header">
+                    Security Settings
+                </div>
+                <div class="card-block">
+                    <div class="blank">
+                        <ul class="list">
+                            <li>
+                                <clr-icon shape="shield-check"></clr-icon>
+                                <b>Fund Password</b>
+                                <small>To enter or modify security settings</small>
+                                <button class="btn btn-outline" (click)="coinPassword()">
+                                    <span>modify</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="envelope"></clr-icon>
+                                <b>Binding Mailbox</b>
+                                <small>Used to login, extract coins, modify security settings</small>
+                                <button class="btn btn-outline" (click)="email()">
+                                    <span>setting</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="mobile" class="is-solid"></clr-icon>
+                                <b>Binding Phone</b>
+                                <small>
+                                    Withdrawal, password change, and security settings are used to receive verification SMS</small>
+                                <button class="btn btn-outline" (click)="phone()">
+                                    <span>modify</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="lock"></clr-icon>
+                                <b>Login Password</b>
+                                <small>Enter when logging in to your account</small>
+                                <button class="btn btn-outline" (click)="login()">
+                                    <span>modify</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="link"></clr-icon>
+                                <b>Google Verification</b>
+                                <small>After binding, Google secondary verification is required for login and withdrawal</small>
+                                <button class="btn btn-outline">
+                                    <span>Enable</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
