@@ -41,11 +41,6 @@ export class HomeComponent implements OnInit {
   onEdit(advert) {
     this.advDetailService.detailAdv(advert)
   }
-
-  logout() {
-    this.userService.purgeAuth();
-    this.router.navigateByUrl('/');
-  }
   ngOnInit() {
     this.subscribeToData();
     this.refreshData();
