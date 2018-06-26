@@ -92,7 +92,9 @@
                                 <td>{{advert.fiat}}</td>
                                 <td>{{advert.price}}</td>
                                 <td>{{advert.payment}}</td>
-                                <td><button  (click)="setVisible(advert)">disable</button></td>
+                                <td>
+                                    <button (click)="setVisible(advert)">disable</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -123,11 +125,99 @@
                                 <td>{{advert.fiat}}</td>
                                 <td>{{advert.price}}</td>
                                 <td>{{advert.payment}}</td>
-                                <td><button  (click)="setVisible(advert)">able</button>
-                                    <button>edit</button></td>
+                                <td>
+                                    <button (click)="setVisible(advert)">able</button>
+                                    <button (click)="editAdvertisement(advert)">edit</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="card" *ngIf="status == 'advertsEdit'">
+                <div class="card-header">
+                    <label *ngIf="advertisementInfo.type == 1">Edit Sell Advertisement</label>
+                    <label *ngIf="advertisementInfo.type == 0">Edit Buy Advertisement</label>
+                </div>
+                <div class="card-block">
+                    <form>
+                        <section id="centre" class="form-block">
+                            <div class="form-group">
+                                <label>select a country</label>
+                                <div class="select">
+                                    <select [(ngModel)]="advertisementInfo.country" name="country">
+                                        <option value="America">America</option>
+                                        <option value="singapore">Singapore</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>select a crypto & fiat</label>
+                                <div class="select">
+                                    <select [(ngModel)]="advertisementInfo.crypto" (ngModelChange)="priceChange()" name="crypto">
+                                        <option value="Ripple">Ripple</option>
+                                        <option value="Monero">Monero</option>
+                                        <option value="Stellar">Stellar</option>
+                                        <option value="Candano">Candano</option>
+                                        <option value="ETHEREUM">Ethereum</option>
+                                    </select>
+                                </div>
+                                <span>
+                                    <b>&</b>
+                                </span>
+                                <div class="select">
+                                    <select [(ngModel)]="advertisementInfo.fiat" (ngModelChange)="priceChange()" name="fiat">
+                                        <option value="USD">USD</option>
+                                        <option value="CNY">CNY</option>
+                                        <option value="SGD">SGD</option>
+                                        <option value="KRW">KRW</option>
+                                    </select>
+                                </div>
+                                <label style="margin-left: 3%">{{price}}</label>
+                            </div>
+                            <!-- <span class="alert-text" *ngIf="error"> 
+                        Maximum value must be greater than minimum value！
+                    </span> -->
+                            <div class="form-group">
+                                <label>price range</label>
+                                <input [(ngModel)]="advertisementInfo.min_price" name="min_price" type="number">
+                                <span>
+                                    <b>
+                                        <</b>
+                                </span>
+                                <input [(ngModel)]="advertisementInfo.max_price" name="max_price" type="number">
+                            </div>
+                            <div class="alert alert-danger alert-sm" [hidden]="advertisementInfo.max_price>=advertisementInfo.min_price">
+                                <div class="alert-item static">
+                                    <div class="alert-icon-wrapper">
+                                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                                    </div>
+                                    <span class="alert-text">
+                                        Max_price must be greater than min_price value！
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>select the payment you want</label>
+                                <div class="select">
+                                    <select [(ngModel)]="advertisementInfo.payment" name="payment">
+                                        <option value="Alipay">Alipay</option>
+                                        <option value="Bank Card">Bank Card</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>set the time limit</label>
+                                <input [(ngModel)]="advertisementInfo.limit" name="limit" type="datetime-local">
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea [(ngModel)]="advertisementInfo.message" name="message" rows="4"></textarea>
+                            </div>
+                            <hr class="hr2">
+                            <button type="submit" class="btn btn-primary" >Edit</button>
+                        </section>
+                    </form>
                 </div>
             </div>
         </div>

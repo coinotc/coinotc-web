@@ -8,7 +8,8 @@ import {
     Advertisement,
     OrderInformation,
     OrderService,
-    advertisement
+    advertisement,
+    AdvDetailService
 } from '../core';
 import { concatMap } from 'rxjs/operators/concatMap';
 import { tap } from 'rxjs/operators/tap';
@@ -26,12 +27,14 @@ export class ProfileComponent implements OnInit {
     status = 'basciInformation';
     user: User;
     profileUser: User;
+    advertisementInfo;
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private userService: UserService,
         private advServise: AdvertisementsService,
-        private orderService: OrderService
+        private orderService: OrderService,
+        private advDetailService:AdvDetailService
     ) {
         this.userService.getUser().subscribe(result => {
             this.user = result;
@@ -93,6 +96,12 @@ export class ProfileComponent implements OnInit {
                 console.log(this.adverts);
             });
           });
+      }
+      editAdvertisement(information){
+        this.status = "advertsEdit";
+        this.advertisementInfo = information;
+        //this.advDetailService.detailAdv(information);
+        this.router.navigateByUrl(`/profile/${this.user.username}`);
       }
     // onToggleFollowing(following: boolean) {
     //   this.profile.following = following;
