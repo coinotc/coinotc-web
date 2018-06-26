@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
     this.advDetailService.detailAdv(advert)
   }
   ngOnInit() {
+    this.subscribeToData();
     this.refreshData();
   }
   private subscribeToData(): void {
@@ -51,6 +52,10 @@ export class HomeComponent implements OnInit {
   private refreshData() {
     this.advertisementsService.getAll(this.type, this.country, this.fiat, this.crypto).subscribe(adverts => {
       this.adverts = adverts;
+      this.timerSubscription.unsubscribe();
+      this.subscribeToData();
+    },()=>{
+      this.timerSubscription.unsubscribe();
       this.subscribeToData();
     })
   }
