@@ -8,7 +8,9 @@ import {
     Advertisement,
     OrderInformation,
     OrderService,
-    advertisement
+    advertisement,
+    AdvDetailService,
+    ProfilesService
 } from '../core';
 import { concatMap } from 'rxjs/operators/concatMap';
 import { tap } from 'rxjs/operators/tap';
@@ -21,17 +23,21 @@ export class ProfileComponent implements OnInit {
     profile: Profile;
     currentUser: User;
     isUser: boolean;
+    profiles: Profile[];
     adverts: Advertisement[];
     orderLists: OrderInformation[];
     status = 'basciInformation';
     user: User;
     profileUser: User;
+    advertisementInfo;
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private userService: UserService,
         private advServise: AdvertisementsService,
-        private orderService: OrderService
+        private orderService: OrderService,
+        private advDetailService:AdvDetailService,
+        private profilesService:ProfilesService
     ) {
         this.userService.getUser().subscribe(result => {
             this.user = result;
@@ -65,7 +71,7 @@ export class ProfileComponent implements OnInit {
                 })
             )
             .subscribe();
-        console.dir(this.profile);
+        //console.dir(this.profile);
         // console.dir(this.profile.verifystatus)
 
         console.log(this.currentUser.username);
@@ -82,6 +88,21 @@ export class ProfileComponent implements OnInit {
                 console.log(this.adverts);
             });
     }
+    getfollow(profileStatus, type){
+        let follow = []
+        if(type == true){
+            follow = this.currentUser.following;
+        }else{
+            follow = this.currentUser.followers;
+        }
+        console.log(follow)
+        this.profilesService.getProfileInfo(follow).subscribe(result=>{
+          console.log(result);
+          this.profiles = result;
+        this.status = profileStatus;
+        this.router.navigateByUrl(`/profile/${this.user.username}`);  
+        })
+    }
     setVisible(information) {
         this.advServise
           .changeVisible(information._id, information.visible)
@@ -93,6 +114,12 @@ export class ProfileComponent implements OnInit {
                 console.log(this.adverts);
             });
           });
+      }
+      editAdvertisement(information){
+        this.status = "advertsEdit";
+        this.advertisementInfo = information;
+        //this.advDetailService.detailAdv(information);
+        this.router.navigateByUrl(`/profile/${this.user.username}`);
       }
     // onToggleFollowing(following: boolean) {
     //   this.profile.following = following;
