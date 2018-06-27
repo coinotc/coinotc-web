@@ -9,7 +9,8 @@ import {
     OrderInformation,
     OrderService,
     advertisement,
-    AdvDetailService
+    AdvDetailService,
+    ProfilesService
 } from '../core';
 import { concatMap } from 'rxjs/operators/concatMap';
 import { tap } from 'rxjs/operators/tap';
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
     profile: Profile;
     currentUser: User;
     isUser: boolean;
+    profiles: Profile[];
     adverts: Advertisement[];
     orderLists: OrderInformation[];
     status = 'basciInformation';
@@ -34,7 +36,8 @@ export class ProfileComponent implements OnInit {
         private userService: UserService,
         private advServise: AdvertisementsService,
         private orderService: OrderService,
-        private advDetailService:AdvDetailService
+        private advDetailService:AdvDetailService,
+        private profilesService:ProfilesService
     ) {
         this.userService.getUser().subscribe(result => {
             this.user = result;
@@ -68,7 +71,7 @@ export class ProfileComponent implements OnInit {
                 })
             )
             .subscribe();
-        console.dir(this.profile);
+        //console.dir(this.profile);
         // console.dir(this.profile.verifystatus)
 
         console.log(this.currentUser.username);
@@ -84,6 +87,21 @@ export class ProfileComponent implements OnInit {
                 this.router.navigateByUrl(`/profile/${this.user.username}`);
                 console.log(this.adverts);
             });
+    }
+    getfollow(profileStatus, type){
+        let follow = []
+        if(type == true){
+            follow = this.currentUser.following;
+        }else{
+            follow = this.currentUser.followers;
+        }
+        console.log(follow)
+        this.profilesService.getProfileInfo(follow).subscribe(result=>{
+          console.log(result);
+          this.profiles = result;
+        this.status = profileStatus;
+        this.router.navigateByUrl(`/profile/${this.user.username}`);  
+        })
     }
     setVisible(information) {
         this.advServise

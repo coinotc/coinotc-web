@@ -31,10 +31,10 @@
                     <label for="tabexample3">Follow</label>
                     <ul class="nav-list">
                         <li>
-                            <a class="nav-link {{status=='following'?'active':''}}" (click)="onStatus('following')">Following</a>
+                            <a class="nav-link {{status=='following'?'active':''}}" (click)="getfollow('following',true)">Following</a>
                         </li>
                         <li>
-                            <a class="nav-link {{status=='follower'?'active':''}}" (click)="onStatus('follower')">Follower</a>
+                            <a class="nav-link {{status=='follower'?'active':''}}" (click)="getfollow('follower',false)">Follower</a>
                         </li>
                     </ul>
                 </section>
@@ -218,6 +218,176 @@
                             <button type="submit" class="btn btn-primary" >Edit</button>
                         </section>
                     </form>
+                </div>
+            </div>
+            <div class="card" *ngIf="status == 'following'">
+                <div class="card-header">
+                    Following
+                </div>
+                <div class="card-block">
+                    <table class="table table-compact table-noborder">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Trades</th>
+                                <th>Following</th>
+                                <th>Followers</th>
+                                <th>Rating</th>
+                                <th>Volume</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="profiles">
+                            <tr *ngFor="let follow of profiles">
+                                <td>{{follow.username}}</td>
+                                <td>{{follow.orderCount}}</td>
+                                <td>{{follow.following.length}}</td>
+                                <td>{{follow.followers.length}}</td>
+                                <td>{{follow.ratings}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card" *ngIf="status == 'follower'">
+                <div class="card-header">
+                    Followers
+                </div>
+                <div class="card-block">
+                    <table class="table table-compact table-noborder">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Trades</th>
+                                <th>Following</th>
+                                <th>Followers</th>
+                                <th>Rating</th>
+                                <th>Volume</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="profiles">
+                            <tr *ngFor="let follow of profiles">
+                                <td>{{follow.username}}</td>
+                                <td>{{follow.orderCount}}</td>
+                                <td>{{follow.following.length}}</td>
+                                <td>{{follow.followers.length}}</td>
+                                <td>{{follow.ratings}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card" *ngIf="status == 'basicSettings'">
+                <div class="card-header">
+                    Basic Settings
+                </div>
+                <div class="card-block">
+                    <div class="blank">
+                        <ul class="list">
+                            <li>
+                                <clr-icon shape="user"></clr-icon>
+                                Authentication
+                                <button class="btn btn-outline" (click)="coinPassword()">
+                                    <span>Debound</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="envelope"></clr-icon>
+                                E-mail
+                                <button class="btn btn-outline" (click)="email()">
+                                    <span>Debound</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="mobile" class="is-solid"></clr-icon>
+                                Phone Number
+                                <button class="btn btn-outline" (click)="phone()">
+                                    <span>Debound</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="clock" class="is-solid"></clr-icon>
+                                Registration time
+                               <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="clock"></clr-icon>
+                                First trading time
+                                <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="text"></clr-icon>
+                                Language
+                                <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="users"></clr-icon>
+                                Number of trust
+                                <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="copy"></clr-icon>
+                                Accumulated transactions
+                                <span>--</span>
+                            </li>
+                            <li>
+                                <clr-icon shape="dollar"></clr-icon>
+                                Accumulated trading volume
+                                <span>--</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card" *ngIf="status == 'securitySettings'">
+                <div class="card-header">
+                    Security Settings
+                </div>
+                <div class="card-block">
+                    <div class="blank">
+                        <ul class="list">
+                            <li>
+                                <clr-icon shape="shield-check"></clr-icon>
+                                <b>Fund Password</b>
+                                <small>To enter or modify security settings</small>
+                                <button class="btn btn-outline" (click)="coinPassword()">
+                                    <span>modify</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="envelope"></clr-icon>
+                                <b>Binding Mailbox</b>
+                                <small>Used to login, extract coins, modify security settings</small>
+                                <button class="btn btn-outline" (click)="email()">
+                                    <span>setting</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="mobile" class="is-solid"></clr-icon>
+                                <b>Binding Phone</b>
+                                <small>
+                                    Withdrawal, password change, and security settings are used to receive verification SMS</small>
+                                <button class="btn btn-outline" (click)="phone()">
+                                    <span>modify</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="lock"></clr-icon>
+                                <b>Login Password</b>
+                                <small>Enter when logging in to your account</small>
+                                <button class="btn btn-outline" (click)="login()">
+                                    <span>modify</span>
+                                </button>
+                            </li>
+                            <li>
+                                <clr-icon shape="link"></clr-icon>
+                                <b>Google Verification</b>
+                                <small>After binding, Google secondary verification is required for login and withdrawal</small>
+                                <button class="btn btn-outline">
+                                    <span>Enable</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
