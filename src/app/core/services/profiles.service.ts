@@ -26,6 +26,11 @@ export class ProfilesService {
         let URL = `/users/public?username=${username}`;
         return this.apiService.get(URL);
     }
+    public getProfileInfo(profile): Observable<Profile[]> {
+        console.log(profile)
+        let URL = `/users/profile?profile=${profile}`;
+        return this.apiService.get(URL);
+    }
     sendRating(username, ratings) {
         let URL = `/users/public/ratings?username=${username}`;
         return this.apiService.patch(URL, ratings);
