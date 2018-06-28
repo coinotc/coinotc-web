@@ -229,7 +229,8 @@
                                 <textarea [(ngModel)]="advertisementInfo.message" formControlName="message" rows="4"></textarea>
                             </div>
                             <hr class="hr2">
-                            <button type="submit" class="btn btn-primary" [disabled]="!adform.valid || advertisementInfo.max_price<=advertisementInfo.min_price" (click)="editadv()">Edit</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="!adform.valid || advertisementInfo.max_price<=advertisementInfo.min_price || payment.alipay==false && payment.bank==false && payment.paypal==false && payment.wechatPay==false"
+                                (click)="editadv()">Edit</button>
                         </section>
                     </form>
                 </div>

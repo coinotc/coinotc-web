@@ -243,5 +243,8 @@ export class ProfileComponent implements OnInit {
     editadv() {
         this.checkpayment();
         console.log(this.advertisementInfo);
+        this.advServise.editAdv(this.advertisementInfo).subscribe(result => {
+            console.log(result);
+        })
     }
 }
