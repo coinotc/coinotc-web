@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
+import { ToastyModule } from 'ng2-toasty';
 
 import { CreateAdvComponent } from './create-adv.component';
 // import { MarketDataAuthResolver } from './market-data-auth-resolver.service';
@@ -14,6 +15,7 @@ import { TrendModule } from 'ngx-trend'
   imports: [
     SharedModule,
     ClarityModule,
+    ToastyModule.forRoot(),
     CreateAdvRoutingModule,
     TrendModule,
   ],

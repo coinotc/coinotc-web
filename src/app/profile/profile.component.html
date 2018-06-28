@@ -140,52 +140,60 @@
                     <label *ngIf="advertisementInfo.type == 0">Edit Buy Advertisement</label>
                 </div>
                 <div class="card-block">
-                    <form>
+                    <form [formGroup]="adform">
                         <section id="centre" class="form-block">
                             <div class="form-group">
                                 <label>select a country</label>
                                 <div class="select">
-                                    <select [(ngModel)]="advertisementInfo.country" name="country">
-                                        <option value="America">America</option>
+                                    <select [(ngModel)]="advertisementInfo.country" formControlName="country">
                                         <option value="singapore">Singapore</option>
+                                        <option value="malaysia">Malaysia</option>
+                                        <option value="thailand">Thailand</option>
+                                        <option value="china">China</option>
+                                        <option value="korea">Korea</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>select a crypto & fiat</label>
                                 <div class="select">
-                                    <select [(ngModel)]="advertisementInfo.crypto" (ngModelChange)="priceChange()" name="crypto">
-                                        <option value="Ripple">Ripple</option>
-                                        <option value="Monero">Monero</option>
-                                        <option value="Stellar">Stellar</option>
-                                        <option value="Candano">Candano</option>
+                                    <select [(ngModel)]="advertisementInfo.crypto" (ngModelChange)="priceChange()" formControlName="crypto">
+                                        <option value="BITCOIN">Bitcoin</option>
                                         <option value="ETHEREUM">Ethereum</option>
+                                        <option value="RIPPLE">Ripple</option>
+                                        <option value="MONERO">Monero</option>
+                                        <option value="STELLAR">Stellar</option>
+                                        <option value="CARDANO">Cardano</option>
+                                        <option value="ZILLIQA">Zilliqa</option>
                                     </select>
                                 </div>
                                 <span>
                                     <b>&</b>
                                 </span>
                                 <div class="select">
-                                    <select [(ngModel)]="advertisementInfo.fiat" (ngModelChange)="priceChange()" name="fiat">
-                                        <option value="USD">USD</option>
-                                        <option value="CNY">CNY</option>
+                                    <select [(ngModel)]="advertisementInfo.fiat" (ngModelChange)="priceChange()" formControlName="fiat">
                                         <option value="SGD">SGD</option>
+                                        <option value="CNY">CNY</option>
+                                        <option value="THB">THB</option>
+                                        <option value="MYR">MYR</option>
+                                        <option value="USD">USD</option>
                                         <option value="KRW">KRW</option>
                                     </select>
                                 </div>
-                                <label style="margin-left: 3%">{{price}}</label>
+                                <label style="margin-left: 3%">{{cryptoprice}}</label>
+                                <input [(ngModel)]="advertisementInfo.price" formControlName="price" type="number">
                             </div>
                             <!-- <span class="alert-text" *ngIf="error"> 
                         Maximum value must be greater than minimum value！
                     </span> -->
                             <div class="form-group">
                                 <label>price range</label>
-                                <input [(ngModel)]="advertisementInfo.min_price" name="min_price" type="number">
+                                <input [(ngModel)]="advertisementInfo.min_price" formControlName="min_price" name="min_price" type="number">
                                 <span>
                                     <b>
                                         <</b>
                                 </span>
-                                <input [(ngModel)]="advertisementInfo.max_price" name="max_price" type="number">
+                                <input [(ngModel)]="advertisementInfo.max_price" formControlName="max_price" name="max_price" type="number">
                             </div>
                             <div class="alert alert-danger alert-sm" [hidden]="advertisementInfo.max_price>=advertisementInfo.min_price">
                                 <div class="alert-item static">
@@ -199,23 +207,30 @@
                             </div>
                             <div class="form-group">
                                 <label>select the payment you want</label>
-                                <div class="select">
-                                    <select [(ngModel)]="advertisementInfo.payment" name="payment">
-                                        <option value="Alipay">Alipay</option>
-                                        <option value="Bank Card">Bank Card</option>
-                                    </select>
-                                </div>
+                                <clr-checkbox [(ngModel)]="payment.paypal" formControlName="payment" [clrChecked]="payment.paypal" [clrInline]="true">
+                                    Paypal
+                                </clr-checkbox>
+                                <clr-checkbox [(ngModel)]="payment.bank" formControlName="payment" [clrChecked]="payment.bank" [clrInline]="true">
+                                    Bank Card
+                                </clr-checkbox>
+                                <clr-checkbox [(ngModel)]="payment.alipay" formControlName="payment" [clrChecked]="payment.alipay" [clrInline]="true">
+                                    Alipay
+                                </clr-checkbox>
+                                <clr-checkbox [(ngModel)]="payment.wechatPay" formControlName="payment" [clrChecked]="payment.wechatPay" [clrInline]="true">
+                                    Wechat Pay
+                                </clr-checkbox>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" *ngIf="advertisementInfo.type == 1">
                                 <label>set the time limit</label>
-                                <input [(ngModel)]="advertisementInfo.limit" name="limit" type="datetime-local">
+                                <input [(ngModel)]="advertisementInfo.limit" formControlName="limit" min="15" max="60" type="number">
                             </div>
                             <div class="form-group">
                                 <label>Message</label>
-                                <textarea [(ngModel)]="advertisementInfo.message" name="message" rows="4"></textarea>
+                                <textarea [(ngModel)]="advertisementInfo.message" formControlName="message" rows="4"></textarea>
                             </div>
                             <hr class="hr2">
-                            <button type="submit" class="btn btn-primary">Edit</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="!adform.valid || advertisementInfo.max_price<=advertisementInfo.min_price || payment.alipay==false && payment.bank==false && payment.paypal==false && payment.wechatPay==false"
+                                (click)="editadv()">Edit</button>
                         </section>
                     </form>
                 </div>

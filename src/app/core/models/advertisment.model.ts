@@ -7,7 +7,7 @@ export interface Advertisement {
   price: number,
   min_price: number,
   max_price: number,
-  payment: string,
+  payment: string[],
   limit: number,
   message: string,
   type: number
@@ -23,7 +23,7 @@ export class advertisement implements Advertisement{
     public price: number,
     public min_price: number,
     public max_price: number,
-    public payment: string,
+    public payment: string[],
     public limit: number,
     public message: string,
     public type: number

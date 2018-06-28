@@ -28,8 +28,11 @@ export class AdvertisementsService {
   createAdv(advertisement) {
     return this.apiService.post('/advertisement', advertisement)
   }
+  editAdv(info) {
+    return this.apiService.put('/advertisement/editAdvertisement/', info);
+  }
   public changeVisible(id, visible) {
-    let URL =`/advertisement?_id=${id}`;
+    let URL = `/advertisement?_id=${id}`;
     return this.apiService.patch(URL, { visible: visible });
   }
 
