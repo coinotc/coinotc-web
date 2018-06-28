@@ -60,8 +60,8 @@
                     <span class="badge badge-danger" *ngIf="!profile.verifystatus">Unverified</span>
                 </div>
                 <div class="card-block">
-                    <!-- <button class="btn btn-sm btn-link" *ngIf="profile.verifystatus">Update Verification Documents</button>
-                    <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus">Submit Verification Documents</button> -->
+                    <button class="btn btn-sm btn-link" *ngIf="profile.verifystatus">Update Verification Documents</button>
+                    <button class="btn btn-sm btn-link" *ngIf="!profile.verifystatus">Submit Verification Documents</button>
                     email: {{ user.email }}
                     <br> createdAt : {{ user.createdAt | date:'medium'}}
                     <br> orderCount : {{user.orderCount}}
@@ -249,6 +249,7 @@
                                 <th>Followers</th>
                                 <th>Rating</th>
                                 <th>Volume</th>
+                                <th>Active</th>
                             </tr>
                         </thead>
                         <tbody *ngIf="profiles">
@@ -258,6 +259,10 @@
                                 <td>{{follow.following.length}}</td>
                                 <td>{{follow.followers.length}}</td>
                                 <td>{{follow.ratings}}</td>
+                                <td>volum</td>
+                                <td>
+                                    <button (click)="unfollow(follow)">unfollow</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -298,56 +303,45 @@
                 <div class="card-block">
                     <div class="blank">
                         <ul class="list">
-                            <li>
+                            <!-- <li>
                                 <clr-icon shape="user"></clr-icon>
                                 Authentication
-                                <button class="btn btn-outline" (click)="coinPassword()">
-                                    <span>Debound</span>
+                                <button style="text-align:right; float:right;" (click)="coinPassword()">
+                                    Debound
                                 </button>
                             </li>
-                            <li>
-                                <clr-icon shape="envelope"></clr-icon>
-                                E-mail
-                                <button class="btn btn-outline" (click)="email()">
-                                    <span>Debound</span>
-                                </button>
-                            </li>
-                            <li>
-                                <clr-icon shape="mobile" class="is-solid"></clr-icon>
-                                Phone Number
-                                <button class="btn btn-outline" (click)="phone()">
-                                    <span>Debound</span>
-                                </button>
-                            </li>
-                            <li>
-                                <clr-icon shape="clock" class="is-solid"></clr-icon>
-                                Registration time
-                                <span>--</span>
-                            </li>
-                            <li>
-                                <clr-icon shape="clock"></clr-icon>
-                                First trading time
-                                <span>--</span>
-                            </li>
+                            <br> -->
                             <li>
                                 <clr-icon shape="text"></clr-icon>
                                 Language
-                                <span>--</span>
+                                <div class="select" style="text-align:right; float:right;">
+                                    <select id="selects_language">
+                                        <option *ngFor="let language of languages" [value]="language.value">{{language.label}}</option>
+                                    </select>
+                                </div>
                             </li>
+                            <br>
                             <li>
-                                <clr-icon shape="users"></clr-icon>
-                                Number of trust
-                                <span>--</span>
+                                <clr-icon shape="text"></clr-icon>
+                                Region
+                                <div class="select" style="text-align:right; float:right;">
+                                    <select id="selects_region">
+                                        <option *ngFor="let region of regions" [value]="region.value">{{region.label}}</option>
+                                    </select>
+                                </div>
                             </li>
+                            <br>
                             <li>
-                                <clr-icon shape="copy"></clr-icon>
-                                Accumulated transactions
-                                <span>--</span>
-                            </li>
-                            <li>
-                                <clr-icon shape="dollar"></clr-icon>
-                                Accumulated trading volume
-                                <span>--</span>
+                                <clr-icon shape="text"></clr-icon>
+                                Native Currency
+                                <!-- <button style="text-align:right; float:right;" (click)="coinPassword()">
+                                    Debound
+                                </button> -->
+                                <div class="select" style="text-align:right; float:right;">
+                                    <select id="selects_currency">
+                                        <option *ngFor="let currency of currencies" [value]="currency.currenciesCode">{{currency.currenciesDesc}} ({{currency.currenciesCode}})</option>
+                                    </select>
+                                </div>
                             </li>
                         </ul>
                     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as _ from 'lodash';
 import {
     User,
     UserService,
@@ -10,7 +11,8 @@ import {
     OrderService,
     advertisement,
     AdvDetailService,
-    ProfilesService
+    ProfilesService,
+    CurrenciesService
 } from '../core';
 import { concatMap } from 'rxjs/operators/concatMap';
 import { tap } from 'rxjs/operators/tap';
@@ -22,6 +24,16 @@ import { HttpClient } from "@angular/common/http";
     templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit {
+    currencies: any[];
+    regions = [
+        { label: 'Global', value: 'global' },
+        { label: 'Singapore', value: 'singapore' },
+        { label: 'China', value: 'china' },
+        { label: 'Malaysia', value: 'malaysia' },
+        { label: 'Korea', value: 'korea' },
+        { label: 'Thailand', value: 'thailand' }
+    ];
+    languages = [{ label: 'English', value: 'en' }, { label: '中文', value: 'cn' }];
     profile: Profile;
     currentUser: User;
     isUser: boolean;
@@ -51,14 +63,32 @@ export class ProfileComponent implements OnInit {
         private advDetailService: AdvDetailService,
         private profilesService: ProfilesService,
         private fb: FormBuilder,
-        private http: HttpClient
+        private http: HttpClient,
+        private currencyService: CurrenciesService,
     ) {
+        this.initializeCurrencies();
         this.userService.getUser().subscribe(result => {
             this.user = result;
             console.log(this.user)
         })
     }
+    initializeCurrencies() {
+        this.currencyService.getCurrencies().subscribe(currencies => {
+            console.log("currencies ==> " + currencies);
+            let currenciesCode = _.keys(currencies);
+            let currenciesDesc = _.values(currencies);
+            let currenciesArr = [];
 
+            for (let currencyIndex in currenciesCode) {
+                let currencyObj = {
+                    currenciesCode: currenciesCode[currencyIndex],
+                    currenciesDesc: currenciesDesc[currencyIndex]
+                }
+                currenciesArr.push(currencyObj);
+            }
+            this.currencies = currenciesArr;
+        });
+    }
     onStatus(profileStatus) {
         this.status = profileStatus;
         this.router.navigateByUrl(`/profile/${this.user.username}`);
@@ -105,9 +135,9 @@ export class ProfileComponent implements OnInit {
     getfollow(profileStatus, type) {
         let follow = []
         if (type == true) {
-            follow = this.currentUser.following;
+            follow = this.userService.getCurrentUser().following;
         } else {
-            follow = this.currentUser.followers;
+            follow = this.userService.getCurrentUser().followers;
         }
         console.log(follow)
         this.profilesService.getProfileInfo(follow).subscribe(result => {
@@ -115,6 +145,31 @@ export class ProfileComponent implements OnInit {
             this.profiles = result;
             this.status = profileStatus;
             this.router.navigateByUrl(`/profile/${this.user.username}`);
+        })
+    }
+    unfollow(follow) {
+        console.log(follow)
+        this.profilesService.getProfile(follow.username).subscribe(result => {
+            let a = result[0].followers;
+            let b = this.userService.getCurrentUser().following;
+            console.log(a)
+            console.log(b)
+            b.splice(
+                this.userService.getCurrentUser().following.indexOf(follow.username),
+                1
+            );
+            a.splice(
+                this.userService
+                    .getCurrentUser()
+                    .following.indexOf(this.currentUser.username),
+                1
+            );
+            console.log(a)
+            console.log(b)
+
+            this.profilesService.sendFollowing(this.currentUser.username, b).subscribe();
+            this.profilesService.sendFollowers(follow.username, a).subscribe();
+            this.getfollow("following", true)
         })
     }
     setVisible(information) {
@@ -130,6 +185,7 @@ export class ProfileComponent implements OnInit {
             });
     }
     editAdvertisement(information) {
+        this.status = "advertsEdit";
         this.advertisementInfo = information;
         if (this.advertisementInfo.type == 1) {
             this.adform = this.fb.group({

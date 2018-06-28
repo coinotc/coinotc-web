@@ -31,6 +31,14 @@ export class ProfilesService {
         let URL = `/users/profile?profile=${profile}`;
         return this.apiService.get(URL);
     }
+    public sendFollowing(username, following) {
+        let URL = `/users/public/follow?username=${username}`;
+        return this.apiService.patch(URL, following);
+      }
+      public sendFollowers(username, followers) {
+        let URL = `/users/public/followers?username=${username}`;
+        return this.apiService.patch(URL, followers);
+      }
     sendRating(username, ratings) {
         let URL = `/users/public/ratings?username=${username}`;
         return this.apiService.patch(URL, ratings);
