@@ -340,44 +340,34 @@
                     <div class="blank">
                         <ul class="list">
                             <li>
-                                <clr-icon shape="shield-check"></clr-icon>
-                                <b>Fund Password</b>
-                                <small>To enter or modify security settings</small>
-                                <button class="btn btn-outline" (click)="coinPassword()">
+                                <b>Change Trade Password</b>
+                                <small>description</small>
+                                <button class="btn btn-outline" routerLink="/forget-trade-prd" style="text-align:right; float:right;">
                                     <span>modify</span>
                                 </button>
                             </li>
+                            <br>
                             <li>
-                                <clr-icon shape="envelope"></clr-icon>
-                                <b>Binding Mailbox</b>
-                                <small>Used to login, extract coins, modify security settings</small>
-                                <button class="btn btn-outline" (click)="email()">
-                                    <span>setting</span>
-                                </button>
-                            </li>
-                            <li>
-                                <clr-icon shape="mobile" class="is-solid"></clr-icon>
-                                <b>Binding Phone</b>
-                                <small>
-                                    Withdrawal, password change, and security settings are used to receive verification SMS</small>
-                                <button class="btn btn-outline" (click)="phone()">
+                                <b>forget trade password</b>
+                                <small>description</small>
+                                <button class="btn btn-outline" (click)="forgetTradePassword()" style="text-align:right; float:right;">
                                     <span>modify</span>
                                 </button>
                             </li>
+                            <br>
                             <li>
-                                <clr-icon shape="lock"></clr-icon>
-                                <b>Login Password</b>
-                                <small>Enter when logging in to your account</small>
-                                <button class="btn btn-outline" (click)="login()">
+                                <b>change password</b>
+                                <small>description</small>
+                                <button class="btn btn-outline" (click)="changePassword()" style="text-align:right; float:right;">
                                     <span>modify</span>
                                 </button>
                             </li>
+                            <br>
                             <li>
-                                <clr-icon shape="link"></clr-icon>
-                                <b>Google Verification</b>
-                                <small>After binding, Google secondary verification is required for login and withdrawal</small>
-                                <button class="btn btn-outline">
-                                    <span>Enable</span>
+                                <b>Two Factor Authentication</b>
+                                <small>description</small>
+                                <button class="btn btn-outline" (click)="tfa()" style="text-align:right; float:right;">
+                                    <span>verification</span>
                                 </button>
                             </li>
                         </ul>

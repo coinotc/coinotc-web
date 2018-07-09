@@ -179,4 +179,7 @@ export class ProfileComponent implements OnInit {
     // onToggleFollowing(following: boolean) {
     //   this.profile.following = following;
     // }
+    changeTradePrd(){
+        this.router.navigateByUrl('/forget-trade-prd');
+    }
 }
