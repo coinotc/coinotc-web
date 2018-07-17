@@ -29,6 +29,22 @@ const routes: Routes = [
     {
         path: 'chat',
         loadChildren: './chat/chat.module#ChatModule'
+    },
+    {
+        path: 'forgetTradePrd',
+        loadChildren: './forget-trade-prd/forget-trade-prd.module#ForgetTradePrdModule'
+    },
+    {
+        path: 'twoFactorAuthentication',
+        loadChildren: './two-factor-authentication/two-factor-authentication.module#TwoFactorAuthenticationModule'
+    },
+    {
+        path: 'changeTradePrd',
+        loadChildren: './change-trade-prd/change-trade-prd.module#ChangeTradePrdModule'
+    },
+    {
+        path: 'changePassword',
+        loadChildren: './change-password/change-password.module#ChangePasswordModule'
     }
 ];
 

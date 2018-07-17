@@ -222,7 +222,9 @@ export class ProfileComponent implements OnInit {
     // onToggleFollowing(following: boolean) {
     //   this.profile.following = following;
     // }
-
+    changeTradePrd(){
+        this.router.navigateByUrl('/forget-trade-prd');
+    }
     // loadpayment(item) {
     //     var map = new Set(['alipay', 'paypal', 'bank', 'wechatPay']);
     //     console.log(map.size);

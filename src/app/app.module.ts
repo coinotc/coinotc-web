@@ -18,7 +18,7 @@ import { StarRatingModule } from 'angular-star-rating';
     declarations: [
         AppComponent,
         FooterComponent,
-        HeaderComponent
+        HeaderComponent,
         //  CreateAdvComponent
     ],
     imports: [
