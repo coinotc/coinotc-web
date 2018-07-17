@@ -13,20 +13,12 @@ import { CoreModule } from './core/core.module';
 import { AngularFireModule } from 'angularfire2';
 import { firebaseConfig } from '../environments/firebase-chat';
 import { StarRatingModule } from 'angular-star-rating';
-import { ChangeTradePrdComponent } from './change-trade-prd/change-trade-prd.component';
-import { ForgetTradePrdComponent } from './forget-trade-prd/forget-trade-prd.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
-import { TwoFactorAuthenticationComponent } from './two-factor-authentication/two-factor-authentication.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FooterComponent,
         HeaderComponent,
-        ChangeTradePrdComponent,
-        ForgetTradePrdComponent,
-        ChangePasswordComponent,
-        TwoFactorAuthenticationComponent
         //  CreateAdvComponent
     ],
     imports: [

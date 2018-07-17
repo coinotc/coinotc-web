@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Advertisement, advertisement } from '../core'
+import { Router } from '@angular/router';
 import { ApiService, AdvertisementsService } from '../core'
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from "@angular/common/http";
+import { ToastyService, ToastyConfig, ToastOptions } from 'ng2-toasty';
 import { validateConfig } from '@angular/router/src/config';
 import { UserService } from '../core';
 
@@ -15,14 +17,21 @@ import { UserService } from '../core';
 
 export class CreateAdvComponent implements OnInit {
   adform: FormGroup;
-  advertisement = new advertisement(null, null, null, null, null, null, null, null, null, null, null, 1)
+  advertisement = new advertisement(null, null, null, null, null, null, null, null, [], null, null, 1)
   price: number; cryptoprice: number;
   rangepercent = 0;
-
-  constructor(private advService: AdvertisementsService, private http: HttpClient, private fb: FormBuilder, private user: UserService) {
-    this.changetype();
+  payment = {
+    paypal: false,
+    bank: false,
+    alipay: false,
+    wechatPay: false
   }
-  changetype() {
+
+  constructor(private advService: AdvertisementsService, private http: HttpClient, private fb: FormBuilder, private user: UserService, private toastyService: ToastyService, private router: Router, ) {
+    this.changetype(1);
+  }
+  changetype(number) {
+    this.advertisement.type = number;
     if (this.advertisement.type == 1) {
       this.adform = this.fb.group({
         crypto: [this.advertisement.crypto, Validators.required],
@@ -121,16 +130,32 @@ export class CreateAdvComponent implements OnInit {
     return this.http.get(url);
   }
 
-
+  checkpayment() {
+    if (this.payment.alipay == true) this.advertisement.payment.push('alipay')
+    if (this.payment.bank == true) this.advertisement.payment.push('bank')
+    if (this.payment.paypal == true) this.advertisement.payment.push('paypal')
+    if (this.payment.wechatPay == true) this.advertisement.payment.push('wechatPay')
+  }
   createAdvertisement() {
     this.advertisement.type = Number(this.advertisement.type);
     this.advertisement.owner = this.user.getCurrentUser().username;
     this.advertisement.visible = true;
-    console.log(this.advertisement)
+    this.checkpayment();
 
     this.advService.createAdv(this.advertisement).subscribe(
-      result =>{
-        console.log(result)
+      result => {
+        console.log(result);
+        // let tosatyoption: ToastOptions = {
+        //   title: "Completed",
+        //   msg: "Advertisement is Created!",
+        //   showClose: true,
+        //   timeout: 5000,
+        //   theme: 'bootstrap',
+        // onRemove: () => {
+        this.router.navigate(['/']);
+        // }
+        // }
+        // this.toastyService.success(tosatyoption);
       })
   }
 }
